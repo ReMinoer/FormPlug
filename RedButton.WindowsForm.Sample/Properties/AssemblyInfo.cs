@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 
-[assembly: AssemblyTitle("RedButton")]
+[assembly: AssemblyTitle("RedButton.WindowsForm.Sample")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RedButton")]
+[assembly: AssemblyProduct("RedButton.WindowsForm.Sample")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
 
-[assembly: Guid("1981b1f0-9e0d-4534-b1d5-aac7ad092b01")]
+[assembly: Guid("8b17d06c-0df3-47df-a490-943950392b39")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //
