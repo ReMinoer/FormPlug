@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace RedButton.WindowsForm.Sample
+namespace FormPlug.WindowsForm.Sample
 {
     static internal class Program
     {

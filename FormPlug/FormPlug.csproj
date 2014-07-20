@@ -7,8 +7,8 @@
     <ProjectGuid>{FA85047C-1340-4CB2-B888-CFD45AB9DD85}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RedButton</RootNamespace>
-    <AssemblyName>RedButton</AssemblyName>
+    <RootNamespace>FormPlug</RootNamespace>
+    <AssemblyName>FormPlug</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,7 +34,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISocket.cs" />
+    <Compile Include="Plug.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PlugableAttribute.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
