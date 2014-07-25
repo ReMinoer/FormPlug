@@ -5,7 +5,7 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    public class PropertyPlugger<T>
+    public class PropertyPlugger<T> : IPlugger
     {
         private readonly object _obj;
         private readonly IPlug<T> _plug;
@@ -24,7 +24,7 @@ namespace FormPlug
             _plug.PluggedValue = (T)_property.GetValue(_obj);
             _plug.PlugValueChanged += OnPlugValueChanged;
 
-            string valueChangedEventName = attr.ValueChangedEventName
+            string valueChangedEventName = attr.CustomValueChangedEventName
                                            ?? property.Name + SocketAttribute.DefaultExternalEventExtension;
 
             if (obj.GetType().GetEvents().Any(e => e.Name == valueChangedEventName))
@@ -35,7 +35,7 @@ namespace FormPlug
                 Delegate handler = Delegate.CreateDelegate(eventInfo.EventHandlerType, this, methodInfo);
                 eventInfo.AddEventHandler(_obj, handler);
             }
-            else if (attr.ValueChangedEventName != null)
+            else if (attr.CustomValueChangedEventName != null)
                 throw new ArgumentException(valueChangedEventName + " not found !");
         }
 

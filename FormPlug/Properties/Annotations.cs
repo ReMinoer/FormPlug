@@ -10,6 +10,7 @@
 // ReSharper disable InconsistentNaming
 
 // ReSharper disable once CheckNamespace
+
 namespace FormPlug.Annotations
 {
     /// <summary>

@@ -14,9 +14,11 @@ namespace FormPlug.WindowsForm.Sample
             set
             {
                 _integer = value;
-                IntegerValueChanged.Invoke(this, EventArgs.Empty);
+                IntegerValueChanged(this, EventArgs.Empty);
             }
         }
+        private readonly Socket<int> _socketInteger;
+
         private readonly TestObject _test;
         private readonly IMainView _view;
         private int _integer;
@@ -26,11 +28,13 @@ namespace FormPlug.WindowsForm.Sample
             _view = view;
 
             _test = new TestObject();
+            _socketInteger = new Socket<int> {Value = 0};
 
             var plugablePanel = new PlugableFlowLayoutPanel(_view.ParentPanel);
             plugablePanel.CreatePanel(_test);
 
             _view.ParentPanel.Controls.Add(new IntegerPlug(this, "Integer"));
+            _view.ParentPanel.Controls.Add(new IntegerPlug(_socketInteger));
 
             _view.ExternalButton.Click += ExternalButtonOnClick;
         }
@@ -40,8 +44,8 @@ namespace FormPlug.WindowsForm.Sample
 
         private void ExternalButtonOnClick(object sender, EventArgs eventArgs)
         {
-            _test.Integer = 0;
-            _test.Integer2 = 0;
+            _test.Reset();
+            _socketInteger.Value = 0;
             Integer = 0;
         }
     }

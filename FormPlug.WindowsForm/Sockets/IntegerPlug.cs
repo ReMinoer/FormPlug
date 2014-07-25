@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows.Forms;
+using FormPlug.Annotations;
 
 namespace FormPlug.WindowsForm.Sockets
 {
     public class IntegerPlug : NumericUpDown, IPlug<int>
     {
-        private readonly PropertyPlugger<int> _plugger;
+        [UsedImplicitly]
+        private readonly IPlugger _plugger;
+
+        public IntegerPlug(Socket<int> socket)
+        {
+            _plugger = new SocketPlugger<int>(this, socket);
+        }
 
         public IntegerPlug(object obj, PropertyInfo property)
         {

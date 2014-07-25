@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 using FormPlug.WindowsForm.Sockets;
 
@@ -21,8 +22,14 @@ namespace FormPlug.WindowsForm
             panel.Controls.Add(new Label {Text = text});
         }
 
-        protected override void AddPlug(FlowLayoutPanel panel, object obj, PropertyInfo propertyInfo,
-                                        SocketAttribute attribute)
+        protected override void AddSocket(FlowLayoutPanel panel, ISocket socket, Type genericTypeArgument)
+        {
+            if (genericTypeArgument == typeof(int))
+                panel.Controls.Add(new IntegerPlug(socket as Socket<int>));
+        }
+
+        protected override void AddSocketAttribute(FlowLayoutPanel panel, object obj, PropertyInfo propertyInfo,
+                                                   SocketAttribute attribute)
         {
             if (attribute is IntegerSocketAttribute)
                 panel.Controls.Add(new IntegerPlug(obj, propertyInfo));

@@ -6,7 +6,7 @@ namespace FormPlug
     [AttributeUsage(AttributeTargets.Property)]
     public class SocketAttribute : Attribute
     {
-        public string ValueChangedEventName { get; set; }
+        public string CustomValueChangedEventName { get; set; }
         public const string DefaultExternalEventExtension = "ValueChanged";
     }
 

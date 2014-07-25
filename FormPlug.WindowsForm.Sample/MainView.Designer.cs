@@ -34,7 +34,7 @@
             // 
             // externalButton
             // 
-            this.externalButton.Location = new System.Drawing.Point(164, 221);
+            this.externalButton.Location = new System.Drawing.Point(207, 371);
             this.externalButton.Name = "externalButton";
             this.externalButton.Size = new System.Drawing.Size(108, 29);
             this.externalButton.TabIndex = 1;
@@ -46,14 +46,14 @@
             this.parentPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.parentPanel.Location = new System.Drawing.Point(0, 0);
             this.parentPanel.Name = "parentPanel";
-            this.parentPanel.Size = new System.Drawing.Size(284, 215);
+            this.parentPanel.Size = new System.Drawing.Size(327, 365);
             this.parentPanel.TabIndex = 2;
             // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(327, 412);
             this.Controls.Add(this.parentPanel);
             this.Controls.Add(this.externalButton);
             this.Name = "MainView";
