@@ -2,9 +2,9 @@
 
 namespace FormPlug
 {
-    public interface ISocket<T>
+    public interface IPlug<T>
     {
         T PluggedValue { get; set; }
-        event EventHandler InternalChange;
+        event EventHandler PlugValueChanged;
     }
 }

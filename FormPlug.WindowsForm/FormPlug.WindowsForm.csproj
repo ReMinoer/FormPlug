@@ -35,8 +35,8 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PanelGenerator.cs" />
-    <Compile Include="Sockets\IntegerSocket.cs">
+    <Compile Include="PlugableFlowLayoutPanel.cs" />
+    <Compile Include="Sockets\IntegerPlug.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

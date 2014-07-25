@@ -28,18 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.externalButton = new System.Windows.Forms.Button();
+            this.parentPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
-            // 
-            // flowLayoutPanel
-            // 
-            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(284, 215);
-            this.flowLayoutPanel.TabIndex = 0;
             // 
             // externalButton
             // 
@@ -50,13 +41,21 @@
             this.externalButton.Text = "External change";
             this.externalButton.UseVisualStyleBackColor = true;
             // 
+            // parentPanel
+            // 
+            this.parentPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.parentPanel.Location = new System.Drawing.Point(0, 0);
+            this.parentPanel.Name = "parentPanel";
+            this.parentPanel.Size = new System.Drawing.Size(284, 215);
+            this.parentPanel.TabIndex = 2;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.parentPanel);
             this.Controls.Add(this.externalButton);
-            this.Controls.Add(this.flowLayoutPanel);
             this.Name = "MainView";
             this.Text = "RedButton - Windows Form Sample";
             this.ResumeLayout(false);
@@ -65,8 +64,8 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         private System.Windows.Forms.Button externalButton;
+        private System.Windows.Forms.FlowLayoutPanel parentPanel;
     }
 }
 

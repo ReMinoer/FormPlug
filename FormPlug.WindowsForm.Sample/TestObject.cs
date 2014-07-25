@@ -5,34 +5,36 @@ namespace FormPlug.WindowsForm.Sample
 {
     internal class TestObject
     {
-        [PlugableInt(Minimum = 0, Maximum = 10, Increment = 1)]
-        public int IntValue
+        [IntegerSocket(Minimum = 0, Maximum = 10, Increment = 1)]
+        public int Integer
         {
-            get { return _intValue; }
+            [UsedImplicitly]
+            get { return _integer; }
             set
             {
-                _intValue = value;
-                IntValueExternalChange.Invoke(this, new EventArgs());
+                _integer = value;
+                IntegerValueChanged.Invoke(this, EventArgs.Empty);
             }
         }
 
-        [PlugableInt(Minimum = -10, Maximum = 0, Increment = 2)]
-        public int IntValue2
+        [IntegerSocket(Minimum = -10, Maximum = 0, Increment = 2)]
+        public int Integer2
         {
-            get { return _intValue2; }
+            [UsedImplicitly]
+            get { return _integer2; }
             set
             {
-                _intValue2 = value;
-                IntValue2ExternalChange.Invoke(this, new EventArgs());
+                _integer2 = value;
+                Integer2ValueChanged.Invoke(this, EventArgs.Empty);
             }
         }
 
-        private int _intValue;
-        private int _intValue2;
+        private int _integer;
+        private int _integer2;
 
         [UsedImplicitly]
-        public event EventHandler IntValueExternalChange;
+        public event EventHandler IntegerValueChanged;
         [UsedImplicitly]
-        public event EventHandler IntValue2ExternalChange;
+        public event EventHandler Integer2ValueChanged;
     }
 }

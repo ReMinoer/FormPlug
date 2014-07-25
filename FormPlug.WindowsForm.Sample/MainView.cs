@@ -13,7 +13,7 @@ namespace FormPlug.WindowsForm.Sample
             _presenter = new MainPresenter(this);
         }
 
-        public FlowLayoutPanel FlowLayoutPanel { get { return flowLayoutPanel; } }
+        public FlowLayoutPanel ParentPanel { get { return parentPanel; } }
         public Button ExternalButton { get { return externalButton; } }
     }
 }
