@@ -3,11 +3,15 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    public class Socket<T> : ISocket
+    public class Socket<T> : ISocket<T>
     {
+        private T _value;
+        public string Name { get; set; }
+        public string Group { get; set; }
+
         public T Value
         {
-            private get { return _value; }
+            get { return _value; }
             set
             {
                 _value = value;
@@ -15,7 +19,6 @@ namespace FormPlug
                     ValueChanged(this, EventArgs.Empty);
             }
         }
-        private T _value;
 
         [UsedImplicitly]
         public event EventHandler ValueChanged;

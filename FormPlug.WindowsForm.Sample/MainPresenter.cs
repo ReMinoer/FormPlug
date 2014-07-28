@@ -31,7 +31,7 @@ namespace FormPlug.WindowsForm.Sample
             _socketInteger = new Socket<int> {Value = 0};
 
             var plugablePanel = new PlugableFlowLayoutPanel(_view.ParentPanel);
-            plugablePanel.CreatePanel(_test);
+            plugablePanel.ConnectObject(_test);
 
             _view.ParentPanel.Controls.Add(new IntegerPlug(this, "Integer"));
             _view.ParentPanel.Controls.Add(new IntegerPlug(_socketInteger));

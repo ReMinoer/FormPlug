@@ -2,9 +2,13 @@
 
 namespace FormPlug
 {
-    public interface IPlug<T>
+    public interface IPlug
+    {
+        event EventHandler PlugValueChanged;
+    }
+
+    public interface IPlug<T> : IPlug
     {
         T PluggedValue { get; set; }
-        event EventHandler PlugValueChanged;
     }
 }

@@ -44,6 +44,7 @@
             // parentPanel
             // 
             this.parentPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.parentPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.parentPanel.Location = new System.Drawing.Point(0, 0);
             this.parentPanel.Name = "parentPanel";
             this.parentPanel.Size = new System.Drawing.Size(327, 365);
