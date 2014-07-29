@@ -6,7 +6,7 @@ namespace FormPlug.WindowsForm.Sample
     internal class TestObject
     {
         [IntegerSocket(Minimum = 0, Maximum = 10, Increment = 1, Group = "SocketAttribute", Name = "Int")]
-        public int Integer
+        private int Integer
         {
             [UsedImplicitly]
             get { return _integer; }
@@ -18,8 +18,7 @@ namespace FormPlug.WindowsForm.Sample
             }
         }
 
-        public Socket<int> IntegerSocket { get; set; }
-
+        private Socket<int> IntegerSocket { get; set; }
         private int _integer;
 
         public TestObject()

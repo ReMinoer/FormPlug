@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows.Forms;
 using FormPlug.WindowsForm.Sockets;
 
@@ -9,6 +8,14 @@ namespace FormPlug.WindowsForm
     {
         public PlugableFlowLayoutPanel(Control parent)
             : base(parent) {}
+
+        protected override IPlug<Control> GetAssociatePlug(Type type)
+        {
+            if (type == typeof(int))
+                return new IntegerPlug();
+
+            return null;
+        }
 
         protected override FlowLayoutPanel CreatePanel()
         {
@@ -29,23 +36,6 @@ namespace FormPlug.WindowsForm
         protected override Label CreateLabel(string text)
         {
             return new Label {Text = text};
-        }
-
-        protected override Control CreatePlugFromSocket(ISocket socket, Type genericTypeArgument)
-        {
-            if (genericTypeArgument == typeof(int))
-                return new IntegerPlug(socket as Socket<int>);
-
-            return null;
-        }
-
-        protected override Control CreatePlugFromSocketAttribute(object obj, PropertyInfo propertyInfo,
-                                                                 SocketAttribute attribute)
-        {
-            if (attribute is IntegerSocketAttribute)
-                return new IntegerPlug(obj, propertyInfo);
-
-            return null;
         }
 
         protected override void AddPanelToParent(Control parent, FlowLayoutPanel panel)

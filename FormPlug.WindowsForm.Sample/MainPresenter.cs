@@ -7,7 +7,7 @@ namespace FormPlug.WindowsForm.Sample
 {
     public class MainPresenter
     {
-        [UsedImplicitly, Socket]
+        [UsedImplicitly, IntegerSocket(Minimum = 0, Maximum = 10, Increment = 1)]
         public int Integer
         {
             get { return _integer; }
@@ -17,7 +17,7 @@ namespace FormPlug.WindowsForm.Sample
                 IntegerValueChanged(this, EventArgs.Empty);
             }
         }
-        private readonly Socket<int> _socketInteger;
+        private readonly Socket<int> _integerSocket;
 
         private readonly TestObject _test;
         private readonly IMainView _view;
@@ -28,13 +28,18 @@ namespace FormPlug.WindowsForm.Sample
             _view = view;
 
             _test = new TestObject();
-            _socketInteger = new Socket<int> {Value = 0};
+            _integerSocket = new Socket<int> {Value = 0};
 
             var plugablePanel = new PlugableFlowLayoutPanel(_view.ParentPanel);
-            plugablePanel.ConnectObject(_test);
+            plugablePanel.Connect(_test);
 
-            _view.ParentPanel.Controls.Add(new IntegerPlug(this, "Integer"));
-            _view.ParentPanel.Controls.Add(new IntegerPlug(_socketInteger));
+            var integerPlug = new IntegerPlug();
+            integerPlug.Connect(this, "Integer");
+            _view.ParentPanel.Controls.Add(integerPlug);
+
+            var integerPlug2 = new IntegerPlug();
+            integerPlug2.Connect(_integerSocket);
+            _view.ParentPanel.Controls.Add(integerPlug2);
 
             _view.ExternalButton.Click += ExternalButtonOnClick;
         }
@@ -45,7 +50,7 @@ namespace FormPlug.WindowsForm.Sample
         private void ExternalButtonOnClick(object sender, EventArgs eventArgs)
         {
             _test.Reset();
-            _socketInteger.Value = 0;
+            _integerSocket.Value = 0;
             Integer = 0;
         }
     }

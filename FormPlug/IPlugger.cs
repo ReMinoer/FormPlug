@@ -1,4 +1,4 @@
 ﻿namespace FormPlug
 {
-    public interface IPlugger {}
+    internal interface IPlugger {}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using FormPlug.Annotations;
 
 namespace FormPlug
 {
@@ -15,12 +16,13 @@ namespace FormPlug
             _groups = new Dictionary<string, TPanel>();
         }
 
-        public void ConnectObject(object obj)
+        public void Connect(object obj)
         {
             TPanel panel = CreatePanel();
             AddPanelToParent(_parent, panel);
 
-            PropertyInfo[] propertyInfos = obj.GetType().GetProperties();
+            PropertyInfo[] propertyInfos =
+                obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (PropertyInfo propertyInfo in propertyInfos)
             {
@@ -28,10 +30,15 @@ namespace FormPlug
                 if (propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Socket<>))
                 {
                     var socket = (ISocket)propertyInfo.GetValue(obj);
-                    Type genericTypeArgument = propertyType.GenericTypeArguments[0];
+                    Type genericType = propertyType.GenericTypeArguments[0];
 
                     TLabel label = CreateLabel(socket.Name ?? propertyInfo.Name);
-                    TPlug plug = CreatePlugFromSocket(socket, genericTypeArgument);
+
+                    Type type = typeof(PlugablePanel<TParent, TPanel, TGroup, TPlug, TLabel>);
+                    MethodInfo method = type.GetMethod("CreatePlugFromSocket",
+                        BindingFlags.NonPublic | BindingFlags.Instance);
+                    MethodInfo genericMethod = method.MakeGenericMethod(genericType);
+                    var plug = (TPlug)genericMethod.Invoke(this, new object[] {socket});
 
                     AddEntry(label, plug, panel, socket.Group);
                 }
@@ -44,7 +51,7 @@ namespace FormPlug
                         var socketAttribute = attribute as SocketAttribute;
 
                         TLabel label = CreateLabel(socketAttribute.Name ?? propertyInfo.Name);
-                        TPlug plug = CreatePlugFromSocketAttribute(obj, propertyInfo, socketAttribute);
+                        TPlug plug = CreatePlugFromSocketAttribute(obj, propertyInfo);
 
                         AddEntry(label, plug, panel, socketAttribute.Group);
                     }
@@ -73,13 +80,26 @@ namespace FormPlug
             AddPlugToPanel(targetPanel, plug);
         }
 
+        [UsedImplicitly]
+        private TPlug CreatePlugFromSocket<T>(ISocket socket)
+        {
+            var plug = (IPlug<T, TPlug>)GetAssociatePlug(typeof(T));
+            plug.Connect(socket as Socket<T>);
+            return plug.Control;
+        }
+
+        private TPlug CreatePlugFromSocketAttribute(object obj, PropertyInfo propertyInfo)
+        {
+            IPlug<TPlug> plug = GetAssociatePlug(propertyInfo.PropertyType);
+            plug.Connect(obj, propertyInfo);
+            return plug.Control;
+        }
+
+        protected abstract IPlug<TPlug> GetAssociatePlug(Type type);
+
         protected abstract TPanel CreatePanel();
         protected abstract TGroup CreateGroup(string name);
         protected abstract TLabel CreateLabel(string text);
-        protected abstract TPlug CreatePlugFromSocket(ISocket socket, Type genericTypeArgument);
-
-        protected abstract TPlug CreatePlugFromSocketAttribute(object obj, PropertyInfo propertyInfo,
-                                                               SocketAttribute attribute);
 
         protected abstract void AddPanelToParent(TParent parent, TPanel panel);
         protected abstract void AddGroupToPanel(TPanel panel, TGroup group);

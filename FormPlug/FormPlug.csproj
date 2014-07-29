@@ -34,8 +34,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntegerPlug.cs" />
     <Compile Include="IPlugger.cs" />
     <Compile Include="ISocket.cs" />
+    <Compile Include="Plug.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="IPlug.cs" />
     <Compile Include="PlugablePanel.cs" />

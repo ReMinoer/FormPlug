@@ -1,14 +1,25 @@
 ﻿using System;
+using System.Reflection;
 
 namespace FormPlug
 {
     public interface IPlug
     {
-        event EventHandler PlugValueChanged;
+        event EventHandler ValueChanged;
+
+        void Connect(object obj, PropertyInfo property);
+        void Connect(object obj, string propertyName);
     }
 
-    public interface IPlug<T> : IPlug
+    public interface IPlug<out TControl> : IPlug
     {
-        T PluggedValue { get; set; }
+        TControl Control { get; }
+    }
+
+    public interface IPlug<TValue, out TControl> : IPlug<TControl>
+    {
+        TValue Value { get; set; }
+
+        void Connect(Socket<TValue> socket);
     }
 }

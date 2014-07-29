@@ -4,12 +4,12 @@ namespace FormPlug
 {
     // TODO : Name, group in attribute
     [AttributeUsage(AttributeTargets.Property)]
-    public class SocketAttribute : Attribute
+    public abstract class SocketAttribute : Attribute
     {
         public string Name { get; set; }
         public string Group { get; set; }
         public string CustomValueChangedEventName { get; set; }
-        public const string DefaultExternalEventExtension = "ValueChanged";
+        public const string DefaultValueChangedExtension = "ValueChanged";
     }
 
     public class IntegerSocketAttribute : SocketAttribute

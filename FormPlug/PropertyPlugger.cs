@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
 using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    public class PropertyPlugger<T> : IPlugger
+    internal class PropertyPlugger<TValue, TControl> : IPlugger
     {
         private readonly object _obj;
-        private readonly IPlug<T> _plug;
+        private readonly IPlug<TValue, TControl> _plug;
         private readonly PropertyInfo _property;
 
-        public PropertyPlugger(IPlug<T> plug, object obj, PropertyInfo property)
+        public PropertyPlugger(IPlug<TValue, TControl> plug, object obj, PropertyInfo property)
         {
             var attr = property.GetCustomAttribute(typeof(SocketAttribute)) as SocketAttribute;
             if (attr == null)
@@ -21,15 +20,16 @@ namespace FormPlug
             _obj = obj;
             _property = property;
 
-            _plug.PluggedValue = (T)_property.GetValue(_obj);
-            _plug.PlugValueChanged += OnPlugValueChanged;
+            _plug.Value = (TValue)_property.GetValue(_obj);
+
+            _plug.ValueChanged += OnPlugValueChanged;
 
             string valueChangedEventName = attr.CustomValueChangedEventName
-                                           ?? property.Name + SocketAttribute.DefaultExternalEventExtension;
+                                           ?? property.Name + SocketAttribute.DefaultValueChangedExtension;
 
-            if (obj.GetType().GetEvents().Any(e => e.Name == valueChangedEventName))
+            EventInfo eventInfo = obj.GetType().GetEvent(valueChangedEventName);
+            if (eventInfo != null)
             {
-                EventInfo eventInfo = obj.GetType().GetEvent(valueChangedEventName);
                 MethodInfo methodInfo = GetType().
                     GetMethod("OnSocketValueChanged", BindingFlags.NonPublic | BindingFlags.Instance);
                 Delegate handler = Delegate.CreateDelegate(eventInfo.EventHandlerType, this, methodInfo);
@@ -41,13 +41,13 @@ namespace FormPlug
 
         private void OnPlugValueChanged(object sender, EventArgs eventArgs)
         {
-            _property.SetValue(_obj, _plug.PluggedValue);
+            _property.SetValue(_obj, _plug.Value);
         }
 
         [UsedImplicitly]
         private void OnSocketValueChanged(object sender, EventArgs eventArgs)
         {
-            _plug.PluggedValue = (T)_property.GetValue(_obj);
+            _plug.Value = (TValue)_property.GetValue(_obj);
         }
     }
 }
