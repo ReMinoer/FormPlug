@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using FormPlug.PlugBase;
 
 namespace FormPlug.WindowsForm.Sockets
 {
-    public class IntegerPlug : IntegerPlug<NumericUpDown>
+    public class IntegerPlug : IntegerPlugBase<NumericUpDown>
     {
         protected override int Minimum { set { Control.Minimum = value; } }
         protected override int Maximum { set { Control.Maximum = value; } }

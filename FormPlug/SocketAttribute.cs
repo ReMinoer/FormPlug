@@ -18,4 +18,6 @@ namespace FormPlug
         public int Maximum { get; set; }
         public int Increment { get; set; }
     }
+
+    public class TextSocketAttribute : SocketAttribute {}
 }

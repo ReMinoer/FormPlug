@@ -13,6 +13,8 @@ namespace FormPlug.WindowsForm
         {
             if (type == typeof(int))
                 return new IntegerPlug();
+            if (type == typeof(string))
+                return new TextPlug();
 
             return null;
         }

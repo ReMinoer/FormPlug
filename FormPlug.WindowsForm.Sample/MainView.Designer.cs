@@ -30,11 +30,12 @@
         {
             this.externalButton = new System.Windows.Forms.Button();
             this.parentPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.displayButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // externalButton
             // 
-            this.externalButton.Location = new System.Drawing.Point(207, 371);
+            this.externalButton.Location = new System.Drawing.Point(93, 371);
             this.externalButton.Name = "externalButton";
             this.externalButton.Size = new System.Drawing.Size(108, 29);
             this.externalButton.TabIndex = 1;
@@ -50,11 +51,21 @@
             this.parentPanel.Size = new System.Drawing.Size(327, 365);
             this.parentPanel.TabIndex = 2;
             // 
+            // displayButton
+            // 
+            this.displayButton.Location = new System.Drawing.Point(207, 371);
+            this.displayButton.Name = "displayButton";
+            this.displayButton.Size = new System.Drawing.Size(108, 29);
+            this.displayButton.TabIndex = 3;
+            this.displayButton.Text = "Display TestObject";
+            this.displayButton.UseVisualStyleBackColor = true;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(327, 412);
+            this.Controls.Add(this.displayButton);
             this.Controls.Add(this.parentPanel);
             this.Controls.Add(this.externalButton);
             this.Name = "MainView";
@@ -67,6 +78,7 @@
 
         private System.Windows.Forms.Button externalButton;
         private System.Windows.Forms.FlowLayoutPanel parentPanel;
+        private System.Windows.Forms.Button displayButton;
     }
 }
 

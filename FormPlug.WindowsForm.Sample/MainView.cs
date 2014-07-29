@@ -15,5 +15,6 @@ namespace FormPlug.WindowsForm.Sample
 
         public FlowLayoutPanel ParentPanel { get { return parentPanel; } }
         public Button ExternalButton { get { return externalButton; } }
+        public Button DisplayButton { get { return displayButton; } }
     }
 }

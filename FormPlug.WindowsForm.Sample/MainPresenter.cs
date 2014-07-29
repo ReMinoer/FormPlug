@@ -42,6 +42,7 @@ namespace FormPlug.WindowsForm.Sample
             _view.ParentPanel.Controls.Add(integerPlug2);
 
             _view.ExternalButton.Click += ExternalButtonOnClick;
+            _view.DisplayButton.Click += DisplayButtonOnClick;
         }
 
         [UsedImplicitly]
@@ -53,11 +54,17 @@ namespace FormPlug.WindowsForm.Sample
             _integerSocket.Value = 0;
             Integer = 0;
         }
+
+        private void DisplayButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            MessageBox.Show(_test.ToString(), @"TestObject", MessageBoxButtons.OK);
+        }
     }
 
     public interface IMainView
     {
         FlowLayoutPanel ParentPanel { get; }
         Button ExternalButton { get; }
+        Button DisplayButton { get; }
     }
 }

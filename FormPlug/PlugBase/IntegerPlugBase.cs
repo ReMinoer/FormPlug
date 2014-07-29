@@ -1,6 +1,6 @@
-﻿namespace FormPlug
+﻿namespace FormPlug.PlugBase
 {
-    public abstract class IntegerPlug<TControl> : Plug<int, IntegerSocketAttribute, TControl>
+    public abstract class IntegerPlugBase<TControl> : Plug<int, IntegerSocketAttribute, TControl>
         where TControl : new()
     {
         protected abstract int Minimum { set; }
