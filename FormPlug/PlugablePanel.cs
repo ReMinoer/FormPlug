@@ -5,7 +5,7 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    public abstract class PlugablePanel<TParent, TPanel, TGroup, TPlug, TLabel>
+    public abstract class PlugablePanel<TParent, TPanel, TGroup, TLabel, TControl>
     {
         private readonly Dictionary<string, TPanel> _groups;
         private readonly TParent _parent;
@@ -34,13 +34,13 @@ namespace FormPlug
 
                     TLabel label = CreateLabel(socket.Name ?? propertyInfo.Name);
 
-                    Type type = typeof(PlugablePanel<TParent, TPanel, TGroup, TPlug, TLabel>);
+                    Type type = typeof(PlugablePanel<TParent, TPanel, TGroup, TLabel, TControl>);
                     MethodInfo method = type.GetMethod("CreatePlugFromSocket",
                         BindingFlags.NonPublic | BindingFlags.Instance);
                     MethodInfo genericMethod = method.MakeGenericMethod(genericType);
-                    var plug = (TPlug)genericMethod.Invoke(this, new object[] {socket});
+                    var control = (TControl)genericMethod.Invoke(this, new object[] {socket});
 
-                    AddEntry(label, plug, panel, socket.Group);
+                    AddEntry(label, control, panel, socket.Group);
                 }
                 else
                     foreach (object attribute in propertyInfo.GetCustomAttributes(true))
@@ -51,14 +51,14 @@ namespace FormPlug
                         var socketAttribute = attribute as SocketAttribute;
 
                         TLabel label = CreateLabel(socketAttribute.Name ?? propertyInfo.Name);
-                        TPlug plug = CreatePlugFromSocketAttribute(obj, propertyInfo);
+                        TControl control = CreatePlugFromSocketAttribute(obj, propertyInfo);
 
-                        AddEntry(label, plug, panel, socketAttribute.Group);
+                        AddEntry(label, control, panel, socketAttribute.Group);
                     }
             }
         }
 
-        private void AddEntry(TLabel label, TPlug plug, TPanel panel, string groupName)
+        private void AddEntry(TLabel label, TControl control, TPanel panel, string groupName)
         {
             TPanel targetPanel = panel;
 
@@ -77,34 +77,33 @@ namespace FormPlug
                 }
 
             AddLabelToPanel(targetPanel, label);
-            AddPlugToPanel(targetPanel, plug);
+            AddControlToPanel(targetPanel, control);
         }
 
         [UsedImplicitly]
-        private TPlug CreatePlugFromSocket<T>(ISocket socket)
+        private TControl CreatePlugFromSocket<T>(ISocket socket)
         {
-            var plug = (IPlug<T, TPlug>)GetAssociatePlug<T>();
+            var plug = (IPlug<T, TControl>)GetAssociatePlug<T>();
             plug.Connect(socket as Socket<T>);
             return plug.Control;
         }
 
-        private TPlug CreatePlugFromSocketAttribute(object obj, PropertyInfo propertyInfo)
+        private TControl CreatePlugFromSocketAttribute(object obj, PropertyInfo propertyInfo)
         {
-            IPlug<TPlug> plug = GetAssociatePlug(propertyInfo.PropertyType);
+            IPlug<TControl> plug = GetAssociatePlug(propertyInfo.PropertyType);
             plug.Connect(obj, propertyInfo);
             return plug.Control;
         }
 
-        private IPlug<TPlug> GetAssociatePlug(Type genericType)
+        private IPlug<TControl> GetAssociatePlug(Type genericType)
         {
-            MethodInfo method = GetType().GetMethod("GetAssociatePlug",
-                BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo method = GetType().GetMethod("GetAssociatePlug", BindingFlags.NonPublic | BindingFlags.Instance);
             MethodInfo genericMethod = method.MakeGenericMethod(genericType);
-            
-            return (IPlug<TPlug>)genericMethod.Invoke(this, new object[0]);
+
+            return (IPlug<TControl>)genericMethod.Invoke(this, new object[0]);
         }
 
-        protected abstract IPlug<TPlug> GetAssociatePlug<T>();
+        protected abstract IPlug<TControl> GetAssociatePlug<T>();
 
         protected abstract TPanel CreatePanel();
         protected abstract TGroup CreateGroup(string name);
@@ -113,7 +112,41 @@ namespace FormPlug
         protected abstract void AddPanelToParent(TParent parent, TPanel panel);
         protected abstract void AddGroupToPanel(TPanel panel, TGroup group);
         protected abstract void AddPanelToGroup(TGroup group, TPanel panel);
-        protected abstract void AddPlugToPanel(TPanel panel, TPlug plug);
+        protected abstract void AddControlToPanel(TPanel panel, TControl control);
         protected abstract void AddLabelToPanel(TPanel panel, TLabel label);
+    }
+
+    public abstract class PlugablePanel<TBaseControl>
+        : PlugablePanel<TBaseControl, TBaseControl, TBaseControl, TBaseControl, TBaseControl>
+    {
+        protected PlugablePanel(TBaseControl parent)
+            : base(parent) {}
+
+        protected abstract void AddControlToControl(TBaseControl parent, TBaseControl control);
+
+        protected override sealed void AddPanelToParent(TBaseControl parent, TBaseControl panel)
+        {
+            AddControlToControl(parent, panel);
+        }
+
+        protected override sealed void AddGroupToPanel(TBaseControl panel, TBaseControl group)
+        {
+            AddControlToControl(panel, group);
+        }
+
+        protected override sealed void AddPanelToGroup(TBaseControl group, TBaseControl panel)
+        {
+            AddControlToControl(group, panel);
+        }
+
+        protected override sealed void AddControlToPanel(TBaseControl panel, TBaseControl control)
+        {
+            AddControlToControl(panel, control);
+        }
+
+        protected override sealed void AddLabelToPanel(TBaseControl panel, TBaseControl label)
+        {
+            AddControlToControl(panel, label);
+        }
     }
 }

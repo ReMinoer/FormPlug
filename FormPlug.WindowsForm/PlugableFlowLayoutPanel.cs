@@ -4,7 +4,7 @@ using FormPlug.WindowsForm.Plugs;
 
 namespace FormPlug.WindowsForm
 {
-    public class PlugableFlowLayoutPanel : PlugablePanel<Control, FlowLayoutPanel, GroupBox, Control, Label>
+    public class PlugableFlowLayoutPanel : PlugablePanel<Control>
     {
         public PlugableFlowLayoutPanel(Control parent)
             : base(parent) {}
@@ -13,10 +13,7 @@ namespace FormPlug.WindowsForm
         {
             Type type = typeof(T);
 
-            if (type == typeof(int)
-                || type == typeof(double)
-                || type == typeof(float)
-                || type == typeof(decimal))
+            if (type == typeof(int) || type == typeof(double) || type == typeof(float) || type == typeof(decimal))
                 return new NumericPlug<T>();
 
             if (type == typeof(string))
@@ -25,7 +22,7 @@ namespace FormPlug.WindowsForm
             return null;
         }
 
-        protected override FlowLayoutPanel CreatePanel()
+        protected override Control CreatePanel()
         {
             return new FlowLayoutPanel
             {
@@ -36,39 +33,19 @@ namespace FormPlug.WindowsForm
             };
         }
 
-        protected override GroupBox CreateGroup(string name)
+        protected override Control CreateGroup(string name)
         {
             return new GroupBox {Text = name, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink};
         }
 
-        protected override Label CreateLabel(string text)
+        protected override Control CreateLabel(string text)
         {
             return new Label {Text = text};
         }
 
-        protected override void AddPanelToParent(Control parent, FlowLayoutPanel panel)
+        protected override void AddControlToControl(Control parent, Control control)
         {
-            parent.Controls.Add(panel);
-        }
-
-        protected override void AddGroupToPanel(FlowLayoutPanel panel, GroupBox group)
-        {
-            panel.Controls.Add(group);
-        }
-
-        protected override void AddPanelToGroup(GroupBox group, FlowLayoutPanel panel)
-        {
-            group.Controls.Add(panel);
-        }
-
-        protected override void AddPlugToPanel(FlowLayoutPanel panel, Control plug)
-        {
-            panel.Controls.Add(plug);
-        }
-
-        protected override void AddLabelToPanel(FlowLayoutPanel panel, Label label)
-        {
-            panel.Controls.Add(label);
+            parent.Controls.Add(control);
         }
     }
 }
