@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using FormPlug.PlugBase;
 
-namespace FormPlug.WindowsForm.Sockets
+namespace FormPlug.WindowsForm.Plugs
 {
     public class TextPlug : TextPlugBase<TextBox>
     {

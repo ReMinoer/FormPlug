@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using FormPlug.WindowsForm.Sockets;
+using FormPlug.WindowsForm.Plugs;
 
 namespace FormPlug.WindowsForm
 {
