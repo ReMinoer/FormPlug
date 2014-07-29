@@ -4,16 +4,16 @@ using FormPlug.PlugBase;
 
 namespace FormPlug.WindowsForm.Plugs
 {
-    public class NumericPlug<TValue> : NumericPlugBase<TValue, NumericUpDown>
+    public class NumericPlug<TValue> : NumericPlugBase<TValue, NumericUpDown, decimal>
     {
         protected override int Minimum { set { Control.Minimum = value; } }
         protected override int Maximum { set { Control.Maximum = value; } }
         protected override int Increment { set { Control.Increment = value; } }
 
-        public override TValue Value
+        protected override decimal Output
         {
-            get { return (TValue)Convert.ChangeType(Control.Value, typeof(TValue)); }
-            set { Control.Value = (decimal)Convert.ChangeType(value, typeof(decimal)); }
+            get { return Control.Value; }
+            set { Control.Value = value; }
         }
 
         public override event EventHandler ValueChanged
