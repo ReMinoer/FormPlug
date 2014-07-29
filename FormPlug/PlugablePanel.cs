@@ -5,6 +5,7 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
+    // TODO : Find solution for directly add control to group
     public abstract class PlugablePanel<TParent, TPanel, TGroup, TLabel, TControl>
     {
         private readonly Dictionary<string, TPanel> _groups;
@@ -116,35 +117,35 @@ namespace FormPlug
         protected abstract void AddLabelToPanel(TPanel panel, TLabel label);
     }
 
-    public abstract class PlugablePanel<TBaseControl>
-        : PlugablePanel<TBaseControl, TBaseControl, TBaseControl, TBaseControl, TBaseControl>
+    public abstract class PlugablePanel<TControlBase>
+        : PlugablePanel<TControlBase, TControlBase, TControlBase, TControlBase, TControlBase>
     {
-        protected PlugablePanel(TBaseControl parent)
+        protected PlugablePanel(TControlBase parent)
             : base(parent) {}
 
-        protected abstract void AddControlToControl(TBaseControl parent, TBaseControl control);
+        protected abstract void AddControlToControl(TControlBase parent, TControlBase control);
 
-        protected override sealed void AddPanelToParent(TBaseControl parent, TBaseControl panel)
+        protected override sealed void AddPanelToParent(TControlBase parent, TControlBase panel)
         {
             AddControlToControl(parent, panel);
         }
 
-        protected override sealed void AddGroupToPanel(TBaseControl panel, TBaseControl group)
+        protected override sealed void AddGroupToPanel(TControlBase panel, TControlBase group)
         {
             AddControlToControl(panel, group);
         }
 
-        protected override sealed void AddPanelToGroup(TBaseControl group, TBaseControl panel)
+        protected override sealed void AddPanelToGroup(TControlBase group, TControlBase panel)
         {
             AddControlToControl(group, panel);
         }
 
-        protected override sealed void AddControlToPanel(TBaseControl panel, TBaseControl control)
+        protected override sealed void AddControlToPanel(TControlBase panel, TControlBase control)
         {
             AddControlToControl(panel, control);
         }
 
-        protected override sealed void AddLabelToPanel(TBaseControl panel, TBaseControl label)
+        protected override sealed void AddLabelToPanel(TControlBase panel, TControlBase label)
         {
             AddControlToControl(panel, label);
         }

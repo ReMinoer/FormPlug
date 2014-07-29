@@ -10,11 +10,7 @@ namespace FormPlug.WindowsForm.Plugs
         protected override int Maximum { set { Control.Maximum = value; } }
         protected override int Increment { set { Control.Increment = value; } }
 
-        protected override decimal Output
-        {
-            get { return Control.Value; }
-            set { Control.Value = value; }
-        }
+        protected override decimal Output { get { return Control.Value; } set { Control.Value = value; } }
 
         public override event EventHandler ValueChanged
         {

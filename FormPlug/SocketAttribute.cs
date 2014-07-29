@@ -1,9 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace FormPlug
 {
-    // TODO : Name, group in attribute
     [AttributeUsage(AttributeTargets.Property)]
     public abstract class SocketAttribute : Attribute
     {
@@ -21,6 +19,5 @@ namespace FormPlug
         public int Decimals { get; set; }
     }
 
-    public class TextSocketAttribute : SocketAttribute { }
-
+    public class TextSocketAttribute : SocketAttribute {}
 }
