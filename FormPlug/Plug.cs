@@ -4,7 +4,7 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    public abstract class Plug<TValue, TAttribute, TControl> : IPlug<TValue, TControl>
+    public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
         where TAttribute : SocketAttribute where TControl : new()
     {
         [UsedImplicitly]
@@ -41,7 +41,7 @@ namespace FormPlug
         public abstract TValue Value { get; set; }
         public abstract event EventHandler ValueChanged;
 
-        static public implicit operator TControl(Plug<TValue, TAttribute, TControl> value)
+        static public implicit operator TControl(Plug<TValue, TControl, TAttribute> value)
         {
             return value.Control;
         }

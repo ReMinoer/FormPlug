@@ -9,10 +9,16 @@ namespace FormPlug.WindowsForm
         public PlugableFlowLayoutPanel(Control parent)
             : base(parent) {}
 
-        protected override IPlug<Control> GetAssociatePlug(Type type)
+        protected override IPlug<Control> GetAssociatePlug<T>()
         {
-            if (type == typeof(int))
-                return new IntegerPlug();
+            Type type = typeof(T);
+
+            if (type == typeof(int)
+                || type == typeof(double)
+                || type == typeof(float)
+                || type == typeof(decimal))
+                return new NumericPlug<T>();
+
             if (type == typeof(string))
                 return new TextPlug();
 

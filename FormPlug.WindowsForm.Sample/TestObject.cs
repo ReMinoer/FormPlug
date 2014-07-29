@@ -7,7 +7,7 @@ namespace FormPlug.WindowsForm.Sample
 {
     internal class TestObject
     {
-        [IntegerSocket(Minimum = 0, Maximum = 10, Increment = 1, Group = "SocketAttribute", Name = "Int")]
+        [NumericSocket(Minimum = 0, Maximum = 10, Increment = 1, Group = "SocketAttribute", Name = "Int")]
         private int Integer
         {
             [UsedImplicitly]
@@ -63,10 +63,12 @@ namespace FormPlug.WindowsForm.Sample
         public override string ToString()
         {
             var result = new StringBuilder();
+
             result.AppendLine(Integer.ToString(CultureInfo.InvariantCulture));
             result.AppendLine(String);
             result.AppendLine(IntegerSocket.Value.ToString(CultureInfo.InvariantCulture));
             result.AppendLine(StringSocket.Value);
+
             return result.ToString();
         }
     }

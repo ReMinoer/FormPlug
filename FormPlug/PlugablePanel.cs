@@ -83,7 +83,7 @@ namespace FormPlug
         [UsedImplicitly]
         private TPlug CreatePlugFromSocket<T>(ISocket socket)
         {
-            var plug = (IPlug<T, TPlug>)GetAssociatePlug(typeof(T));
+            var plug = (IPlug<T, TPlug>)GetAssociatePlug<T>();
             plug.Connect(socket as Socket<T>);
             return plug.Control;
         }
@@ -95,7 +95,16 @@ namespace FormPlug
             return plug.Control;
         }
 
-        protected abstract IPlug<TPlug> GetAssociatePlug(Type type);
+        private IPlug<TPlug> GetAssociatePlug(Type genericType)
+        {
+            MethodInfo method = GetType().GetMethod("GetAssociatePlug",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo genericMethod = method.MakeGenericMethod(genericType);
+            
+            return (IPlug<TPlug>)genericMethod.Invoke(this, new object[0]);
+        }
+
+        protected abstract IPlug<TPlug> GetAssociatePlug<T>();
 
         protected abstract TPanel CreatePanel();
         protected abstract TGroup CreateGroup(string name);

@@ -35,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PlugBase\TextPlugBase.cs" />
-    <Compile Include="PlugBase\IntegerPlugBase.cs" />
+    <Compile Include="PlugBase\NumericPlugBase.cs" />
     <Compile Include="IPlugger.cs" />
     <Compile Include="ISocket.cs" />
     <Compile Include="Plug.cs" />

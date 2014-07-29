@@ -7,7 +7,7 @@ namespace FormPlug.WindowsForm.Sample
 {
     public class MainPresenter
     {
-        [UsedImplicitly, IntegerSocket(Minimum = 0, Maximum = 10, Increment = 1)]
+        [UsedImplicitly, NumericSocket(Minimum = 0, Maximum = 10, Increment = 1)]
         public int Integer
         {
             get { return _integer; }
@@ -33,11 +33,11 @@ namespace FormPlug.WindowsForm.Sample
             var plugablePanel = new PlugableFlowLayoutPanel(_view.ParentPanel);
             plugablePanel.Connect(_test);
 
-            var integerPlug = new IntegerPlug();
+            var integerPlug = new NumericPlug<int>();
             integerPlug.Connect(this, "Integer");
             _view.ParentPanel.Controls.Add(integerPlug);
 
-            var integerPlug2 = new IntegerPlug();
+            var integerPlug2 = new NumericPlug<int>();
             integerPlug2.Connect(_integerSocket);
             _view.ParentPanel.Controls.Add(integerPlug2);
 

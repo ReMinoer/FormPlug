@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace FormPlug
 {
@@ -12,12 +13,14 @@ namespace FormPlug
         public const string DefaultValueChangedExtension = "ValueChanged";
     }
 
-    public class IntegerSocketAttribute : SocketAttribute
+    public class NumericSocketAttribute : SocketAttribute
     {
         public int Minimum { get; set; }
         public int Maximum { get; set; }
         public int Increment { get; set; }
+        public int Decimals { get; set; }
     }
 
-    public class TextSocketAttribute : SocketAttribute {}
+    public class TextSocketAttribute : SocketAttribute { }
+
 }
