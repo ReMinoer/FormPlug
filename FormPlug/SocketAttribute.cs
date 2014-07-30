@@ -20,4 +20,8 @@ namespace FormPlug
     }
 
     public class TextSocketAttribute : SocketAttribute {}
+
+    public class BooleanSocketAttribute : SocketAttribute {}
+
+    public class DateTimeSocketAttribute : SocketAttribute {}
 }

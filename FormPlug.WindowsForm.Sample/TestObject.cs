@@ -33,8 +33,23 @@ namespace FormPlug.WindowsForm.Sample
             }
         }
 
+        [DateTimeSocket(Group = "SocketAttribute", Name = "DateTime")]
+        private DateTime DateTime
+        {
+            [UsedImplicitly]
+            get { return _dateTime; }
+            set
+            {
+                _dateTime = value;
+                if (DateTimeValueChanged != null)
+                    DateTimeValueChanged(this, EventArgs.Empty);
+            }
+        }
+
         private Socket<int> IntegerSocket { get; set; }
         private Socket<string> StringSocket { get; set; }
+        private Socket<DateTime> DateTimeSocket { get; set; }
+        private DateTime _dateTime;
 
         private int _integer;
         private string _string;
@@ -43,6 +58,7 @@ namespace FormPlug.WindowsForm.Sample
         {
             IntegerSocket = new Socket<int> {Group = "Socket<T>", Name = "Int", Value = 0};
             StringSocket = new Socket<string> {Group = "Socket<T>", Name = "String", Value = ""};
+            DateTimeSocket = new Socket<DateTime> {Group = "Socket<T>", Name = "DateTime", Value = DateTime.Now};
             Reset();
         }
 
@@ -50,14 +66,18 @@ namespace FormPlug.WindowsForm.Sample
         public event EventHandler IntegerValueChanged;
         [UsedImplicitly]
         public event EventHandler StringValueChanged;
+        [UsedImplicitly]
+        public event EventHandler DateTimeValueChanged;
 
         public void Reset()
         {
             Integer = 0;
             String = "";
+            DateTime = DateTime.Now;
 
             IntegerSocket.Value = 0;
             StringSocket.Value = "";
+            DateTimeSocket.Value = DateTime.Now;
         }
 
         public override string ToString()
@@ -66,8 +86,11 @@ namespace FormPlug.WindowsForm.Sample
 
             result.AppendLine(Integer.ToString(CultureInfo.InvariantCulture));
             result.AppendLine(String);
+            result.AppendLine(DateTime.ToString(CultureInfo.InvariantCulture));
+
             result.AppendLine(IntegerSocket.Value.ToString(CultureInfo.InvariantCulture));
             result.AppendLine(StringSocket.Value);
+            result.AppendLine(DateTimeSocket.Value.ToString(CultureInfo.InvariantCulture));
 
             return result.ToString();
         }

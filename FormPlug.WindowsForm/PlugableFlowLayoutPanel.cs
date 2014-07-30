@@ -19,6 +19,9 @@ namespace FormPlug.WindowsForm
             if (type == typeof(string))
                 return new TextPlug();
 
+            if (type == typeof(DateTime))
+                return new DateTimePlug();
+
             return null;
         }
 
