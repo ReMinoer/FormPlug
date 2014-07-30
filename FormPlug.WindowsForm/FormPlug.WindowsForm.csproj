@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="PlugableFlowLayoutPanel.cs" />
     <Compile Include="Plugs\DateTimePlug.cs" />
+    <Compile Include="Plugs\BooleanPlug.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Plugs\TextPlug.cs" />
     <Compile Include="Plugs\NumericPlug.cs" />

@@ -7,6 +7,19 @@ namespace FormPlug.WindowsForm.Sample
 {
     internal class TestObject
     {
+        [BooleanSocket(Group = "SocketAttribute", Name = "Boolean")]
+        private bool Boolean
+        {
+            [UsedImplicitly]
+            get { return _boolean; }
+            set
+            {
+                _boolean = value;
+                if (BooleanValueChanged != null)
+                    BooleanValueChanged(this, EventArgs.Empty);
+            }
+        }
+
         [NumericSocket(Minimum = 0, Maximum = 10, Increment = 1, Group = "SocketAttribute", Name = "Int")]
         private int Integer
         {
@@ -46,22 +59,27 @@ namespace FormPlug.WindowsForm.Sample
             }
         }
 
+        private Socket<bool> BooleanSocket { get; set; }
         private Socket<int> IntegerSocket { get; set; }
         private Socket<string> StringSocket { get; set; }
         private Socket<DateTime> DateTimeSocket { get; set; }
-        private DateTime _dateTime;
 
+        private bool _boolean;
         private int _integer;
         private string _string;
+        private DateTime _dateTime;
 
         public TestObject()
         {
+            BooleanSocket = new Socket<bool> { Group = "Socket<T>", Name = "Boolean", Value = false };
             IntegerSocket = new Socket<int> {Group = "Socket<T>", Name = "Int", Value = 0};
             StringSocket = new Socket<string> {Group = "Socket<T>", Name = "String", Value = ""};
             DateTimeSocket = new Socket<DateTime> {Group = "Socket<T>", Name = "DateTime", Value = DateTime.Now};
             Reset();
         }
 
+        [UsedImplicitly]
+        public event EventHandler BooleanValueChanged;
         [UsedImplicitly]
         public event EventHandler IntegerValueChanged;
         [UsedImplicitly]
@@ -71,10 +89,12 @@ namespace FormPlug.WindowsForm.Sample
 
         public void Reset()
         {
+            Boolean = false;
             Integer = 0;
             String = "";
             DateTime = DateTime.Now;
 
+            BooleanSocket.Value = false;
             IntegerSocket.Value = 0;
             StringSocket.Value = "";
             DateTimeSocket.Value = DateTime.Now;
@@ -84,13 +104,15 @@ namespace FormPlug.WindowsForm.Sample
         {
             var result = new StringBuilder();
 
-            result.AppendLine(Integer.ToString(CultureInfo.InvariantCulture));
+            result.AppendLine(Boolean.ToString());
+            result.AppendLine(Integer.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(String);
-            result.AppendLine(DateTime.ToString(CultureInfo.InvariantCulture));
+            result.AppendLine(DateTime.ToString(CultureInfo.CurrentCulture));
 
-            result.AppendLine(IntegerSocket.Value.ToString(CultureInfo.InvariantCulture));
+            result.AppendLine(BooleanSocket.Value.ToString());
+            result.AppendLine(IntegerSocket.Value.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(StringSocket.Value);
-            result.AppendLine(DateTimeSocket.Value.ToString(CultureInfo.InvariantCulture));
+            result.AppendLine(DateTimeSocket.Value.ToString(CultureInfo.CurrentCulture));
 
             return result.ToString();
         }

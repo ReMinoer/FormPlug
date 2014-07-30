@@ -13,6 +13,9 @@ namespace FormPlug.WindowsForm
         {
             Type type = typeof(T);
 
+            if (type == typeof(bool))
+                return new BooleanPlug();
+
             if (type == typeof(int) || type == typeof(double) || type == typeof(float) || type == typeof(decimal))
                 return new NumericPlug<T>();
 
