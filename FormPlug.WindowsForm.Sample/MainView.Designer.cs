@@ -48,7 +48,7 @@
             this.parentPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.parentPanel.Location = new System.Drawing.Point(0, 0);
             this.parentPanel.Name = "parentPanel";
-            this.parentPanel.Size = new System.Drawing.Size(327, 365);
+            this.parentPanel.Size = new System.Drawing.Size(446, 365);
             this.parentPanel.TabIndex = 2;
             // 
             // displayButton
@@ -64,7 +64,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 412);
+            this.ClientSize = new System.Drawing.Size(446, 412);
             this.Controls.Add(this.displayButton);
             this.Controls.Add(this.parentPanel);
             this.Controls.Add(this.externalButton);

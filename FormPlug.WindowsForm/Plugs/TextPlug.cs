@@ -7,6 +7,7 @@ namespace FormPlug.WindowsForm.Plugs
     public class TextPlug : TextPlugBase<TextBox>
     {
         public override string Value { get { return Control.Text; } set { Control.Text = value; } }
+        protected override void InitializeConnection() {}
 
         public override event EventHandler ValueChanged
         {
