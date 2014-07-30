@@ -22,6 +22,9 @@ namespace FormPlug.WindowsForm
             if (type == typeof(string))
                 return new TextPlug();
 
+            if (type.IsEnum)
+                return new EnumPlug<T>();
+
             if (type == typeof(DateTime))
                 return new DateTimePlug();
 

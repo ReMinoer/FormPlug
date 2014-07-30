@@ -1,0 +1,26 @@
+﻿using System;
+using System.Windows.Forms;
+using FormPlug.PlugBase;
+
+namespace FormPlug.WindowsForm.Plugs
+{
+    public class EnumPlug<T> : EnumPlugBase<T, ComboBox>
+    {
+        protected override string Output { get { return Control.Text; } set { Control.Text = value; } }
+
+        protected override void InitializeConnection()
+        {
+            Control.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            Control.Items.Clear();
+            foreach (string name in Enum.GetNames(typeof(T)))
+                Control.Items.Add(name);
+        }
+
+        public override event EventHandler ValueChanged
+        {
+            add { Control.SelectedIndexChanged += value; }
+            remove { Control.SelectedIndexChanged -= value; }
+        }
+    }
+}

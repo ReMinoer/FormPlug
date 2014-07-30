@@ -19,9 +19,11 @@ namespace FormPlug
         public int Decimals { get; set; }
     }
 
+    public class BooleanSocketAttribute : SocketAttribute {}
+
     public class TextSocketAttribute : SocketAttribute {}
 
-    public class BooleanSocketAttribute : SocketAttribute {}
+    public class EnumSocketAttribute : SocketAttribute {}
 
     public class DateTimeSocketAttribute : SocketAttribute {}
 }
