@@ -6,8 +6,7 @@ namespace FormPlug.Test
     static public class PlugTestHelper
     {
         static public void PlugTest<TObject, TPlug, TValue, TControl>(TValue initValue, TValue newValue)
-            where TPlug : IPlug<TValue, TControl>, new()
-            where TObject : new()
+            where TPlug : IPlug<TValue, TControl>, new() where TObject : new()
         {
             if (initValue.Equals(newValue))
                 Assert.Inconclusive("initValue & newValue can't be equals !");
@@ -25,13 +24,14 @@ namespace FormPlug.Test
                     return;
                 }
 
-            Assert.Inconclusive("{0} doesn't contains property of this type {1}", typeof(TObject).Name, typeof(TValue).Name);
+            Assert.Inconclusive("{0} doesn't contains property of this type {1}", typeof(TObject).Name,
+                typeof(TValue).Name);
         }
 
-        static public void PlugValueChangedWithSocket<TPlug, TValue, TControl>(TValue initValue, TValue newValue)
+        static private void PlugValueChangedWithSocket<TPlug, TValue, TControl>(TValue initValue, TValue newValue)
             where TPlug : IPlug<TValue, TControl>, new()
         {
-            var socket = new Socket<TValue>{Value = initValue};
+            var socket = new Socket<TValue> {Value = initValue};
 
             var plug = new TPlug();
             plug.Connect(socket);
@@ -41,7 +41,8 @@ namespace FormPlug.Test
             Assert.AreEqual(socket.Value, newValue);
         }
 
-        static public void PlugValueChangedWithAttribute<TPlug, TValue, TControl>(object obj, PropertyInfo propertyInfo, TValue initValue, TValue newValue)
+        static private void PlugValueChangedWithAttribute<TPlug, TValue, TControl>(object obj, PropertyInfo propertyInfo,
+                                                                                   TValue initValue, TValue newValue)
             where TPlug : IPlug<TValue, TControl>, new()
         {
             propertyInfo.SetValue(obj, initValue);
@@ -54,10 +55,10 @@ namespace FormPlug.Test
             Assert.AreEqual(propertyInfo.GetValue(obj), newValue);
         }
 
-        static public void SocketValueChangedWithSocket<TPlug, TValue, TControl>(TValue initValue, TValue newValue)
+        static private void SocketValueChangedWithSocket<TPlug, TValue, TControl>(TValue initValue, TValue newValue)
             where TPlug : IPlug<TValue, TControl>, new()
         {
-            var socket = new Socket<TValue> { Value = initValue };
+            var socket = new Socket<TValue> {Value = initValue};
 
             var plug = new TPlug();
             plug.Connect(socket);
@@ -67,7 +68,9 @@ namespace FormPlug.Test
             Assert.AreEqual(plug.Value, newValue);
         }
 
-        static public void SocketValueChangedWithAttribute<TPlug, TValue, TControl>(object obj, PropertyInfo propertyInfo, TValue initValue, TValue newValue)
+        static private void SocketValueChangedWithAttribute<TPlug, TValue, TControl>(object obj,
+                                                                                     PropertyInfo propertyInfo,
+                                                                                     TValue initValue, TValue newValue)
             where TPlug : IPlug<TValue, TControl>, new()
         {
             propertyInfo.SetValue(obj, initValue);

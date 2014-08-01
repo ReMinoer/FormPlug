@@ -11,7 +11,10 @@ namespace FormPlug.Test
         private bool Bool
         {
             [UsedImplicitly]
-            get { return _bool; }
+            get
+            {
+                return _bool;
+            }
             set
             {
                 _bool = value;
@@ -24,7 +27,10 @@ namespace FormPlug.Test
         private int Int
         {
             [UsedImplicitly]
-            get { return _int; }
+            get
+            {
+                return _int;
+            }
             set
             {
                 _int = value;
@@ -33,11 +39,15 @@ namespace FormPlug.Test
             }
         }
 
-        [NumericSocket(Group = "SocketAttribute", Name = "Decimal", Minimum = 0, Maximum = 1, Increment = 0.1, Decimals = 2)]
+        [NumericSocket(Group = "SocketAttribute", Name = "Decimal", Minimum = 0, Maximum = 1, Increment = 0.1,
+            Decimals = 2)]
         private float Float
         {
             [UsedImplicitly]
-            get { return _float; }
+            get
+            {
+                return _float;
+            }
             set
             {
                 _float = value;
@@ -50,7 +60,10 @@ namespace FormPlug.Test
         private string String
         {
             [UsedImplicitly]
-            get { return _string; }
+            get
+            {
+                return _string;
+            }
             set
             {
                 _string = value;
@@ -63,7 +76,10 @@ namespace FormPlug.Test
         private string BigString
         {
             [UsedImplicitly]
-            get { return _bigString; }
+            get
+            {
+                return _bigString;
+            }
             set
             {
                 _bigString = value;
@@ -76,7 +92,10 @@ namespace FormPlug.Test
         private TestEnum Enum
         {
             [UsedImplicitly]
-            get { return _enum; }
+            get
+            {
+                return _enum;
+            }
             set
             {
                 _enum = value;
@@ -89,7 +108,10 @@ namespace FormPlug.Test
         private DateTime DateTime
         {
             [UsedImplicitly]
-            get { return _dateTime; }
+            get
+            {
+                return _dateTime;
+            }
             set
             {
                 _dateTime = value;
@@ -106,23 +128,23 @@ namespace FormPlug.Test
         private Socket<TestEnum> EnumSocket { get; set; }
         private Socket<DateTime> DateTimeSocket { get; set; }
 
-        private bool _bool;
-        private int _int;
-        private float _float;
-        private string _string;
         private string _bigString;
+        private bool _bool;
         private DateTime _dateTime;
         private TestEnum _enum;
+        private float _float;
+        private int _int;
+        private string _string;
 
         public TestObject()
         {
-            BoolSocket = new Socket<bool> { Group = "Socket<T>", Name = "Boolean" };
-            IntSocket = new Socket<int> { Group = "Socket<T>", Name = "Integer" };
-            FloatSocket = new Socket<float> { Group = "Socket<T>", Name = "Decimal" };
-            StringSocket = new Socket<string> { Group = "Socket<T>", Name = "Text" };
-            BigStringSocket = new Socket<string> { Group = "Socket<T>", Name = "Long Text" };
-            EnumSocket = new Socket<TestEnum> {Group = "Socket<T>", Name = "Enumeration" };
-            DateTimeSocket = new Socket<DateTime> {Group = "Socket<T>", Name = "Date" };
+            BoolSocket = new Socket<bool> {Group = "Socket<T>", Name = "Boolean"};
+            IntSocket = new Socket<int> {Group = "Socket<T>", Name = "Integer"};
+            FloatSocket = new Socket<float> {Group = "Socket<T>", Name = "Decimal"};
+            StringSocket = new Socket<string> {Group = "Socket<T>", Name = "Text"};
+            BigStringSocket = new Socket<string> {Group = "Socket<T>", Name = "Long Text"};
+            EnumSocket = new Socket<TestEnum> {Group = "Socket<T>", Name = "Enumeration"};
+            DateTimeSocket = new Socket<DateTime> {Group = "Socket<T>", Name = "Date"};
 
             Reset();
         }

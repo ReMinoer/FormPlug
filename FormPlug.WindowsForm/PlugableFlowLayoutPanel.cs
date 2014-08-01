@@ -4,6 +4,7 @@ using FormPlug.WindowsForm.Plugs;
 
 namespace FormPlug.WindowsForm
 {
+    // TODO : Fix margin between element in panel
     public class PlugableFlowLayoutPanel : PlugablePanel<Control>
     {
         public PlugableFlowLayoutPanel(Control parent)

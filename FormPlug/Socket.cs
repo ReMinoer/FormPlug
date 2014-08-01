@@ -3,6 +3,7 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
+    // TODO : Add values for initialize the plug (SocketAttribute ?)
     public class Socket<T> : ISocket<T>
     {
         private T _value;

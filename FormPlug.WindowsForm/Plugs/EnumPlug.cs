@@ -8,6 +8,12 @@ namespace FormPlug.WindowsForm.Plugs
     {
         protected override string Output { get { return Control.Text; } set { Control.Text = value; } }
 
+        public override event EventHandler ValueChanged
+        {
+            add { Control.SelectedIndexChanged += value; }
+            remove { Control.SelectedIndexChanged -= value; }
+        }
+
         protected override void InitializeConnection()
         {
             Control.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -15,12 +21,6 @@ namespace FormPlug.WindowsForm.Plugs
             Control.Items.Clear();
             foreach (string name in Enum.GetNames(typeof(T)))
                 Control.Items.Add(name);
-        }
-
-        public override event EventHandler ValueChanged
-        {
-            add { Control.SelectedIndexChanged += value; }
-            remove { Control.SelectedIndexChanged -= value; }
         }
     }
 }

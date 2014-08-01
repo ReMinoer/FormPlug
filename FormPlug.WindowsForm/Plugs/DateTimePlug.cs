@@ -7,12 +7,13 @@ namespace FormPlug.WindowsForm.Plugs
     public class DateTimePlug : DateTimePlugBase<DateTimePicker>
     {
         public override DateTime Value { get { return Control.Value; } set { Control.Value = value; } }
-        protected override void InitializeConnection() {}
 
         public override event EventHandler ValueChanged
         {
             add { Control.ValueChanged += value; }
             remove { Control.ValueChanged -= value; }
         }
+
+        protected override void InitializeConnection() {}
     }
 }

@@ -11,11 +11,12 @@
         protected override void UseSocketAttribute(TextSocketAttribute attribute)
         {
             Multiline = attribute.Multiline;
-            if (attribute.Multiline)
-            {
-                Width = attribute.Width;
-                Height = attribute.Height;
-            }
+
+            if (!attribute.Multiline)
+                return;
+
+            Width = attribute.Width;
+            Height = attribute.Height;
         }
     }
 }
