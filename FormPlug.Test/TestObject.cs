@@ -8,32 +8,45 @@ namespace FormPlug.Test
     public class TestObject
     {
         [BooleanSocket(Group = "SocketAttribute", Name = "Boolean")]
-        private bool Boolean
+        private bool Bool
         {
             [UsedImplicitly]
-            get { return _boolean; }
+            get { return _bool; }
             set
             {
-                _boolean = value;
+                _bool = value;
                 if (BooleanValueChanged != null)
                     BooleanValueChanged(this, EventArgs.Empty);
             }
         }
 
-        [NumericSocket(Minimum = 0, Maximum = 10, Increment = 1, Group = "SocketAttribute", Name = "Int")]
-        private int Integer
+        [NumericSocket(Minimum = 0, Maximum = 10, Increment = 1, Group = "SocketAttribute", Name = "Integer")]
+        private int Int
         {
             [UsedImplicitly]
-            get { return _integer; }
+            get { return _int; }
             set
             {
-                _integer = value;
+                _int = value;
                 if (IntegerValueChanged != null)
                     IntegerValueChanged(this, EventArgs.Empty);
             }
         }
 
-        [TextSocket(Group = "SocketAttribute", Name = "String")]
+        [NumericSocket(Minimum = 0, Maximum = 10, Increment = 1, Decimals = 3, Group = "SocketAttribute", Name = "Decimal")]
+        private float Float
+        {
+            [UsedImplicitly]
+            get { return _float; }
+            set
+            {
+                _float = value;
+                if (FloatValueChanged != null)
+                    FloatValueChanged(this, EventArgs.Empty);
+            }
+        }
+
+        [TextSocket(Group = "SocketAttribute", Name = "Text")]
         private string String
         {
             [UsedImplicitly]
@@ -46,7 +59,7 @@ namespace FormPlug.Test
             }
         }
 
-        [DateTimeSocket(Group = "SocketAttribute", Name = "Enum")]
+        [DateTimeSocket(Group = "SocketAttribute", Name = "Enumeration")]
         private TestEnum Enum
         {
             [UsedImplicitly]
@@ -59,7 +72,7 @@ namespace FormPlug.Test
             }
         }
 
-        [DateTimeSocket(Group = "SocketAttribute", Name = "DateTime")]
+        [DateTimeSocket(Group = "SocketAttribute", Name = "Date")]
         private DateTime DateTime
         {
             [UsedImplicitly]
@@ -72,25 +85,28 @@ namespace FormPlug.Test
             }
         }
 
-        private Socket<bool> BooleanSocket { get; set; }
-        private Socket<int> IntegerSocket { get; set; }
+        private Socket<bool> BoolSocket { get; set; }
+        private Socket<int> IntSocket { get; set; }
+        private Socket<float> FloatSocket { get; set; }
         private Socket<string> StringSocket { get; set; }
         private Socket<TestEnum> EnumSocket { get; set; }
         private Socket<DateTime> DateTimeSocket { get; set; }
 
-        private bool _boolean;
+        private bool _bool;
+        private int _int;
+        private float _float;
+        private string _string;
         private DateTime _dateTime;
         private TestEnum _enum;
-        private int _integer;
-        private string _string;
 
         public TestObject()
         {
-            BooleanSocket = new Socket<bool> {Group = "Socket<T>", Name = "Boolean", Value = false};
-            IntegerSocket = new Socket<int> {Group = "Socket<T>", Name = "Int", Value = 0};
-            StringSocket = new Socket<string> {Group = "Socket<T>", Name = "String", Value = ""};
-            EnumSocket = new Socket<TestEnum> {Group = "Socket<T>", Name = "Enum", Value = TestEnum.Yes};
-            DateTimeSocket = new Socket<DateTime> {Group = "Socket<T>", Name = "DateTime", Value = DateTime.Now};
+            BoolSocket = new Socket<bool> { Group = "Socket<T>", Name = "Boolean", Value = false };
+            IntSocket = new Socket<int> { Group = "Socket<T>", Name = "Integer", Value = 0 };
+            FloatSocket = new Socket<float> { Group = "Socket<T>", Name = "Decimal", Value = 0 };
+            StringSocket = new Socket<string> { Group = "Socket<T>", Name = "Text", Value = "" };
+            EnumSocket = new Socket<TestEnum> {Group = "Socket<T>", Name = "Enumeration", Value = TestEnum.Yes};
+            DateTimeSocket = new Socket<DateTime> {Group = "Socket<T>", Name = "Date", Value = DateTime.Now};
             Reset();
         }
 
@@ -98,6 +114,8 @@ namespace FormPlug.Test
         public event EventHandler BooleanValueChanged;
         [UsedImplicitly]
         public event EventHandler IntegerValueChanged;
+        [UsedImplicitly]
+        public event EventHandler FloatValueChanged;
         [UsedImplicitly]
         public event EventHandler StringValueChanged;
         [UsedImplicitly]
@@ -107,14 +125,16 @@ namespace FormPlug.Test
 
         public void Reset()
         {
-            Boolean = false;
-            Integer = 0;
+            Bool = false;
+            Int = 0;
+            Float = 0;
             String = "";
             Enum = TestEnum.Yes;
             DateTime = DateTime.Now;
 
-            BooleanSocket.Value = false;
-            IntegerSocket.Value = 0;
+            BoolSocket.Value = false;
+            IntSocket.Value = 0;
+            FloatSocket.Value = 0;
             StringSocket.Value = "";
             EnumSocket.Value = TestEnum.Yes;
             DateTimeSocket.Value = DateTime.Now;
@@ -124,14 +144,16 @@ namespace FormPlug.Test
         {
             var result = new StringBuilder();
 
-            result.AppendLine(Boolean.ToString());
-            result.AppendLine(Integer.ToString(CultureInfo.CurrentCulture));
+            result.AppendLine(Bool.ToString());
+            result.AppendLine(Int.ToString(CultureInfo.CurrentCulture));
+            result.AppendLine(Float.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(String);
             result.AppendLine(Enum.ToString());
             result.AppendLine(DateTime.ToString(CultureInfo.CurrentCulture));
 
-            result.AppendLine(BooleanSocket.Value.ToString());
-            result.AppendLine(IntegerSocket.Value.ToString(CultureInfo.CurrentCulture));
+            result.AppendLine(BoolSocket.Value.ToString());
+            result.AppendLine(IntSocket.Value.ToString(CultureInfo.CurrentCulture));
+            result.AppendLine(FloatSocket.Value.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(StringSocket.Value);
             result.AppendLine(EnumSocket.Value.ToString());
             result.AppendLine(DateTimeSocket.Value.ToString(CultureInfo.CurrentCulture));

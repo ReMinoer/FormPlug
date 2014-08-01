@@ -9,6 +9,7 @@ namespace FormPlug.WindowsForm.Plugs
         protected override int Minimum { set { Control.Minimum = value; } }
         protected override int Maximum { set { Control.Maximum = value; } }
         protected override int Increment { set { Control.Increment = value; } }
+        protected override int Decimals { set { Control.DecimalPlaces = value; } }
 
         protected override decimal Output { get { return Control.Value; } set { Control.Value = value; } }
         protected override void InitializeConnection() {}

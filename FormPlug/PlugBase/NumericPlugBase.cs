@@ -8,6 +8,7 @@ namespace FormPlug.PlugBase
         protected abstract int Minimum { set; }
         protected abstract int Maximum { set; }
         protected abstract int Increment { set; }
+        protected abstract int Decimals { set; }
 
         protected abstract TOutput Output { get; set; }
 
@@ -22,6 +23,7 @@ namespace FormPlug.PlugBase
             Minimum = attribute.Minimum;
             Maximum = attribute.Maximum;
             Increment = attribute.Increment;
+            Decimals = attribute.Decimals;
         }
     }
 }
