@@ -59,6 +59,19 @@ namespace FormPlug.Test
             }
         }
 
+        [TextSocket(Group = "SocketAttribute", Name = "Long Text", Multiline = true, Width = 150, Height = 100)]
+        private string BigString
+        {
+            [UsedImplicitly]
+            get { return _bigString; }
+            set
+            {
+                _bigString = value;
+                if (BigStringValueChanged != null)
+                    BigStringValueChanged(this, EventArgs.Empty);
+            }
+        }
+
         [DateTimeSocket(Group = "SocketAttribute", Name = "Enumeration")]
         private TestEnum Enum
         {
@@ -89,6 +102,7 @@ namespace FormPlug.Test
         private Socket<int> IntSocket { get; set; }
         private Socket<float> FloatSocket { get; set; }
         private Socket<string> StringSocket { get; set; }
+        private Socket<string> BigStringSocket { get; set; }
         private Socket<TestEnum> EnumSocket { get; set; }
         private Socket<DateTime> DateTimeSocket { get; set; }
 
@@ -96,6 +110,7 @@ namespace FormPlug.Test
         private int _int;
         private float _float;
         private string _string;
+        private string _bigString;
         private DateTime _dateTime;
         private TestEnum _enum;
 
@@ -105,6 +120,7 @@ namespace FormPlug.Test
             IntSocket = new Socket<int> { Group = "Socket<T>", Name = "Integer", Value = 0 };
             FloatSocket = new Socket<float> { Group = "Socket<T>", Name = "Decimal", Value = 0 };
             StringSocket = new Socket<string> { Group = "Socket<T>", Name = "Text", Value = "" };
+            BigStringSocket = new Socket<string> { Group = "Socket<T>", Name = "Long Text", Value = "" };
             EnumSocket = new Socket<TestEnum> {Group = "Socket<T>", Name = "Enumeration", Value = TestEnum.Yes};
             DateTimeSocket = new Socket<DateTime> {Group = "Socket<T>", Name = "Date", Value = DateTime.Now};
             Reset();
@@ -119,6 +135,8 @@ namespace FormPlug.Test
         [UsedImplicitly]
         public event EventHandler StringValueChanged;
         [UsedImplicitly]
+        public event EventHandler BigStringValueChanged;
+        [UsedImplicitly]
         public event EventHandler DateTimeValueChanged;
         [UsedImplicitly]
         public event EventHandler EnumValueChanged;
@@ -129,6 +147,7 @@ namespace FormPlug.Test
             Int = 0;
             Float = 0;
             String = "";
+            BigString = "";
             Enum = TestEnum.Yes;
             DateTime = DateTime.Now;
 
@@ -136,6 +155,7 @@ namespace FormPlug.Test
             IntSocket.Value = 0;
             FloatSocket.Value = 0;
             StringSocket.Value = "";
+            BigStringSocket.Value = "";
             EnumSocket.Value = TestEnum.Yes;
             DateTimeSocket.Value = DateTime.Now;
         }
@@ -148,6 +168,7 @@ namespace FormPlug.Test
             result.AppendLine(Int.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(Float.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(String);
+            result.AppendLine(BigString);
             result.AppendLine(Enum.ToString());
             result.AppendLine(DateTime.ToString(CultureInfo.CurrentCulture));
 
@@ -155,6 +176,7 @@ namespace FormPlug.Test
             result.AppendLine(IntSocket.Value.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(FloatSocket.Value.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(StringSocket.Value);
+            result.AppendLine(BigStringSocket.Value);
             result.AppendLine(EnumSocket.Value.ToString());
             result.AppendLine(DateTimeSocket.Value.ToString(CultureInfo.CurrentCulture));
 
