@@ -20,7 +20,7 @@ namespace FormPlug.Test
             }
         }
 
-        [NumericSocket(Minimum = 0, Maximum = 10, Increment = 1, Group = "SocketAttribute", Name = "Integer")]
+        [NumericSocket(Group = "SocketAttribute", Name = "Integer", Minimum = 0, Maximum = 10, Increment = 1)]
         private int Int
         {
             [UsedImplicitly]
@@ -33,7 +33,7 @@ namespace FormPlug.Test
             }
         }
 
-        [NumericSocket(Minimum = 0, Maximum = 10, Increment = 1, Decimals = 3, Group = "SocketAttribute", Name = "Decimal")]
+        [NumericSocket(Group = "SocketAttribute", Name = "Decimal", Minimum = 0, Maximum = 1, Increment = 0.1, Decimals = 2)]
         private float Float
         {
             [UsedImplicitly]
@@ -116,13 +116,14 @@ namespace FormPlug.Test
 
         public TestObject()
         {
-            BoolSocket = new Socket<bool> { Group = "Socket<T>", Name = "Boolean", Value = false };
-            IntSocket = new Socket<int> { Group = "Socket<T>", Name = "Integer", Value = 0 };
-            FloatSocket = new Socket<float> { Group = "Socket<T>", Name = "Decimal", Value = 0 };
-            StringSocket = new Socket<string> { Group = "Socket<T>", Name = "Text", Value = "" };
-            BigStringSocket = new Socket<string> { Group = "Socket<T>", Name = "Long Text", Value = "" };
-            EnumSocket = new Socket<TestEnum> {Group = "Socket<T>", Name = "Enumeration", Value = TestEnum.Yes};
-            DateTimeSocket = new Socket<DateTime> {Group = "Socket<T>", Name = "Date", Value = DateTime.Now};
+            BoolSocket = new Socket<bool> { Group = "Socket<T>", Name = "Boolean" };
+            IntSocket = new Socket<int> { Group = "Socket<T>", Name = "Integer" };
+            FloatSocket = new Socket<float> { Group = "Socket<T>", Name = "Decimal" };
+            StringSocket = new Socket<string> { Group = "Socket<T>", Name = "Text" };
+            BigStringSocket = new Socket<string> { Group = "Socket<T>", Name = "Long Text" };
+            EnumSocket = new Socket<TestEnum> {Group = "Socket<T>", Name = "Enumeration" };
+            DateTimeSocket = new Socket<DateTime> {Group = "Socket<T>", Name = "Date" };
+
             Reset();
         }
 

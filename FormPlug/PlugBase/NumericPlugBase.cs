@@ -5,9 +5,9 @@ namespace FormPlug.PlugBase
     public abstract class NumericPlugBase<TValue, TControl, TOutput> : Plug<TValue, TControl, NumericSocketAttribute>
         where TControl : new()
     {
-        protected abstract int Minimum { set; }
-        protected abstract int Maximum { set; }
-        protected abstract int Increment { set; }
+        protected abstract double Minimum { set; }
+        protected abstract double Maximum { set; }
+        protected abstract double Increment { set; }
         protected abstract int Decimals { set; }
 
         protected abstract TOutput Output { get; set; }

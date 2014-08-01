@@ -12,12 +12,18 @@ namespace FormPlug.WindowsForm.Plugs
         protected override int Height { set { Control.Size = new Size(Control.Size.Width, value); } }
 
         public override string Value { get { return Control.Text; } set { Control.Text = value; } }
-        protected override void InitializeConnection() {}
 
         public override event EventHandler ValueChanged
         {
             add { Control.TextChanged += value; }
             remove { Control.TextChanged -= value; }
+        }
+
+        protected override void InitializeConnection()
+        {
+            Multiline = false;
+            Width = 100;
+            Height = 150;
         }
     }
 }

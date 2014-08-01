@@ -13,9 +13,9 @@ namespace FormPlug
 
     public class NumericSocketAttribute : SocketAttribute
     {
-        public int Minimum { get; set; }
-        public int Maximum { get; set; }
-        public int Increment { get; set; }
+        public double Minimum { get; set; }
+        public double Maximum { get; set; }
+        public double Increment { get; set; }
         public int Decimals { get; set; }
     }
 
