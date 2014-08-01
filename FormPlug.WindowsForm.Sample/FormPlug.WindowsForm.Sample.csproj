@@ -47,7 +47,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestObject.cs" />
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
@@ -75,6 +74,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FormPlug.Test\FormPlug.Test.csproj">
+      <Project>{cb51be37-9015-4540-b1d6-320e8b20e9ac}</Project>
+      <Name>FormPlug.Test</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FormPlug.WindowsForm\FormPlug.WindowsForm.csproj">
       <Project>{85B0105B-0CDB-473C-823A-AF976ABBDEC4}</Project>
       <Name>FormPlug.WindowsForm</Name>

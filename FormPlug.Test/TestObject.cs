@@ -3,9 +3,9 @@ using System.Globalization;
 using System.Text;
 using FormPlug.Annotations;
 
-namespace FormPlug.WindowsForm.Sample
+namespace FormPlug.Test
 {
-    internal class TestObject
+    public class TestObject
     {
         [BooleanSocket(Group = "SocketAttribute", Name = "Boolean")]
         private bool Boolean
@@ -137,15 +137,6 @@ namespace FormPlug.WindowsForm.Sample
             result.AppendLine(DateTimeSocket.Value.ToString(CultureInfo.CurrentCulture));
 
             return result.ToString();
-        }
-
-        private enum TestEnum
-        {
-            Yes,
-            [UsedImplicitly]
-            No,
-            [UsedImplicitly]
-            Maybe
         }
     }
 }
