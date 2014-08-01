@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FormPlug.PlugBase
+namespace FormPlug.PlugsBase
 {
     public abstract class DateTimePlugBase<TControl> : Plug<DateTime, TControl, DateTimeSocketAttribute>
         where TControl : new()

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FormPlug.PlugBase
+namespace FormPlug.PlugsBase
 {
     public abstract class EnumPlugBase<TValue, TControl> : Plug<TValue, TControl, EnumSocketAttribute>
         where TControl : new()

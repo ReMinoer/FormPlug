@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FormPlug.PlugBase
+namespace FormPlug.PlugsBase
 {
     public abstract class NumericPlugBase<TValue, TControl, TOutput> : Plug<TValue, TControl, NumericSocketAttribute>
         where TControl : new()
