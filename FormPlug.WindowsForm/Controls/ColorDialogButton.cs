@@ -4,6 +4,7 @@ using System.Windows.Forms;
 
 namespace FormPlug.WindowsForm.Controls
 {
+    // TODO : Dynamic size for ColorDialogButton
     public partial class ColorDialogButton : UserControl
     {
         public Color Color
@@ -15,7 +16,7 @@ namespace FormPlug.WindowsForm.Controls
                     return;
 
                 _color = value;
-                _colorDialog.Color = value;
+                _dialog.Color = value;
 
                 button.BackColor = _color;
                 button.Text = string.Format("{0}, {1}, {2}", _color.R, _color.G, _color.B);
@@ -25,7 +26,7 @@ namespace FormPlug.WindowsForm.Controls
                     ColorChanged(this, EventArgs.Empty);
             }
         }
-        private readonly ColorDialog _colorDialog = new ColorDialog();
+        private readonly ColorDialog _dialog = new ColorDialog();
         private Color _color;
 
         public ColorDialogButton()
@@ -37,10 +38,10 @@ namespace FormPlug.WindowsForm.Controls
 
         private void button_Click(object sender, EventArgs e)
         {
-            if (_colorDialog.ShowDialog() != DialogResult.OK)
+            if (_dialog.ShowDialog() != DialogResult.OK)
                 return;
 
-            Color = _colorDialog.Color;
+            Color = _dialog.Color;
         }
     }
 }

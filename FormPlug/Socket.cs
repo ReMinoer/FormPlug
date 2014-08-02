@@ -5,6 +5,7 @@ namespace FormPlug
 {
     public class Socket<T> : ISocket<T>
     {
+        private T _value;
         public SocketAttribute Attribute { get; set; }
 
         public T Value
@@ -17,8 +18,6 @@ namespace FormPlug
                     ValueChanged(this, EventArgs.Empty);
             }
         }
-
-        private T _value;
 
         [UsedImplicitly]
         public event EventHandler ValueChanged;
