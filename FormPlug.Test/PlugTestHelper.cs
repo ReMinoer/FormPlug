@@ -11,15 +11,16 @@ namespace FormPlug.Test
             if (initValue.Equals(newValue))
                 Assert.Inconclusive("initValue & newValue can't be equals !");
 
+            PlugValueChangedWithSocket<TPlug, TValue, TControl>(initValue, newValue);
+            SocketValueChangedWithSocket<TPlug, TValue, TControl>(initValue, newValue);
+
             var obj = new TObject();
 
             PropertyInfo[] tab = obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic);
             foreach (PropertyInfo propertyType in tab)
                 if (propertyType.PropertyType == typeof(TValue))
                 {
-                    PlugValueChangedWithSocket<TPlug, TValue, TControl>(initValue, newValue);
                     PlugValueChangedWithAttribute<TPlug, TValue, TControl>(obj, propertyType, initValue, newValue);
-                    SocketValueChangedWithSocket<TPlug, TValue, TControl>(initValue, newValue);
                     SocketValueChangedWithAttribute<TPlug, TValue, TControl>(obj, propertyType, initValue, newValue);
                     return;
                 }
