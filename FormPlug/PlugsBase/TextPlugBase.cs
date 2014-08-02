@@ -7,7 +7,7 @@
         protected abstract int Width { set; }
         protected abstract int Height { set; }
 
-        protected override void UseSocketAttribute(TextSocketAttribute attribute)
+        protected sealed override void UseSocketAttribute(TextSocketAttribute attribute)
         {
             Multiline = attribute.Multiline;
 

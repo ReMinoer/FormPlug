@@ -7,12 +7,12 @@ namespace FormPlug.PlugsBase
     {
         protected abstract string Output { get; set; }
 
-        public override TValue Value
+        public sealed override TValue Value
         {
             get { return (TValue)Enum.Parse(typeof(TValue), Output); }
             set { Output = Enum.GetName(typeof(TValue), value); }
         }
 
-        protected override void UseSocketAttribute(EnumSocketAttribute attribute) {}
+        protected sealed override void UseSocketAttribute(EnumSocketAttribute attribute) {}
     }
 }
