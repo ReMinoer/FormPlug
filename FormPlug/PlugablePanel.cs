@@ -52,7 +52,7 @@ namespace FormPlug
                         var socketAttribute = attribute as SocketAttribute;
 
                         TLabel label = CreateLabel(socketAttribute.Name ?? propertyInfo.Name);
-                        TControl control = CreatePlugFromSocketAttribute(obj, propertyInfo);
+                        TControl control = CreatePlugFromSocketAttribute(obj, propertyInfo, socketAttribute);
 
                         AddEntry(label, control, panel, socketAttribute.Group);
                     }
@@ -84,27 +84,27 @@ namespace FormPlug
         [UsedImplicitly]
         private TControl CreatePlugFromSocket<T>(ISocket socket)
         {
-            var plug = (IPlug<T, TControl>)GetAssociatePlug<T>();
+            var plug = (IPlug<T, TControl>)GetAssociatePlug<T>(socket.Attribute);
             plug.Connect(socket as Socket<T>);
             return plug.Control;
         }
 
-        private TControl CreatePlugFromSocketAttribute(object obj, PropertyInfo propertyInfo)
+        private TControl CreatePlugFromSocketAttribute(object obj, PropertyInfo propertyInfo, SocketAttribute attr)
         {
-            IPlug<TControl> plug = GetAssociatePlug(propertyInfo.PropertyType);
+            IPlug<TControl> plug = GetAssociatePlug(propertyInfo.PropertyType, attr);
             plug.Connect(obj, propertyInfo);
             return plug.Control;
         }
 
-        private IPlug<TControl> GetAssociatePlug(Type genericType)
+        private IPlug<TControl> GetAssociatePlug(Type genericType, SocketAttribute attribute)
         {
             MethodInfo method = GetType().GetMethod("GetAssociatePlug", BindingFlags.NonPublic | BindingFlags.Instance);
             MethodInfo genericMethod = method.MakeGenericMethod(genericType);
 
-            return (IPlug<TControl>)genericMethod.Invoke(this, new object[0]);
+            return (IPlug<TControl>)genericMethod.Invoke(this, new object[] {attribute});
         }
 
-        protected abstract IPlug<TControl> GetAssociatePlug<T>();
+        protected abstract IPlug<TControl> GetAssociatePlug<T>(SocketAttribute attribute);
 
         protected abstract TPanel CreatePanel();
         protected abstract TGroup CreateGroup(string name);
@@ -125,27 +125,27 @@ namespace FormPlug
 
         protected abstract void AddControlToControl(TControlBase parent, TControlBase control);
 
-        protected override sealed void AddPanelToParent(TControlBase parent, TControlBase panel)
+        protected sealed override void AddPanelToParent(TControlBase parent, TControlBase panel)
         {
             AddControlToControl(parent, panel);
         }
 
-        protected override sealed void AddGroupToPanel(TControlBase panel, TControlBase group)
+        protected sealed override void AddGroupToPanel(TControlBase panel, TControlBase group)
         {
             AddControlToControl(panel, group);
         }
 
-        protected override sealed void AddPanelToGroup(TControlBase group, TControlBase panel)
+        protected sealed override void AddPanelToGroup(TControlBase group, TControlBase panel)
         {
             AddControlToControl(group, panel);
         }
 
-        protected override sealed void AddControlToPanel(TControlBase panel, TControlBase control)
+        protected sealed override void AddControlToPanel(TControlBase panel, TControlBase control)
         {
             AddControlToControl(panel, control);
         }
 
-        protected override sealed void AddLabelToPanel(TControlBase panel, TControlBase label)
+        protected sealed override void AddLabelToPanel(TControlBase panel, TControlBase label)
         {
             AddControlToControl(panel, label);
         }

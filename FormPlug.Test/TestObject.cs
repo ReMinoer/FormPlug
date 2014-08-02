@@ -89,7 +89,7 @@ namespace FormPlug.Test
             }
         }
 
-        [DateTimeSocket(Group = "SocketAttribute", Name = "Enumeration")]
+        [EnumSocket(Group = "SocketAttribute", Name = "Enumeration")]
         private TestEnum Enum
         {
             [UsedImplicitly]
@@ -105,7 +105,7 @@ namespace FormPlug.Test
             }
         }
 
-        [DateTimeSocket(Group = "SocketAttribute", Name = "Color dialog")]
+        [ColorSocket(Group = "SocketAttribute", Name = "Color dialog")]
         private Color Color
         {
             [UsedImplicitly]

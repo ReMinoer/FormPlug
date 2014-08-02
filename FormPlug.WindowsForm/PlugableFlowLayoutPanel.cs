@@ -1,6 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using FormPlug.WindowsForm.Plugs;
 
 namespace FormPlug.WindowsForm
@@ -11,26 +9,24 @@ namespace FormPlug.WindowsForm
         public PlugableFlowLayoutPanel(Control parent)
             : base(parent) {}
 
-        protected override IPlug<Control> GetAssociatePlug<T>()
+        protected override IPlug<Control> GetAssociatePlug<T>(SocketAttribute attribute)
         {
-            Type type = typeof(T);
-
-            if (type == typeof(bool))
+            if (attribute is BooleanSocketAttribute)
                 return new BooleanPlug();
 
-            if (type == typeof(int) || type == typeof(double) || type == typeof(float) || type == typeof(decimal))
+            if (attribute is NumericSocketAttribute)
                 return new NumericPlug<T>();
 
-            if (type == typeof(string))
+            if (attribute is TextSocketAttribute)
                 return new TextPlug();
 
-            if (type.IsEnum)
+            if (attribute is EnumSocketAttribute)
                 return new EnumPlug<T>();
 
-            if (type == typeof(Color))
+            if (attribute is ColorSocketAttribute)
                 return new ColorPlug();
 
-            if (type == typeof(DateTime))
+            if (attribute is DateTimeSocketAttribute)
                 return new DateTimePlug();
 
             return null;
