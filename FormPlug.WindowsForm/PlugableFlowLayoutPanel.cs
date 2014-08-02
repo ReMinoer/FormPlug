@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using FormPlug.WindowsForm.Plugs;
 
@@ -25,6 +26,9 @@ namespace FormPlug.WindowsForm
 
             if (type.IsEnum)
                 return new EnumPlug<T>();
+
+            if (type == typeof(Color))
+                return new ColorPlug();
 
             if (type == typeof(DateTime))
                 return new DateTimePlug();

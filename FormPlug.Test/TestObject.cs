@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Globalization;
 using System.Text;
 using FormPlug.Annotations;
@@ -104,6 +105,22 @@ namespace FormPlug.Test
             }
         }
 
+        [DateTimeSocket(Group = "SocketAttribute", Name = "Color dialog")]
+        private Color Color
+        {
+            [UsedImplicitly]
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                _color = value;
+                if (ColorValueChanged != null)
+                    ColorValueChanged(this, EventArgs.Empty);
+            }
+        }
+
         [DateTimeSocket(Group = "SocketAttribute", Name = "Date")]
         private DateTime DateTime
         {
@@ -126,10 +143,12 @@ namespace FormPlug.Test
         private Socket<string> StringSocket { get; set; }
         private Socket<string> BigStringSocket { get; set; }
         private Socket<TestEnum> EnumSocket { get; set; }
+        private Socket<Color> ColorSocket { get; set; }
         private Socket<DateTime> DateTimeSocket { get; set; }
 
         private string _bigString;
         private bool _bool;
+        private Color _color;
         private DateTime _dateTime;
         private TestEnum _enum;
         private float _float;
@@ -145,30 +164,54 @@ namespace FormPlug.Test
 
             IntSocket = new Socket<int>
             {
-                Attribute = new NumericSocketAttribute
-                { Group = "Socket<T>", Name = "Integer", Minimum = -10, Maximum = 10, Increment = 2 }
+                Attribute =
+                    new NumericSocketAttribute
+                    {
+                        Group = "Socket<T>",
+                        Name = "Integer",
+                        Minimum = -10,
+                        Maximum = 10,
+                        Increment = 2
+                    }
             };
 
             FloatSocket = new Socket<float>
             {
-                Attribute = new NumericSocketAttribute
-                { Group = "Socket<T>", Name = "Decimal", Minimum = -1, Maximum = 1, Increment = 0.1, Decimals = 1 }
+                Attribute =
+                    new NumericSocketAttribute
+                    {
+                        Group = "Socket<T>",
+                        Name = "Decimal",
+                        Minimum = -1,
+                        Maximum = 1,
+                        Increment = 0.1,
+                        Decimals = 1
+                    }
             };
 
-            StringSocket = new Socket<string>
-            {
-                Attribute = new TextSocketAttribute {Group = "Socket<T>", Name = "Text"}
-            };
+            StringSocket = new Socket<string> {Attribute = new TextSocketAttribute {Group = "Socket<T>", Name = "Text"}};
 
             BigStringSocket = new Socket<string>
             {
-                Attribute = new TextSocketAttribute
-                { Group = "Socket<T>", Name = "Long Text", Multiline = true, Width = 170, Height = 80 }
+                Attribute =
+                    new TextSocketAttribute
+                    {
+                        Group = "Socket<T>",
+                        Name = "Long Text",
+                        Multiline = true,
+                        Width = 170,
+                        Height = 80
+                    }
             };
 
             EnumSocket = new Socket<TestEnum>
             {
                 Attribute = new EnumSocketAttribute {Group = "Socket<T>", Name = "Enumeration"}
+            };
+
+            ColorSocket = new Socket<Color>
+            {
+                Attribute = new ColorSocketAttribute {Group = "Socket<T>", Name = "Color dialog"}
             };
 
             DateTimeSocket = new Socket<DateTime>
@@ -190,6 +233,8 @@ namespace FormPlug.Test
         [UsedImplicitly]
         public event EventHandler BigStringValueChanged;
         [UsedImplicitly]
+        public event EventHandler ColorValueChanged;
+        [UsedImplicitly]
         public event EventHandler DateTimeValueChanged;
         [UsedImplicitly]
         public event EventHandler EnumValueChanged;
@@ -202,6 +247,7 @@ namespace FormPlug.Test
             String = "";
             BigString = "";
             Enum = TestEnum.Yes;
+            Color = Color.White;
             DateTime = DateTime.Now;
 
             BoolSocket.Value = false;
@@ -210,6 +256,7 @@ namespace FormPlug.Test
             StringSocket.Value = "";
             BigStringSocket.Value = "";
             EnumSocket.Value = TestEnum.Yes;
+            ColorSocket.Value = Color.White;
             DateTimeSocket.Value = DateTime.Now;
         }
 
@@ -223,6 +270,7 @@ namespace FormPlug.Test
             result.AppendLine(String);
             result.AppendLine(BigString);
             result.AppendLine(Enum.ToString());
+            result.AppendLine(Color.ToString());
             result.AppendLine(DateTime.ToString(CultureInfo.CurrentCulture));
 
             result.AppendLine(BoolSocket.Value.ToString());
@@ -231,6 +279,7 @@ namespace FormPlug.Test
             result.AppendLine(StringSocket.Value);
             result.AppendLine(BigStringSocket.Value);
             result.AppendLine(EnumSocket.Value.ToString());
+            result.AppendLine(ColorSocket.Value.ToString());
             result.AppendLine(DateTimeSocket.Value.ToString(CultureInfo.CurrentCulture));
 
             return result.ToString();

@@ -1,0 +1,46 @@
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace FormPlug.WindowsForm.Controls
+{
+    public partial class ColorDialogButton : UserControl
+    {
+        public Color Color
+        {
+            get { return _color; }
+            set
+            {
+                if (value == _color)
+                    return;
+
+                _color = value;
+                _colorDialog.Color = value;
+
+                button.BackColor = _color;
+                button.Text = string.Format("{0}, {1}, {2}", _color.R, _color.G, _color.B);
+                button.ForeColor = _color.GetBrightness() < 0.5f ? Color.White : Color.Black;
+
+                if (ColorChanged != null)
+                    ColorChanged(this, EventArgs.Empty);
+            }
+        }
+        private readonly ColorDialog _colorDialog = new ColorDialog();
+        private Color _color;
+
+        public ColorDialogButton()
+        {
+            InitializeComponent();
+        }
+
+        public event EventHandler ColorChanged;
+
+        private void button_Click(object sender, EventArgs e)
+        {
+            if (_colorDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            Color = _colorDialog.Color;
+        }
+    }
+}

@@ -32,11 +32,20 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ColorDialogButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorDialogButton.Designer.cs">
+      <DependentUpon>ColorDialogButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlugableFlowLayoutPanel.cs" />
+    <Compile Include="Plugs\ColorPlug.cs" />
     <Compile Include="Plugs\DateTimePlug.cs" />
     <Compile Include="Plugs\BooleanPlug.cs" />
     <Compile Include="Plugs\EnumPlug.cs" />
@@ -49,6 +58,11 @@
       <Project>{FA85047C-1340-4CB2-B888-CFD45AB9DD85}</Project>
       <Name>FormPlug</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\ColorDialogButton.resx">
+      <DependentUpon>ColorDialogButton.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

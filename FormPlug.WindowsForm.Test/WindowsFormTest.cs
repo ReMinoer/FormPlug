@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using FormPlug.Test;
+using FormPlug.WindowsForm.Controls;
 using FormPlug.WindowsForm.Plugs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -31,6 +33,12 @@ namespace FormPlug.WindowsForm.Test
         public void EnumPlug()
         {
             PlugTestHelper.PlugTest<TestObject, EnumPlug<TestEnum>, TestEnum, ComboBox>(TestEnum.No, TestEnum.Yes);
+        }
+
+        [TestMethod]
+        public void ColorPlug()
+        {
+            PlugTestHelper.PlugTest<TestObject, ColorPlug, Color, ColorDialogButton>(Color.White, Color.Black);
         }
 
         [TestMethod]

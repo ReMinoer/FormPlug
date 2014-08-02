@@ -32,8 +32,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PlugsBase\ColorPlugBase.cs" />
     <Compile Include="PlugsBase\EnumPlugBase.cs" />
     <Compile Include="PlugsBase\DateTimePlugBase.cs" />
     <Compile Include="PlugsBase\BooleanPlugBase.cs" />

@@ -2,6 +2,7 @@
 
 namespace FormPlug
 {
+    // TODO : Check if SocketAttribute is give to a correct plug
     [AttributeUsage(AttributeTargets.Property)]
     public abstract class SocketAttribute : Attribute
     {
@@ -31,4 +32,6 @@ namespace FormPlug
     public class EnumSocketAttribute : SocketAttribute {}
 
     public class DateTimeSocketAttribute : SocketAttribute {}
+
+    public class ColorSocketAttribute : SocketAttribute {}
 }
