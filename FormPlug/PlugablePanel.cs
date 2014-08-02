@@ -33,7 +33,7 @@ namespace FormPlug
                     var socket = (ISocket)propertyInfo.GetValue(obj);
                     Type genericType = propertyType.GenericTypeArguments[0];
 
-                    TLabel label = CreateLabel(socket.Name ?? propertyInfo.Name);
+                    TLabel label = CreateLabel(socket.Attribute.Name ?? propertyInfo.Name);
 
                     Type type = typeof(PlugablePanel<TParent, TPanel, TGroup, TLabel, TControl>);
                     MethodInfo method = type.GetMethod("CreatePlugFromSocket",
@@ -41,7 +41,7 @@ namespace FormPlug
                     MethodInfo genericMethod = method.MakeGenericMethod(genericType);
                     var control = (TControl)genericMethod.Invoke(this, new object[] {socket});
 
-                    AddEntry(label, control, panel, socket.Group);
+                    AddEntry(label, control, panel, socket.Attribute.Group);
                 }
                 else
                     foreach (object attribute in propertyInfo.GetCustomAttributes(true))

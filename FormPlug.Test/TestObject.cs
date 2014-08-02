@@ -18,12 +18,12 @@ namespace FormPlug.Test
             set
             {
                 _bool = value;
-                if (BooleanValueChanged != null)
-                    BooleanValueChanged(this, EventArgs.Empty);
+                if (BoolValueChanged != null)
+                    BoolValueChanged(this, EventArgs.Empty);
             }
         }
 
-        [NumericSocket(Group = "SocketAttribute", Name = "Integer", Minimum = 0, Maximum = 10, Increment = 1)]
+        [NumericSocket(Group = "SocketAttribute", Name = "Integer", Minimum = -10, Maximum = 10, Increment = 2)]
         private int Int
         {
             [UsedImplicitly]
@@ -34,13 +34,13 @@ namespace FormPlug.Test
             set
             {
                 _int = value;
-                if (IntegerValueChanged != null)
-                    IntegerValueChanged(this, EventArgs.Empty);
+                if (IntValueChanged != null)
+                    IntValueChanged(this, EventArgs.Empty);
             }
         }
 
-        [NumericSocket(Group = "SocketAttribute", Name = "Decimal", Minimum = 0, Maximum = 1, Increment = 0.1,
-            Decimals = 2)]
+        [NumericSocket(Group = "SocketAttribute", Name = "Decimal", Minimum = -1, Maximum = 1, Increment = 0.1,
+            Decimals = 1)]
         private float Float
         {
             [UsedImplicitly]
@@ -72,7 +72,7 @@ namespace FormPlug.Test
             }
         }
 
-        [TextSocket(Group = "SocketAttribute", Name = "Long Text", Multiline = true, Width = 150, Height = 100)]
+        [TextSocket(Group = "SocketAttribute", Name = "Long Text", Multiline = true, Width = 170, Height = 80)]
         private string BigString
         {
             [UsedImplicitly]
@@ -138,21 +138,51 @@ namespace FormPlug.Test
 
         public TestObject()
         {
-            BoolSocket = new Socket<bool> {Group = "Socket<T>", Name = "Boolean"};
-            IntSocket = new Socket<int> {Group = "Socket<T>", Name = "Integer"};
-            FloatSocket = new Socket<float> {Group = "Socket<T>", Name = "Decimal"};
-            StringSocket = new Socket<string> {Group = "Socket<T>", Name = "Text"};
-            BigStringSocket = new Socket<string> {Group = "Socket<T>", Name = "Long Text"};
-            EnumSocket = new Socket<TestEnum> {Group = "Socket<T>", Name = "Enumeration"};
-            DateTimeSocket = new Socket<DateTime> {Group = "Socket<T>", Name = "Date"};
+            BoolSocket = new Socket<bool>
+            {
+                Attribute = new BooleanSocketAttribute {Group = "Socket<T>", Name = "Boolean"}
+            };
+
+            IntSocket = new Socket<int>
+            {
+                Attribute = new NumericSocketAttribute
+                { Group = "Socket<T>", Name = "Integer", Minimum = -10, Maximum = 10, Increment = 2 }
+            };
+
+            FloatSocket = new Socket<float>
+            {
+                Attribute = new NumericSocketAttribute
+                { Group = "Socket<T>", Name = "Decimal", Minimum = -1, Maximum = 1, Increment = 0.1, Decimals = 1 }
+            };
+
+            StringSocket = new Socket<string>
+            {
+                Attribute = new TextSocketAttribute {Group = "Socket<T>", Name = "Text"}
+            };
+
+            BigStringSocket = new Socket<string>
+            {
+                Attribute = new TextSocketAttribute
+                { Group = "Socket<T>", Name = "Long Text", Multiline = true, Width = 170, Height = 80 }
+            };
+
+            EnumSocket = new Socket<TestEnum>
+            {
+                Attribute = new EnumSocketAttribute {Group = "Socket<T>", Name = "Enumeration"}
+            };
+
+            DateTimeSocket = new Socket<DateTime>
+            {
+                Attribute = new DateTimeSocketAttribute {Group = "Socket<T>", Name = "Date"}
+            };
 
             Reset();
         }
 
         [UsedImplicitly]
-        public event EventHandler BooleanValueChanged;
+        public event EventHandler BoolValueChanged;
         [UsedImplicitly]
-        public event EventHandler IntegerValueChanged;
+        public event EventHandler IntValueChanged;
         [UsedImplicitly]
         public event EventHandler FloatValueChanged;
         [UsedImplicitly]

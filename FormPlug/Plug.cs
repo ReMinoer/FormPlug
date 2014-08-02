@@ -4,6 +4,7 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
+    // TODO : Plug for Color, filename, foldername, generic dialog, list
     public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
         where TAttribute : SocketAttribute where TControl : new()
     {
@@ -21,6 +22,10 @@ namespace FormPlug
         {
             InitializeConnection();
             _plugger = new SocketPlugger<TValue, TControl>(this, socket);
+
+            var attribute = socket.Attribute as TAttribute;
+            if (attribute != null)
+                UseSocketAttribute(attribute);
         }
 
         public void Connect(object obj, PropertyInfo property)

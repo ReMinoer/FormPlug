@@ -4,8 +4,7 @@ namespace FormPlug
 {
     public interface ISocket
     {
-        string Name { get; set; }
-        string Group { get; set; }
+        SocketAttribute Attribute { get; set; }
         event EventHandler ValueChanged;
     }
 

@@ -3,12 +3,9 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    // TODO : Add values for initialize the plug (SocketAttribute ?)
     public class Socket<T> : ISocket<T>
     {
-        private T _value;
-        public string Name { get; set; }
-        public string Group { get; set; }
+        public SocketAttribute Attribute { get; set; }
 
         public T Value
         {
@@ -20,6 +17,8 @@ namespace FormPlug
                     ValueChanged(this, EventArgs.Empty);
             }
         }
+
+        private T _value;
 
         [UsedImplicitly]
         public event EventHandler ValueChanged;

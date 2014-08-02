@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using FormPlug.PlugBase;
+using FormPlug.PlugsBase;
 
 namespace FormPlug.WindowsForm.Plugs
 {
