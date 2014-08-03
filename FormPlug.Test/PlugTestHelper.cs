@@ -9,8 +9,9 @@ namespace FormPlug.Test
         static public void PlugTest<TObject, TPlug, TValue, TAttribute, TControl>(TValue initValue, TValue newValue,
                                                                                   Action initAction = null,
                                                                                   Action endAction = null)
-            where TPlug : IPlug<TValue, TControl, TAttribute>, new() where TObject : new()
+            where TPlug : Plug<TValue, TControl, TAttribute>, new() where TObject : new()
             where TAttribute : SocketAttribute
+            where TControl : new()
         {
             if (initValue.Equals(newValue))
                 Assert.Inconclusive("initValue & newValue can't be equals !");

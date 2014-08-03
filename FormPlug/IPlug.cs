@@ -22,7 +22,4 @@ namespace FormPlug
 
         void Connect(Socket<TValue> socket);
     }
-
-    public interface IPlug<TValue, out TControl, TAttribute> : IPlug<TValue, TControl>
-        where TAttribute : SocketAttribute {}
 }

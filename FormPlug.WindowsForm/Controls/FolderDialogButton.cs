@@ -4,7 +4,6 @@ using System.Windows.Forms;
 
 namespace FormPlug.WindowsForm.Controls
 {
-    // TODO : Implements folder and file creation
     public partial class FolderDialogButton : UserControl
     {
         public string Folder
