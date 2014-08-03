@@ -14,7 +14,11 @@ namespace FormPlug
             get { return _value; }
             set
             {
+                if (value.Equals(_value))
+                    return;
+
                 _value = value;
+
                 if (ValueChanged != null)
                     ValueChanged(this, EventArgs.Empty);
             }
