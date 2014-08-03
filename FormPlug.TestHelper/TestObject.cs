@@ -137,7 +137,7 @@ namespace FormPlug.TestHelper
             }
         }
 
-        [FileSocket(Group = "SocketAttribute", Name = "Choose a file", Filter = "Text files (*.txt)|*.txt")]
+        [FileSocket(Group = "SocketAttribute", Name = "Filename", Filter = "Text files (*.txt)|*.txt")]
         private string File
         {
             [UsedImplicitly]
@@ -153,7 +153,7 @@ namespace FormPlug.TestHelper
             }
         }
 
-        [FolderSocket(Group = "SocketAttribute", Name = "Choose a folder")]
+        [FolderSocket(Group = "SocketAttribute", Name = "Directory")]
         private string Folder
         {
             [UsedImplicitly]
@@ -261,14 +261,14 @@ namespace FormPlug.TestHelper
                     new FileSocketAttribute
                     {
                         Group = "Socket<T>",
-                        Name = "Choose a file",
+                        Name = "Filename",
                         Filter = "Text files (*.txt)|*.txt"
                     }
             };
 
             FolderSocket = new Socket<string>
             {
-                Attribute = new FolderSocketAttribute {Group = "Socket<T>", Name = "Choose a folder"}
+                Attribute = new FolderSocketAttribute {Group = "Socket<T>", Name = "Directory"}
             };
 
             Reset();
