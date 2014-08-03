@@ -37,6 +37,7 @@ namespace FormPlug
 
     public class FileSocketAttribute : SocketAttribute
     {
+        public bool SaveMode { get; set; }
         public string Filter { get; set; }
         public string InitialDirectory { get; set; }
     }

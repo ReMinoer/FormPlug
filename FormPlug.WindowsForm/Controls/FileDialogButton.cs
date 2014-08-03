@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace FormPlug.WindowsForm.Controls
@@ -13,12 +16,8 @@ namespace FormPlug.WindowsForm.Controls
                 if (value == _file)
                     return;
 
-                if (value != "" && !System.IO.File.Exists(value))
-                {
-                    MessageBox.Show(value + " doesn't exists !", "Folder not found !");
-                    textBox.Text = _file;
+                if (!CheckFilename(value))
                     return;
-                }
 
                 _file = value;
                 _dialog.FileName = value;
@@ -29,10 +28,33 @@ namespace FormPlug.WindowsForm.Controls
                     FileChanged(this, EventArgs.Empty);
             }
         }
+
         public string Filter { set { _dialog.Filter = value; } }
         public string InitialDirectory { set { _dialog.InitialDirectory = value; } }
-        private readonly OpenFileDialog _dialog = new OpenFileDialog();
+        public bool SaveMode
+        {
+            get { return _saveMode; }
+            set
+            {
+                if (_saveMode == value && _dialog != null)
+                    return;
+
+                if (value)
+                {
+                    _dialog = new SaveFileDialog();
+                    (_dialog as SaveFileDialog).OverwritePrompt = false;
+                }
+                else
+                    _dialog = new OpenFileDialog();
+
+
+                _saveMode = value;
+            }
+        }
+
+        private FileDialog _dialog;
         private string _file;
+        private bool _saveMode;
 
         public FileDialogButton()
         {
@@ -58,6 +80,73 @@ namespace FormPlug.WindowsForm.Controls
         {
             if (e.KeyCode == Keys.Enter)
                 File = textBox.Text;
+        }
+
+        private bool CheckFilename(string value)
+        {
+            if (value == "")
+                return true;
+
+            if (SaveMode)
+            {
+                string directory = Path.GetDirectoryName(value);
+                if (directory == null || !Directory.Exists(directory))
+                {
+                    MessageBox.Show(directory + " doesn't exists !", "Folder not found !");
+                    textBox.Text = _file;
+                    return false;
+                }
+
+                if (System.IO.File.Exists(value))
+                {
+                    if (MessageBox.Show(Path.GetFileName(value) + " already exists. Are you sure to replace it ?",
+                        "File already exists !", MessageBoxButtons.OKCancel) != DialogResult.OK)
+                    {
+                        textBox.Text = _file;
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                if (!System.IO.File.Exists(value))
+                {
+                    MessageBox.Show(Path.GetFileName(value) + " doesn't exists !", "File not found !");
+                    textBox.Text = _file;
+                    return false;
+                }
+            }
+
+            bool isValidExtension = false;
+            var extensions = new List<string>();
+
+            string[] dialogFilters = _dialog.Filter.Split('|');
+            for (int i = 1; i < dialogFilters.Length; i += 2)
+                extensions.Add(dialogFilters[i].Replace("*", ""));
+
+            foreach (string e in extensions)
+            {
+                if (!value.EndsWith(e))
+                    continue;
+
+                isValidExtension = true;
+                break;
+            }
+
+            if (!isValidExtension)
+            {
+                var message = new StringBuilder();
+                message.AppendLine(value + " doesn't have a correct extension !");
+                message.AppendLine("Correct extensions are :");
+                foreach (string f in extensions)
+                    message.AppendLine(f);
+                MessageBox.Show(message.ToString(), "Folder not found !");
+
+                textBox.Text = _file;
+                return false;
+            }
+
+            return true;
         }
     }
 }

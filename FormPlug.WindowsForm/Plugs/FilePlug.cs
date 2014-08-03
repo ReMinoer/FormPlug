@@ -6,6 +6,7 @@ namespace FormPlug.WindowsForm.Plugs
 {
     public class FilePlug : FilePlugBase<FileDialogButton>
     {
+        protected override bool SaveMode { set { Control.SaveMode = value; } }
         protected override string Filter { set { Control.Filter = value; } }
         protected override string InitialDirectory { set { Control.InitialDirectory = value; } }
 
@@ -19,7 +20,8 @@ namespace FormPlug.WindowsForm.Plugs
 
         protected override void InitializeConnection()
         {
-            Filter = "*.*|All files (*.*)";
+            SaveMode = false;
+            Filter = "All files (*.*)|*.*";
             InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
     }
