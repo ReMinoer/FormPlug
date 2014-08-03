@@ -9,10 +9,7 @@
 
         protected override TextSocketAttribute DefaultAttribute
         {
-            get
-            {
-                return new TextSocketAttribute { Multiline = false, Width = 150, Height = 100 };
-            }
+            get { return new TextSocketAttribute {Multiline = false, Width = 150, Height = 100}; }
         }
 
         protected sealed override void UseAttribute(TextSocketAttribute attribute)

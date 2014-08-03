@@ -22,7 +22,8 @@ namespace FormPlug.PlugsBase
         {
             get
             {
-                return new NumericSocketAttribute {
+                return new NumericSocketAttribute
+                {
                     Minimum = 0,
                     Maximum = 10,
                     Increment = 1,

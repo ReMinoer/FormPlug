@@ -13,7 +13,8 @@ namespace FormPlug.PlugsBase
         {
             get
             {
-                return new FileSocketAttribute {
+                return new FileSocketAttribute
+                {
                     SaveMode = false,
                     Filter = "All files (*.*)|*.*",
                     InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
