@@ -39,6 +39,7 @@
     <Compile Include="PlugsBase\EnumPlugBase.cs" />
     <Compile Include="PlugsBase\DateTimePlugBase.cs" />
     <Compile Include="PlugsBase\BooleanPlugBase.cs" />
+    <Compile Include="PlugsBase\FolderPlugBase.cs" />
     <Compile Include="PlugsBase\FilePlugBase.cs" />
     <Compile Include="PlugsBase\TextPlugBase.cs" />
     <Compile Include="PlugsBase\NumericPlugBase.cs" />

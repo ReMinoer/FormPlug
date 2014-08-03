@@ -32,6 +32,9 @@ namespace FormPlug.WindowsForm
             if (attribute is FileSocketAttribute)
                 return new FilePlug();
 
+            if (attribute is FolderSocketAttribute)
+                return new FolderPlug();
+
             return null;
         }
 
@@ -48,7 +51,10 @@ namespace FormPlug.WindowsForm
 
         protected override Control CreateGroup(string name)
         {
-            return new GroupBox {Text = name, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink};
+            return new GroupBox
+            {
+                Text = name, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink
+            };
         }
 
         protected override Control CreateLabel(string text)

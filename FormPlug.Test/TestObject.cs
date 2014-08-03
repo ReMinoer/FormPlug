@@ -153,6 +153,22 @@ namespace FormPlug.Test
             }
         }
 
+        [FolderSocket(Group = "SocketAttribute", Name = "Choose a folder")]
+        private string Folder
+        {
+            [UsedImplicitly]
+            get
+            {
+                return _folder;
+            }
+            set
+            {
+                _folder = value;
+                if (FolderValueChanged != null)
+                    FolderValueChanged(this, EventArgs.Empty);
+            }
+        }
+
         private Socket<bool> BoolSocket { get; set; }
         private Socket<int> IntSocket { get; set; }
         private Socket<float> FloatSocket { get; set; }
@@ -162,6 +178,7 @@ namespace FormPlug.Test
         private Socket<Color> ColorSocket { get; set; }
         private Socket<DateTime> DateTimeSocket { get; set; }
         private Socket<string> FileSocket { get; set; }
+        private Socket<string> FolderSocket { get; set; }
 
         private string _bigString;
         private bool _bool;
@@ -169,6 +186,7 @@ namespace FormPlug.Test
         private DateTime _dateTime;
         private TestEnum _enum;
         private string _file;
+        private string _folder;
         private float _float;
         private int _int;
         private string _string;
@@ -242,6 +260,11 @@ namespace FormPlug.Test
                 Attribute = new FileSocketAttribute {Group = "Socket<T>", Name = "Choose a file"}
             };
 
+            FolderSocket = new Socket<string>
+            {
+                Attribute = new FileSocketAttribute { Group = "Socket<T>", Name = "Choose a folder" }
+            };
+
             Reset();
         }
 
@@ -263,6 +286,8 @@ namespace FormPlug.Test
         public event EventHandler EnumValueChanged;
         [UsedImplicitly]
         public event EventHandler FileValueChanged;
+        [UsedImplicitly]
+        public event EventHandler FolderValueChanged;
 
         public void Reset()
         {
@@ -275,6 +300,7 @@ namespace FormPlug.Test
             Color = Color.White;
             DateTime = DateTime.Now;
             File = "";
+            Folder = "";
 
             BoolSocket.Value = false;
             IntSocket.Value = 0;
@@ -285,6 +311,7 @@ namespace FormPlug.Test
             ColorSocket.Value = Color.White;
             DateTimeSocket.Value = DateTime.Now;
             FileSocket.Value = "";
+            FolderSocket.Value = "";
         }
 
         public override string ToString()
@@ -300,6 +327,7 @@ namespace FormPlug.Test
             result.AppendLine(Color.ToString());
             result.AppendLine(DateTime.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(File);
+            result.AppendLine(Folder);
 
             result.AppendLine(BoolSocket.Value.ToString());
             result.AppendLine(IntSocket.Value.ToString(CultureInfo.CurrentCulture));
@@ -310,6 +338,7 @@ namespace FormPlug.Test
             result.AppendLine(ColorSocket.Value.ToString());
             result.AppendLine(DateTimeSocket.Value.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(FileSocket.Value);
+            result.AppendLine(FolderSocket.Value);
 
             return result.ToString();
         }

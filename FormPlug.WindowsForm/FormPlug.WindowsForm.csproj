@@ -44,6 +44,12 @@
     <Compile Include="Controls\ColorDialogButton.Designer.cs">
       <DependentUpon>ColorDialogButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FolderDialogButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FolderDialogButton.Designer.cs">
+      <DependentUpon>FolderDialogButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FileDialogButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -55,6 +61,7 @@
     <Compile Include="Plugs\DateTimePlug.cs" />
     <Compile Include="Plugs\BooleanPlug.cs" />
     <Compile Include="Plugs\EnumPlug.cs" />
+    <Compile Include="Plugs\FolderPlug.cs" />
     <Compile Include="Plugs\FilePlug.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Plugs\TextPlug.cs" />
@@ -69,6 +76,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\ColorDialogButton.resx">
       <DependentUpon>ColorDialogButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FolderDialogButton.resx">
+      <DependentUpon>FolderDialogButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FileDialogButton.resx">
       <DependentUpon>FileDialogButton.cs</DependentUpon>

@@ -15,7 +15,7 @@ namespace FormPlug.WindowsForm.Controls
 
                 if (value != "" && !System.IO.File.Exists(value))
                 {
-                    MessageBox.Show(value + " doesn't exists !", "File not found !");
+                    MessageBox.Show(value + " doesn't exists !", "Folder not found !");
                     textBox.Text = _file;
                     return;
                 }

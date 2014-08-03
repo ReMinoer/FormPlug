@@ -40,4 +40,6 @@ namespace FormPlug
         public string Filter { get; set; }
         public string InitialDirectory { get; set; }
     }
+
+    public class FolderSocketAttribute : SocketAttribute {}
 }
