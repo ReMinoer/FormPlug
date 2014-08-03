@@ -34,9 +34,11 @@
             // 
             // button
             // 
-            this.button.Location = new System.Drawing.Point(178, 4);
+            this.button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button.Location = new System.Drawing.Point(167, 4);
             this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(30, 23);
+            this.button.Size = new System.Drawing.Size(30, 22);
             this.button.TabIndex = 0;
             this.button.Text = "...";
             this.button.UseVisualStyleBackColor = true;
@@ -44,9 +46,12 @@
             // 
             // textBox
             // 
+            this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox.Location = new System.Drawing.Point(4, 6);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(168, 20);
+            this.textBox.Size = new System.Drawing.Size(157, 20);
             this.textBox.TabIndex = 1;
             this.textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             this.textBox.Validated += new System.EventHandler(this.textBox_Validated);
@@ -57,8 +62,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.button);
+            this.MaximumSize = new System.Drawing.Size(400, 30);
+            this.MinimumSize = new System.Drawing.Size(100, 30);
             this.Name = "FileDialogButton";
-            this.Size = new System.Drawing.Size(211, 31);
+            this.Size = new System.Drawing.Size(200, 30);
             this.ResumeLayout(false);
             this.PerformLayout();
 

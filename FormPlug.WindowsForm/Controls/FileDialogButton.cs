@@ -1,10 +1,8 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace FormPlug.WindowsForm.Controls
 {
-    // TODO : Check if path is correct
     public partial class FileDialogButton : UserControl
     {
         public string File

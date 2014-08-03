@@ -4,7 +4,6 @@ using System.Windows.Forms;
 
 namespace FormPlug.WindowsForm.Controls
 {
-    // TODO : Dynamic size for ColorDialogButton
     public partial class ColorDialogButton : UserControl
     {
         public Color Color

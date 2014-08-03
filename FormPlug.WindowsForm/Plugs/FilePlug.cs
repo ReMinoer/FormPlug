@@ -4,7 +4,6 @@ using FormPlug.WindowsForm.Controls;
 
 namespace FormPlug.WindowsForm.Plugs
 {
-    // TODO : Add a path in the TestObject and unit tests
     public class FilePlug : FilePlugBase<FileDialogButton>
     {
         protected override string Filter { set { Control.Filter = value; } }

@@ -33,10 +33,13 @@
             // 
             // button
             // 
+            this.button.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button.BackColor = System.Drawing.Color.White;
             this.button.Location = new System.Drawing.Point(4, 4);
             this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(95, 55);
+            this.button.Size = new System.Drawing.Size(98, 58);
             this.button.TabIndex = 0;
             this.button.Text = "255, 255, 255";
             this.button.UseVisualStyleBackColor = false;
@@ -48,7 +51,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button);
             this.Name = "ColorDialogButton";
-            this.Size = new System.Drawing.Size(104, 64);
+            this.Size = new System.Drawing.Size(105, 65);
             this.ResumeLayout(false);
 
         }
