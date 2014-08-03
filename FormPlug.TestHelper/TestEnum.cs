@@ -1,6 +1,6 @@
 ﻿using FormPlug.Annotations;
 
-namespace FormPlug.Test
+namespace FormPlug.TestHelper
 {
     public enum TestEnum
     {

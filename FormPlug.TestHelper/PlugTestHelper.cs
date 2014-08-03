@@ -2,7 +2,7 @@
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FormPlug.Test
+namespace FormPlug.TestHelper
 {
     static public class PlugTestHelper
     {

@@ -74,9 +74,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FormPlug.Test\FormPlug.Test.csproj">
-      <Project>{cb51be37-9015-4540-b1d6-320e8b20e9ac}</Project>
-      <Name>FormPlug.Test</Name>
+    <ProjectReference Include="..\FormPlug.TestHelper\FormPlug.TestHelper.csproj">
+      <Project>{87B5F89F-C7DE-4F1E-9301-83D144B2B694}</Project>
+      <Name>FormPlug.TestHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\FormPlug.WindowsForm\FormPlug.WindowsForm.csproj">
       <Project>{85B0105B-0CDB-473C-823A-AF976ABBDEC4}</Project>

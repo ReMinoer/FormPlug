@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using FormPlug.Annotations;
-using FormPlug.Test;
+using FormPlug.TestHelper;
 
 namespace FormPlug.WindowsForm.Sample
 {

@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using FormPlug.Test;
+using FormPlug.TestHelper;
 using FormPlug.WindowsForm.Controls;
 using FormPlug.WindowsForm.Plugs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

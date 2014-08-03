@@ -56,9 +56,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FormPlug.Test\FormPlug.Test.csproj">
-      <Project>{CB51BE37-9015-4540-B1D6-320E8B20E9AC}</Project>
-      <Name>FormPlug.Test</Name>
+    <ProjectReference Include="..\FormPlug.TestHelper\FormPlug.TestHelper.csproj">
+      <Project>{87B5F89F-C7DE-4F1E-9301-83D144B2B694}</Project>
+      <Name>FormPlug.TestHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\FormPlug.WindowsForm\FormPlug.WindowsForm.csproj">
       <Project>{85b0105b-0cdb-473c-823a-af976abbdec4}</Project>

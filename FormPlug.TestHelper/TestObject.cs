@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text;
 using FormPlug.Annotations;
 
-namespace FormPlug.Test
+namespace FormPlug.TestHelper
 {
     public class TestObject
     {
