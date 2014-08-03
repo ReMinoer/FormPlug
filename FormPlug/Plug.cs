@@ -8,6 +8,8 @@ namespace FormPlug
     public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
         where TAttribute : SocketAttribute where TControl : new()
     {
+        protected abstract TAttribute DefaultAttribute { get; }
+
         [UsedImplicitly]
         private IPlugger _plugger;
 
@@ -20,24 +22,18 @@ namespace FormPlug
 
         public void Connect(Socket<TValue> socket)
         {
-            InitializeConnection();
-            _plugger = new SocketPlugger<TValue, TControl>(this, socket);
+            InitializeControl();
+            UseAttribute(socket.Attribute as TAttribute ?? DefaultAttribute);
 
-            var attribute = socket.Attribute as TAttribute;
-            if (attribute != null)
-                UseSocketAttribute(attribute);
+            _plugger = new SocketPlugger<TValue, TControl>(this, socket);
         }
 
         public void Connect(object obj, PropertyInfo property)
         {
-            InitializeConnection();
+            InitializeControl();
+            UseAttribute((TAttribute)property.GetCustomAttribute(typeof(TAttribute)) ?? DefaultAttribute);
+
             _plugger = new PropertyPlugger<TValue, TControl>(this, obj, property);
-
-            var attribute = (TAttribute)property.GetCustomAttribute(typeof(TAttribute));
-            if (attribute == null)
-                return;
-
-            UseSocketAttribute(attribute);
         }
 
         public void Connect(object obj, string propertyName)
@@ -47,13 +43,13 @@ namespace FormPlug
 
         public abstract TValue Value { get; set; }
         public abstract event EventHandler ValueChanged;
-        protected abstract void InitializeConnection();
 
         static public implicit operator TControl(Plug<TValue, TControl, TAttribute> value)
         {
             return value.Control;
         }
 
-        protected abstract void UseSocketAttribute(TAttribute attribute);
+        protected abstract void InitializeControl();
+        protected abstract void UseAttribute(TAttribute attribute);
     }
 }

@@ -13,7 +13,6 @@ namespace FormPlug.WindowsForm.Plugs
             add { Control.ValueChanged += value; }
             remove { Control.ValueChanged -= value; }
         }
-
-        protected override void InitializeConnection() {}
+        protected override void InitializeControl() {}
     }
 }

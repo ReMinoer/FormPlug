@@ -18,7 +18,20 @@ namespace FormPlug.PlugsBase
             set { Output = (TOutput)Convert.ChangeType(value, typeof(TOutput)); }
         }
 
-        protected sealed override void UseSocketAttribute(NumericSocketAttribute attribute)
+        protected override NumericSocketAttribute DefaultAttribute
+        {
+            get
+            {
+                return new NumericSocketAttribute {
+                    Minimum = 0,
+                    Maximum = 10,
+                    Increment = 1,
+                    Decimals = typeof(TValue) == typeof(int) ? 0 : 2
+                };
+            }
+        }
+
+        protected sealed override void UseAttribute(NumericSocketAttribute attribute)
         {
             Minimum = attribute.Minimum;
             Maximum = attribute.Maximum;

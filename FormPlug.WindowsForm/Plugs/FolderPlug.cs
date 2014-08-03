@@ -14,6 +14,6 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.FolderChanged -= value; }
         }
 
-        protected override void InitializeConnection() {}
+        protected override void InitializeControl() {}
     }
 }

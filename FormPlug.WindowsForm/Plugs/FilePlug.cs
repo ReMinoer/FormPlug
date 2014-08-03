@@ -18,11 +18,6 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.FileChanged -= value; }
         }
 
-        protected override void InitializeConnection()
-        {
-            SaveMode = false;
-            Filter = "All files (*.*)|*.*";
-            InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        }
+        protected override void InitializeControl() {}
     }
 }

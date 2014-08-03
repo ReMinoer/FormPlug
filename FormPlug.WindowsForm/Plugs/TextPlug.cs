@@ -19,11 +19,6 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.TextChanged -= value; }
         }
 
-        protected override void InitializeConnection()
-        {
-            Multiline = false;
-            Width = 100;
-            Height = 150;
-        }
+        protected override void InitializeControl() {}
     }
 }

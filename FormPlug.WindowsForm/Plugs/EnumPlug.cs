@@ -14,7 +14,7 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.SelectedIndexChanged -= value; }
         }
 
-        protected override void InitializeConnection()
+        protected override void InitializeControl()
         {
             Control.DropDownStyle = ComboBoxStyle.DropDownList;
 

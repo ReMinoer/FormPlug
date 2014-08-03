@@ -19,12 +19,6 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.ValueChanged -= value; }
         }
 
-        protected override void InitializeConnection()
-        {
-            Minimum = 0;
-            Maximum = 10;
-            Increment = 1;
-            Decimals = typeof(T) == typeof(int) ? 0 : 2;
-        }
+        protected override void InitializeControl() {}
     }
 }

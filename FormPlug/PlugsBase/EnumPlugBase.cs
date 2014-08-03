@@ -13,6 +13,8 @@ namespace FormPlug.PlugsBase
             set { Output = Enum.GetName(typeof(TValue), value); }
         }
 
-        protected sealed override void UseSocketAttribute(EnumSocketAttribute attribute) {}
+        protected override EnumSocketAttribute DefaultAttribute { get { return new EnumSocketAttribute(); } }
+
+        protected sealed override void UseAttribute(EnumSocketAttribute attribute) {}
     }
 }

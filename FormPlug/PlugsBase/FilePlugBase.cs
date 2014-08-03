@@ -1,4 +1,6 @@
-﻿namespace FormPlug.PlugsBase
+﻿using System;
+
+namespace FormPlug.PlugsBase
 {
     public abstract class FilePlugBase<TControl> : Plug<string, TControl, FileSocketAttribute>
         where TControl : new()
@@ -7,7 +9,19 @@
         protected abstract string Filter { set; }
         protected abstract string InitialDirectory { set; }
 
-        protected sealed override void UseSocketAttribute(FileSocketAttribute attribute)
+        protected override FileSocketAttribute DefaultAttribute
+        {
+            get
+            {
+                return new FileSocketAttribute {
+                    SaveMode = false,
+                    Filter = "All files (*.*)|*.*",
+                    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                };
+            }
+        }
+
+        protected sealed override void UseAttribute(FileSocketAttribute attribute)
         {
             SaveMode = attribute.SaveMode;
             Filter = attribute.Filter;

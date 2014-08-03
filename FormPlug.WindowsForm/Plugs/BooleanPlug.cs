@@ -14,6 +14,6 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.CheckedChanged -= value; }
         }
 
-        protected override void InitializeConnection() {}
+        protected override void InitializeControl() {}
     }
 }
