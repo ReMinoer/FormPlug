@@ -33,7 +33,7 @@ namespace FormPlug.WindowsForm.Controls
         public string InitialDirectory { set { _dialog.InitialDirectory = value; } }
         public bool SaveMode
         {
-            get { return _saveMode; }
+            private get { return _saveMode; }
             set
             {
                 if (_saveMode == value && _dialog != null)
@@ -46,7 +46,6 @@ namespace FormPlug.WindowsForm.Controls
                 }
                 else
                     _dialog = new OpenFileDialog();
-
 
                 _saveMode = value;
             }
@@ -98,23 +97,18 @@ namespace FormPlug.WindowsForm.Controls
                 }
 
                 if (System.IO.File.Exists(value))
-                {
                     if (MessageBox.Show(Path.GetFileName(value) + " already exists. Are you sure to replace it ?",
                         "File already exists !", MessageBoxButtons.OKCancel) != DialogResult.OK)
                     {
                         textBox.Text = _file;
                         return false;
                     }
-                }
             }
-            else
+            else if (!System.IO.File.Exists(value))
             {
-                if (!System.IO.File.Exists(value))
-                {
-                    MessageBox.Show(Path.GetFileName(value) + " doesn't exists !", "File not found !");
-                    textBox.Text = _file;
-                    return false;
-                }
+                MessageBox.Show(Path.GetFileName(value) + " doesn't exists !", "File not found !");
+                textBox.Text = _file;
+                return false;
             }
 
             bool isValidExtension = false;
@@ -126,7 +120,7 @@ namespace FormPlug.WindowsForm.Controls
 
             foreach (string e in extensions)
             {
-                if (!value.EndsWith(e))
+                if (e != "." && !value.EndsWith(e))
                     continue;
 
                 isValidExtension = true;
@@ -140,7 +134,7 @@ namespace FormPlug.WindowsForm.Controls
                 message.AppendLine("Correct extensions are :");
                 foreach (string f in extensions)
                     message.AppendLine(f);
-                MessageBox.Show(message.ToString(), "Folder not found !");
+                MessageBox.Show(message.ToString(), "Extension unvalid !");
 
                 textBox.Text = _file;
                 return false;

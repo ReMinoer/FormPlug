@@ -2,14 +2,13 @@
 using System.Windows.Forms;
 using FormPlug.Annotations;
 using FormPlug.Test;
-using FormPlug.WindowsForm.Plugs;
 
 namespace FormPlug.WindowsForm.Sample
 {
     public class MainPresenter
     {
-        private readonly IMainView _view;
         private readonly TestObject _test;
+        private readonly IMainView _view;
 
         public MainPresenter(IMainView view)
         {

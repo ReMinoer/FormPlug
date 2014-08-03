@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace FormPlug.WindowsForm.Controls
@@ -14,7 +15,7 @@ namespace FormPlug.WindowsForm.Controls
                 if (value == _folder)
                     return;
 
-                if (value != "" && !System.IO.Directory.Exists(value))
+                if (value != "" && !Directory.Exists(value))
                 {
                     MessageBox.Show(value + " doesn't exists !", "Folder not found !");
                     textBox.Text = _folder;

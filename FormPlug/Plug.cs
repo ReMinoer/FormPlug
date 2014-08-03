@@ -5,7 +5,7 @@ using FormPlug.Annotations;
 namespace FormPlug
 {
     // TODO : Plug for generic dialog, list
-    public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
+    public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl, TAttribute>
         where TAttribute : SocketAttribute where TControl : new()
     {
         [UsedImplicitly]
