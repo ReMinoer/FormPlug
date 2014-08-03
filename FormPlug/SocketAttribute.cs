@@ -34,4 +34,10 @@ namespace FormPlug
     public class DateTimeSocketAttribute : SocketAttribute {}
 
     public class ColorSocketAttribute : SocketAttribute {}
+
+    public class FileSocketAttribute : SocketAttribute
+    {
+        public string Filter { get; set; }
+        public string InitialDirectory { get; set; }
+    }
 }

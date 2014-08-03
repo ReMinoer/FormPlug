@@ -46,5 +46,11 @@ namespace FormPlug.WindowsForm.Test
         {
             PlugTestHelper.PlugTest<TestObject, DateTimePlug, DateTime, DateTimePicker>(DateTime.Now, DateTime.Today);
         }
+
+        [TestMethod]
+        public void FilePlug()
+        {
+            PlugTestHelper.PlugTest<TestObject, FilePlug, string, FileDialogButton>("C:\\", "C:\\Users");
+        }
     }
 }

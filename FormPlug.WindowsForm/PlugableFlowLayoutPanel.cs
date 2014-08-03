@@ -29,6 +29,9 @@ namespace FormPlug.WindowsForm
             if (attribute is DateTimeSocketAttribute)
                 return new DateTimePlug();
 
+            if (attribute is FileSocketAttribute)
+                return new FilePlug();
+
             return null;
         }
 

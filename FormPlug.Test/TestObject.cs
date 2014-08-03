@@ -137,6 +137,22 @@ namespace FormPlug.Test
             }
         }
 
+        [FileSocket(Group = "SocketAttribute", Name = "Choose a file")]
+        private string File
+        {
+            [UsedImplicitly]
+            get
+            {
+                return _file;
+            }
+            set
+            {
+                _file = value;
+                if (FileValueChanged != null)
+                    FileValueChanged(this, EventArgs.Empty);
+            }
+        }
+
         private Socket<bool> BoolSocket { get; set; }
         private Socket<int> IntSocket { get; set; }
         private Socket<float> FloatSocket { get; set; }
@@ -145,12 +161,14 @@ namespace FormPlug.Test
         private Socket<TestEnum> EnumSocket { get; set; }
         private Socket<Color> ColorSocket { get; set; }
         private Socket<DateTime> DateTimeSocket { get; set; }
+        private Socket<string> FileSocket { get; set; }
 
         private string _bigString;
         private bool _bool;
         private Color _color;
         private DateTime _dateTime;
         private TestEnum _enum;
+        private string _file;
         private float _float;
         private int _int;
         private string _string;
@@ -219,6 +237,11 @@ namespace FormPlug.Test
                 Attribute = new DateTimeSocketAttribute {Group = "Socket<T>", Name = "Date"}
             };
 
+            FileSocket = new Socket<string>
+            {
+                Attribute = new FileSocketAttribute {Group = "Socket<T>", Name = "Choose a file"}
+            };
+
             Reset();
         }
 
@@ -238,6 +261,8 @@ namespace FormPlug.Test
         public event EventHandler DateTimeValueChanged;
         [UsedImplicitly]
         public event EventHandler EnumValueChanged;
+        [UsedImplicitly]
+        public event EventHandler FileValueChanged;
 
         public void Reset()
         {
@@ -249,6 +274,7 @@ namespace FormPlug.Test
             Enum = TestEnum.Yes;
             Color = Color.White;
             DateTime = DateTime.Now;
+            File = "";
 
             BoolSocket.Value = false;
             IntSocket.Value = 0;
@@ -258,6 +284,7 @@ namespace FormPlug.Test
             EnumSocket.Value = TestEnum.Yes;
             ColorSocket.Value = Color.White;
             DateTimeSocket.Value = DateTime.Now;
+            FileSocket.Value = "";
         }
 
         public override string ToString()
@@ -272,6 +299,7 @@ namespace FormPlug.Test
             result.AppendLine(Enum.ToString());
             result.AppendLine(Color.ToString());
             result.AppendLine(DateTime.ToString(CultureInfo.CurrentCulture));
+            result.AppendLine(File);
 
             result.AppendLine(BoolSocket.Value.ToString());
             result.AppendLine(IntSocket.Value.ToString(CultureInfo.CurrentCulture));
@@ -281,6 +309,7 @@ namespace FormPlug.Test
             result.AppendLine(EnumSocket.Value.ToString());
             result.AppendLine(ColorSocket.Value.ToString());
             result.AppendLine(DateTimeSocket.Value.ToString(CultureInfo.CurrentCulture));
+            result.AppendLine(FileSocket.Value);
 
             return result.ToString();
         }
