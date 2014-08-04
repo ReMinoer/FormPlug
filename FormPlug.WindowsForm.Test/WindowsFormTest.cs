@@ -48,7 +48,7 @@ namespace FormPlug.WindowsForm.Test
         public void DateTimePlug()
         {
             PlugTestHelper.PlugTest<TestObject, DateTimePlug, DateTime, DateTimeSocketAttribute, DateTimePicker>(
-                DateTime.Now, DateTime.Today);
+                DateTime.Now, DateTime.Now.AddDays(1));
         }
 
         [TestMethod]

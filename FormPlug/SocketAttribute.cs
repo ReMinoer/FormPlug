@@ -2,7 +2,6 @@
 
 namespace FormPlug
 {
-    // TODO : Check if SocketAttribute is give to a correct plug
     [AttributeUsage(AttributeTargets.Property)]
     public abstract class SocketAttribute : Attribute
     {

@@ -3,7 +3,6 @@ using FormPlug.WindowsForm.Plugs;
 
 namespace FormPlug.WindowsForm
 {
-    // TODO : Fix margin between element in panel
     public class PlugableFlowLayoutPanel : PlugablePanel<Control>
     {
         public PlugableFlowLayoutPanel(Control parent)
@@ -56,7 +55,7 @@ namespace FormPlug.WindowsForm
 
         protected override Control CreateLabel(string text)
         {
-            return new Label {Text = text, Padding = new Padding(0,4,0,0)};
+            return new Label {Text = text, Padding = new Padding(0, 4, 0, 0)};
         }
 
         protected override void AddControlToControl(Control parent, Control control)

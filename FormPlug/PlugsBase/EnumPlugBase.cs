@@ -15,6 +15,11 @@ namespace FormPlug.PlugsBase
 
         protected override EnumSocketAttribute DefaultAttribute { get { return new EnumSocketAttribute(); } }
 
+        protected override bool IsTypeValid(Type type)
+        {
+            return type.IsEnum;
+        }
+
         protected sealed override void UseAttribute(EnumSocketAttribute attribute) {}
     }
 }

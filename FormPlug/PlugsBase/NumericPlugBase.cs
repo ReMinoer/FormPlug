@@ -32,6 +32,21 @@ namespace FormPlug.PlugsBase
             }
         }
 
+        protected override bool IsTypeValid(Type type)
+        {
+            try
+            {
+                // ReSharper disable once UnusedVariable
+                object result = Convert.ChangeType(default(TValue), typeof(decimal));
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         protected sealed override void UseAttribute(NumericSocketAttribute attribute)
         {
             Minimum = attribute.Minimum;

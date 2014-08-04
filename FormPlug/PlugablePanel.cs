@@ -39,7 +39,20 @@ namespace FormPlug
                     MethodInfo method = type.GetMethod("CreatePlugFromSocket",
                         BindingFlags.NonPublic | BindingFlags.Instance);
                     MethodInfo genericMethod = method.MakeGenericMethod(genericType);
-                    var control = (TControl)genericMethod.Invoke(this, new object[] {socket});
+
+                    TControl control;
+                    try
+                    {
+                        control = (TControl)genericMethod.Invoke(this, new object[] {socket});
+                    }
+                    catch (TargetInvocationException e)
+                    {
+                        if (e.InnerException is InvalidCastException)
+                            throw new ArgumentException(
+                                string.Format("Attribute {0} is unvalid for the property {1} of type Socket<{2}>",
+                                    socket.Attribute.GetType().Name, propertyInfo.Name, genericType.Name));
+                        throw e.InnerException;
+                    }
 
                     AddEntry(label, control, panel, socket.Attribute.Group);
                 }
@@ -52,7 +65,18 @@ namespace FormPlug
                         var socketAttribute = attribute as SocketAttribute;
 
                         TLabel label = CreateLabel(socketAttribute.Name ?? propertyInfo.Name);
-                        TControl control = CreatePlugFromSocketAttribute(obj, propertyInfo, socketAttribute);
+
+                        TControl control;
+                        try
+                        {
+                            control = CreatePlugFromSocketAttribute(obj, propertyInfo, socketAttribute);
+                        }
+                        catch (ArgumentException)
+                        {
+                            throw new ArgumentException(
+                                string.Format("Attribute {0} is unvalid for the property {1} of type {2}",
+                                    attribute.GetType().Name, propertyInfo.Name, propertyInfo.PropertyType.Name));
+                        }
 
                         AddEntry(label, control, panel, socketAttribute.Group);
                     }
