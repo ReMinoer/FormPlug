@@ -23,6 +23,8 @@ namespace FormPlug.WindowsForm.Controls
                 _dialog.FileName = value;
 
                 textBox.Text = _file;
+                textBox.SelectionStart = textBox.TextLength;
+                textBox.SelectionLength = 0;
 
                 if (FileChanged != null)
                     FileChanged(this, EventArgs.Empty);

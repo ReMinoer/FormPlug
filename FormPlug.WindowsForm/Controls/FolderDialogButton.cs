@@ -25,6 +25,8 @@ namespace FormPlug.WindowsForm.Controls
                 _dialog.SelectedPath = value;
 
                 textBox.Text = _folder;
+                textBox.SelectionStart = textBox.TextLength;
+                textBox.SelectionLength = 0;
 
                 if (FolderChanged != null)
                     FolderChanged(this, EventArgs.Empty);
