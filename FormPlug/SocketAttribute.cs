@@ -8,6 +8,7 @@ namespace FormPlug
         public string Name { get; set; }
         public string Group { get; set; }
         public string CustomValueChangedEventName { get; set; }
+
         public const string DefaultValueChangedExtension = "ValueChanged";
     }
 
@@ -21,6 +22,7 @@ namespace FormPlug
 
     public class TextSocketAttribute : SocketAttribute
     {
+        public int MaxLenght { get; set; }
         public bool Multiline { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
