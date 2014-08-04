@@ -18,8 +18,7 @@ namespace FormPlug.WindowsForm.Controls
                 _dialog.Color = value;
 
                 button.BackColor = _color;
-                button.Text = string.Format("{0}, {1}, {2}", _color.R, _color.G, _color.B);
-                button.ForeColor = _color.GetBrightness() < 0.5f ? Color.White : Color.Black;
+                label.Text = string.Format("{0}, {1}, {2}", _color.R, _color.G, _color.B);
 
                 if (ColorChanged != null)
                     ColorChanged(this, EventArgs.Empty);
