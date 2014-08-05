@@ -6,21 +6,21 @@ using FormPlug.Annotations;
 namespace FormPlug
 {
     // TODO : Find solution for directly add control to group
-    public abstract class PlugablePanel<TParent, TPanel, TGroup, TLabel, TControl>
+    public abstract class PlugablePanel<TPanel, TGroup, TLabel, TControl>
     {
-        private readonly Dictionary<string, TGroup> _groups;
-        private readonly TParent _parent;
+        private Dictionary<string, TGroup> _groups;
+        private readonly TPanel _panel;
 
-        protected PlugablePanel(TParent parent)
+        protected PlugablePanel(TPanel panel)
         {
-            _parent = parent;
+            _panel = panel;
             _groups = new Dictionary<string, TGroup>();
         }
 
         public void Connect(object obj)
         {
-            TPanel panel = CreatePanel();
-            AddPanelToParent(_parent, panel);
+            _groups = new Dictionary<string, TGroup>();
+            ClearPanel(_panel);
 
             PropertyInfo[] propertyInfos =
                 obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
@@ -35,7 +35,7 @@ namespace FormPlug
 
                     TLabel label = CreateLabel(socket.Attribute.Name ?? propertyInfo.Name);
 
-                    Type type = typeof(PlugablePanel<TParent, TPanel, TGroup, TLabel, TControl>);
+                    Type type = typeof(PlugablePanel<TPanel, TGroup, TLabel, TControl>);
                     MethodInfo method = type.GetMethod("CreatePlugFromSocket",
                         BindingFlags.NonPublic | BindingFlags.Instance);
                     MethodInfo genericMethod = method.MakeGenericMethod(genericType);
@@ -54,7 +54,7 @@ namespace FormPlug
                         throw e.InnerException;
                     }
 
-                    AddEntry(label, control, panel, socket.Attribute.Group);
+                    AddEntry(label, control, _panel, socket.Attribute.Group);
                 }
                 else
                     foreach (object attribute in propertyInfo.GetCustomAttributes(true))
@@ -78,7 +78,7 @@ namespace FormPlug
                                     attribute.GetType().Name, propertyInfo.Name, propertyInfo.PropertyType.Name));
                         }
 
-                        AddEntry(label, control, panel, socketAttribute.Group);
+                        AddEntry(label, control, _panel, socketAttribute.Group);
                     }
             }
         }
@@ -135,11 +135,16 @@ namespace FormPlug
 
         protected abstract IPlug<TControl> GetAssociatePlug<T>(SocketAttribute attribute);
 
-        protected abstract TPanel CreatePanel();
+        static public implicit operator TPanel(PlugablePanel<TPanel, TGroup, TLabel, TControl> value)
+        {
+            return value._panel;
+        }
+
+        protected abstract void ClearPanel(TPanel panel);
+
         protected abstract TGroup CreateGroup(string name);
         protected abstract TLabel CreateLabel(string text);
 
-        protected abstract void AddPanelToParent(TParent parent, TPanel panel);
         protected abstract void AddGroupToPanel(TPanel panel, TGroup group);
 
         protected abstract void AddControlToPanel(TPanel panel, TControl control);
@@ -150,17 +155,12 @@ namespace FormPlug
     }
 
     public abstract class PlugablePanel<TControlBase>
-        : PlugablePanel<TControlBase, TControlBase, TControlBase, TControlBase, TControlBase>
+        : PlugablePanel<TControlBase, TControlBase, TControlBase, TControlBase>
     {
-        protected PlugablePanel(TControlBase parent)
-            : base(parent) {}
+        protected PlugablePanel(TControlBase panel)
+            : base(panel) {}
 
         protected abstract void AddControlToControl(TControlBase parent, TControlBase control);
-
-        protected override void AddPanelToParent(TControlBase parent, TControlBase panel)
-        {
-            AddControlToControl(parent, panel);
-        }
 
         protected override void AddGroupToPanel(TControlBase panel, TControlBase group)
         {

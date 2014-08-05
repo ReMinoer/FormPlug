@@ -16,7 +16,9 @@ namespace FormPlug.WindowsForm.Sample
 
             _test = new TestObject();
 
-            var plugablePanel = new PlugableFlowLayoutPanel(_view.ParentPanel);
+            var plugablePanel = new PlugableFlowLayoutPanel();
+            _view.ParentPanel.Controls.Add(plugablePanel);
+
             plugablePanel.Connect(_test);
 
             _view.ExternalButton.Click += ExternalButtonOnClick;

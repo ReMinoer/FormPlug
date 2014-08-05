@@ -6,8 +6,15 @@ namespace FormPlug.WindowsForm
 {
     public class PlugableFlowLayoutPanel : PlugablePanel<Control>
     {
-        public PlugableFlowLayoutPanel(Control parent)
-            : base(parent) {}
+        public PlugableFlowLayoutPanel()
+            : base(
+                new FlowLayoutPanel
+                {
+                    FlowDirection = FlowDirection.TopDown,
+                    AutoSize = true,
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                    Dock = DockStyle.Fill
+                }) {}
 
         protected override IPlug<Control> GetAssociatePlug<T>(SocketAttribute attribute)
         {
@@ -38,15 +45,9 @@ namespace FormPlug.WindowsForm
             return null;
         }
 
-        protected override Control CreatePanel()
+        protected override void ClearPanel(Control panel)
         {
-            return new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.TopDown,
-                AutoSize = true,
-                AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                Dock = DockStyle.Fill
-            };
+            panel.Controls.Clear();
         }
 
         protected override Control CreateGroup(string name)
