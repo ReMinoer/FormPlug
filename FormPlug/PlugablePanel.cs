@@ -8,13 +8,13 @@ namespace FormPlug
     // TODO : Find solution for directly add control to group
     public abstract class PlugablePanel<TParent, TPanel, TGroup, TLabel, TControl>
     {
-        private readonly Dictionary<string, TPanel> _groups;
+        private readonly Dictionary<string, TGroup> _groups;
         private readonly TParent _parent;
 
         protected PlugablePanel(TParent parent)
         {
             _parent = parent;
-            _groups = new Dictionary<string, TPanel>();
+            _groups = new Dictionary<string, TGroup>();
         }
 
         public void Connect(object obj)
@@ -85,24 +85,29 @@ namespace FormPlug
 
         private void AddEntry(TLabel label, TControl control, TPanel panel, string groupName)
         {
-            TPanel targetPanel = panel;
-
             if (groupName != null)
+            {
+                TGroup targetGroup;
+
                 if (_groups.ContainsKey(groupName))
-                    targetPanel = _groups[groupName];
+                    targetGroup = _groups[groupName];
                 else
                 {
                     TGroup group = CreateGroup(groupName);
                     AddGroupToPanel(panel, group);
-                    TPanel groupPanel = CreatePanel();
-                    AddPanelToGroup(group, groupPanel);
 
-                    _groups.Add(groupName, groupPanel);
-                    targetPanel = groupPanel;
+                    _groups.Add(groupName, group);
+                    targetGroup = group;
                 }
 
-            AddLabelToPanel(targetPanel, label);
-            AddControlToPanel(targetPanel, control);
+                AddLabelToGroup(targetGroup, label);
+                AddControlToGroup(targetGroup, control);
+            }
+            else
+            {
+                AddLabelToPanel(panel, label);
+                AddControlToPanel(panel, control);
+            }
         }
 
         [UsedImplicitly]
@@ -136,9 +141,12 @@ namespace FormPlug
 
         protected abstract void AddPanelToParent(TParent parent, TPanel panel);
         protected abstract void AddGroupToPanel(TPanel panel, TGroup group);
-        protected abstract void AddPanelToGroup(TGroup group, TPanel panel);
+
         protected abstract void AddControlToPanel(TPanel panel, TControl control);
         protected abstract void AddLabelToPanel(TPanel panel, TLabel label);
+
+        protected abstract void AddControlToGroup(TGroup group, TControl control);
+        protected abstract void AddLabelToGroup(TGroup group, TLabel label);
     }
 
     public abstract class PlugablePanel<TControlBase>
@@ -149,29 +157,34 @@ namespace FormPlug
 
         protected abstract void AddControlToControl(TControlBase parent, TControlBase control);
 
-        protected sealed override void AddPanelToParent(TControlBase parent, TControlBase panel)
+        protected override void AddPanelToParent(TControlBase parent, TControlBase panel)
         {
             AddControlToControl(parent, panel);
         }
 
-        protected sealed override void AddGroupToPanel(TControlBase panel, TControlBase group)
+        protected override void AddGroupToPanel(TControlBase panel, TControlBase group)
         {
             AddControlToControl(panel, group);
         }
 
-        protected sealed override void AddPanelToGroup(TControlBase group, TControlBase panel)
-        {
-            AddControlToControl(group, panel);
-        }
-
-        protected sealed override void AddControlToPanel(TControlBase panel, TControlBase control)
+        protected override void AddControlToPanel(TControlBase panel, TControlBase control)
         {
             AddControlToControl(panel, control);
         }
 
-        protected sealed override void AddLabelToPanel(TControlBase panel, TControlBase label)
+        protected override void AddLabelToPanel(TControlBase panel, TControlBase label)
         {
             AddControlToControl(panel, label);
+        }
+
+        protected override void AddControlToGroup(TControlBase group, TControlBase control)
+        {
+            AddControlToControl(group, control);
+        }
+
+        protected override void AddLabelToGroup(TControlBase group, TControlBase label)
+        {
+            AddControlToControl(group, label);
         }
     }
 }

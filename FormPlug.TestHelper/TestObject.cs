@@ -227,7 +227,7 @@ namespace FormPlug.TestHelper
 
             StringSocket = new Socket<string>
             {
-                Attribute = new TextSocketAttribute { Group = "Socket<T>", Name = "Text", MaxLenght = 10 }
+                Attribute = new TextSocketAttribute {Group = "Socket<T>", Name = "Text", MaxLenght = 10}
             };
 
             BigStringSocket = new Socket<string>

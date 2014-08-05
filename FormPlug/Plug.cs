@@ -4,7 +4,7 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    // TODO : Plug for generic dialog, list
+    // TODO : Check if there are no event problem with Connect
     public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
         where TAttribute : SocketAttribute where TControl : new()
     {

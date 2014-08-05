@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using FormPlug.WindowsForm.Controls;
 using FormPlug.WindowsForm.Plugs;
 
 namespace FormPlug.WindowsForm
@@ -50,7 +51,13 @@ namespace FormPlug.WindowsForm
 
         protected override Control CreateGroup(string name)
         {
-            return new GroupBox {Text = name, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink};
+            return new FlowLayoutGroupPanel
+            {
+                Text = name,
+                FlowDirection = FlowDirection.TopDown,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            };
         }
 
         protected override Control CreateLabel(string text)

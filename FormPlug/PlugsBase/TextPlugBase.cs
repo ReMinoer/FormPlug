@@ -12,8 +12,7 @@
         {
             get
             {
-                return new TextSocketAttribute
-                { MaxLenght = int.MaxValue, Multiline = false, Width = 150, Height = 100 };
+                return new TextSocketAttribute {MaxLenght = int.MaxValue, Multiline = false, Width = 150, Height = 100};
             }
         }
 

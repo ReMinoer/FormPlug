@@ -32,8 +32,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ColorDialogButton.cs">
@@ -41,6 +43,9 @@
     </Compile>
     <Compile Include="Controls\ColorDialogButton.Designer.cs">
       <DependentUpon>ColorDialogButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlowLayoutGroupPanel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\FolderDialogButton.cs">
       <SubType>UserControl</SubType>

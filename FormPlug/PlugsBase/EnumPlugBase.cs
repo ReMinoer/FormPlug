@@ -2,6 +2,7 @@
 
 namespace FormPlug.PlugsBase
 {
+    // TODO : Change name display for EnumPlug
     public abstract class EnumPlugBase<TValue, TControl> : Plug<TValue, TControl, EnumSocketAttribute>
         where TControl : new()
     {

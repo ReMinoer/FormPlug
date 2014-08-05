@@ -2,6 +2,9 @@
 
 namespace FormPlug
 {
+    // TODO : bool Label property for SocketAttribute
+    // TODO : Implements ObjectSocketAttribute
+    // TODO : Implements CollectionSocketAttribute
     [AttributeUsage(AttributeTargets.Property)]
     public abstract class SocketAttribute : Attribute
     {
