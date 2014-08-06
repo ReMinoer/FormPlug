@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FormPlug.PlugsBase
+﻿namespace FormPlug.PlugsBase
 {
     public abstract class FilePlugBase<TControl> : Plug<string, TControl, FileSocketAttribute>
         where TControl : new()

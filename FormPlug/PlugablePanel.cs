@@ -8,8 +8,8 @@ namespace FormPlug
     // TODO : Find solution for directly add control to group
     public abstract class PlugablePanel<TPanel, TGroup, TLabel, TControl>
     {
-        private Dictionary<string, TGroup> _groups;
         private readonly TPanel _panel;
+        private Dictionary<string, TGroup> _groups;
 
         protected PlugablePanel(TPanel panel)
         {

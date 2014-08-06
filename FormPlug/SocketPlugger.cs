@@ -18,6 +18,12 @@ namespace FormPlug
             _socket.ValueChanged += OnSocketValueChanged;
         }
 
+        public void RemoveEvents()
+        {
+            _plug.ValueChanged -= OnPlugValueChanged;
+            _socket.ValueChanged -= OnSocketValueChanged;
+        }
+
         private void OnPlugValueChanged(object sender, EventArgs eventArgs)
         {
             _socket.Value = _plug.Value;

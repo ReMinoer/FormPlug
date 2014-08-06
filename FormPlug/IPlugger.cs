@@ -1,4 +1,7 @@
 ﻿namespace FormPlug
 {
-    internal interface IPlugger {}
+    internal interface IPlugger
+    {
+        void RemoveEvents();
+    }
 }

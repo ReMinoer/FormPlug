@@ -4,10 +4,9 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    // TODO : Check if there are no event problem with Connect
     // TODO : Add a connect method for property with no attribute
     public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
-        where TAttribute : SocketAttribute where TControl : new()
+        where TAttribute : SocketAttribute, new() where TControl : new()
     {
         [UsedImplicitly]
         private IPlugger _plugger;
@@ -30,20 +29,22 @@ namespace FormPlug
                 throw new ArgumentException(string.Format("The generic type of Socket<{0}> is unvalid for {1}",
                     socket.Value.GetType().Name, GetType().Name));
 
-            InitializeControl();
-
+            TAttribute attribute;
             if (socket.Attribute != null)
             {
-                var attribute = socket.Attribute as TAttribute;
+                attribute = socket.Attribute as TAttribute;
                 if (attribute == null)
                     throw new ArgumentException(string.Format("Socket<{0}>.Attribute isn't of type {1}",
                         typeof(TValue).Name, typeof(TAttribute).Name));
-
-                UseAttribute(attribute);
             }
             else
-                UseAttribute(default(TAttribute));
+                attribute = new TAttribute();
 
+            InitializeControl();
+            UseAttribute(attribute);
+
+            if (_plugger != null)
+                _plugger.RemoveEvents();
             _plugger = new SocketPlugger<TValue, TControl>(this, socket);
         }
 
@@ -53,15 +54,16 @@ namespace FormPlug
                 throw new ArgumentException(string.Format("The type {0} of property {1} is unvalid for {2}",
                     property.PropertyType.Name, property.Name, GetType().Name));
 
-            InitializeControl();
-
             var attribute = (TAttribute)property.GetCustomAttribute(typeof(TAttribute));
             if (attribute == null)
                 throw new ArgumentException(string.Format("The property {0} doesn't have attribute of type {1}",
                     property.Name, typeof(TAttribute).Name));
 
+            InitializeControl();
             UseAttribute(attribute);
 
+            if (_plugger != null)
+                _plugger.RemoveEvents();
             _plugger = new PropertyPlugger<TValue, TControl>(this, obj, property);
         }
 

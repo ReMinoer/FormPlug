@@ -10,7 +10,7 @@ namespace FormPlug.TestHelper
                                                                                   Action initAction = null,
                                                                                   Action endAction = null)
             where TPlug : Plug<TValue, TControl, TAttribute>, new() where TObject : new()
-            where TAttribute : SocketAttribute where TControl : new()
+            where TAttribute : SocketAttribute, new() where TControl : new()
         {
             if (initValue.Equals(newValue))
                 Assert.Inconclusive("initValue & newValue can't be equals !");

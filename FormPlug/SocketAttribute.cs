@@ -16,6 +16,11 @@ namespace FormPlug
 
     public class NumericSocketAttribute : SocketAttribute
     {
+        public double Minimum { get; set; }
+        public double Maximum { get; set; }
+        public double Increment { get; set; }
+        public int Decimals { get; set; }
+
         public NumericSocketAttribute()
         {
             Minimum = 0;
@@ -23,15 +28,15 @@ namespace FormPlug
             Increment = 1;
             Decimals = 0;
         }
-
-        public double Minimum { get; set; }
-        public double Maximum { get; set; }
-        public double Increment { get; set; }
-        public int Decimals { get; set; }
     }
 
     public class TextSocketAttribute : SocketAttribute
     {
+        public int MaxLenght { get; set; }
+        public bool Multiline { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+
         public TextSocketAttribute()
         {
             MaxLenght = int.MaxValue;
@@ -39,11 +44,6 @@ namespace FormPlug
             Width = 100;
             Height = 100;
         }
-
-        public int MaxLenght { get; set; }
-        public bool Multiline { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
     }
 
     public class BooleanSocketAttribute : SocketAttribute {}
@@ -56,16 +56,16 @@ namespace FormPlug
 
     public class FileSocketAttribute : SocketAttribute
     {
-        public FileSocketAttribute()
-        {
-            SaveMode = false;
-            Extensions = new [] {"*"};
-            InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        }
-
         public bool SaveMode { get; set; }
         public string[] Extensions { get; set; }
         public string InitialDirectory { get; set; }
+
+        public FileSocketAttribute()
+        {
+            SaveMode = false;
+            Extensions = new[] {"*"};
+            InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        }
     }
 
     public class FolderSocketAttribute : SocketAttribute {}

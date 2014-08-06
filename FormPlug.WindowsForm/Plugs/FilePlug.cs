@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using FormPlug.PlugsBase;
 using FormPlug.WindowsForm.Controls;
 
@@ -15,7 +13,8 @@ namespace FormPlug.WindowsForm.Plugs
             {
                 var filter = new string[value.Length];
                 for (int i = 0; i < value.Length; i++)
-                    filter[i] = string.Format("{1} files (*.{0})|*.{0}", value[i], value[i] != "*" ? value[i].ToUpper() : "All");
+                    filter[i] = string.Format("{1} files (*.{0})|*.{0}", value[i],
+                        value[i] != "*" ? value[i].ToUpper() : "All");
                 Control.Filter = string.Join("|", filter);
             }
         }
