@@ -5,7 +5,6 @@ using FormPlug.Annotations;
 namespace FormPlug
 {
     // TODO : Check if there are no event problem with Connect
-    // TODO : Fix possible error with DefaultAttribute
     // TODO : Add a connect method for property with no attribute
     public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
         where TAttribute : SocketAttribute where TControl : new()
@@ -16,6 +15,11 @@ namespace FormPlug
         protected Plug()
         {
             Control = new TControl();
+        }
+
+        protected Plug(TControl control)
+        {
+            Control = control;
         }
 
         public TControl Control { get; private set; }

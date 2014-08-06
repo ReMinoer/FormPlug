@@ -35,6 +35,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPlugger.cs" />
     <Compile Include="PlugsBase\ColorPlugBase.cs" />
     <Compile Include="PlugsBase\EnumPlugBase.cs" />
     <Compile Include="PlugsBase\DateTimePlugBase.cs" />
@@ -43,7 +44,6 @@
     <Compile Include="PlugsBase\FilePlugBase.cs" />
     <Compile Include="PlugsBase\TextPlugBase.cs" />
     <Compile Include="PlugsBase\NumericPlugBase.cs" />
-    <Compile Include="IPlugger.cs" />
     <Compile Include="ISocket.cs" />
     <Compile Include="Plug.cs" />
     <Compile Include="Properties\Annotations.cs" />
