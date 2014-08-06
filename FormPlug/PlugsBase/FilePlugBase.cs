@@ -6,26 +6,13 @@ namespace FormPlug.PlugsBase
         where TControl : new()
     {
         protected abstract bool SaveMode { set; }
-        protected abstract string Filter { set; }
+        protected abstract string[] Extensions { set; }
         protected abstract string InitialDirectory { set; }
-
-        protected override FileSocketAttribute DefaultAttribute
-        {
-            get
-            {
-                return new FileSocketAttribute
-                {
-                    SaveMode = false,
-                    Filter = "All files (*.*)|*.*",
-                    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-                };
-            }
-        }
 
         protected sealed override void UseAttribute(FileSocketAttribute attribute)
         {
             SaveMode = attribute.SaveMode;
-            Filter = attribute.Filter;
+            Extensions = attribute.Extensions;
             InitialDirectory = attribute.InitialDirectory;
         }
     }

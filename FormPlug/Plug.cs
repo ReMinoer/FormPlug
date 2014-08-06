@@ -10,8 +10,6 @@ namespace FormPlug
     public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
         where TAttribute : SocketAttribute where TControl : new()
     {
-        protected abstract TAttribute DefaultAttribute { get; }
-
         [UsedImplicitly]
         private IPlugger _plugger;
 
@@ -29,7 +27,6 @@ namespace FormPlug
                     socket.Value.GetType().Name, GetType().Name));
 
             InitializeControl();
-            UseAttribute(DefaultAttribute);
 
             if (socket.Attribute != null)
             {
@@ -40,6 +37,8 @@ namespace FormPlug
 
                 UseAttribute(attribute);
             }
+            else
+                UseAttribute(default(TAttribute));
 
             _plugger = new SocketPlugger<TValue, TControl>(this, socket);
         }
@@ -51,7 +50,6 @@ namespace FormPlug
                     property.PropertyType.Name, property.Name, GetType().Name));
 
             InitializeControl();
-            UseAttribute(DefaultAttribute);
 
             var attribute = (TAttribute)property.GetCustomAttribute(typeof(TAttribute));
             if (attribute == null)

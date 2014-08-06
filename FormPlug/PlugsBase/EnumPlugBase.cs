@@ -14,8 +14,6 @@ namespace FormPlug.PlugsBase
             set { Output = Enum.GetName(typeof(TValue), value); }
         }
 
-        protected override EnumSocketAttribute DefaultAttribute { get { return new EnumSocketAttribute(); } }
-
         protected override bool IsTypeValid(Type type)
         {
             return type.IsEnum;

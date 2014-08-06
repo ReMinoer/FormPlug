@@ -2,7 +2,6 @@
 
 namespace FormPlug
 {
-    // TODO : bool Label property for SocketAttribute
     // TODO : Implements ObjectSocketAttribute
     // TODO : Implements CollectionSocketAttribute
     [AttributeUsage(AttributeTargets.Property)]
@@ -17,6 +16,14 @@ namespace FormPlug
 
     public class NumericSocketAttribute : SocketAttribute
     {
+        public NumericSocketAttribute()
+        {
+            Minimum = 0;
+            Maximum = 10;
+            Increment = 1;
+            Decimals = 0;
+        }
+
         public double Minimum { get; set; }
         public double Maximum { get; set; }
         public double Increment { get; set; }
@@ -25,6 +32,14 @@ namespace FormPlug
 
     public class TextSocketAttribute : SocketAttribute
     {
+        public TextSocketAttribute()
+        {
+            MaxLenght = int.MaxValue;
+            Multiline = false;
+            Width = 100;
+            Height = 100;
+        }
+
         public int MaxLenght { get; set; }
         public bool Multiline { get; set; }
         public int Width { get; set; }
@@ -41,8 +56,15 @@ namespace FormPlug
 
     public class FileSocketAttribute : SocketAttribute
     {
+        public FileSocketAttribute()
+        {
+            SaveMode = false;
+            Extensions = new [] {"*"};
+            InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        }
+
         public bool SaveMode { get; set; }
-        public string Filter { get; set; }
+        public string[] Extensions { get; set; }
         public string InitialDirectory { get; set; }
     }
 

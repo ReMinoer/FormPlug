@@ -8,14 +8,6 @@
         protected abstract int Width { set; }
         protected abstract int Height { set; }
 
-        protected override TextSocketAttribute DefaultAttribute
-        {
-            get
-            {
-                return new TextSocketAttribute {MaxLenght = int.MaxValue, Multiline = false, Width = 150, Height = 100};
-            }
-        }
-
         protected sealed override void UseAttribute(TextSocketAttribute attribute)
         {
             MaxLenght = attribute.MaxLenght;

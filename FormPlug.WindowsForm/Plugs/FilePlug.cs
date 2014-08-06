@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using FormPlug.PlugsBase;
 using FormPlug.WindowsForm.Controls;
 
@@ -7,7 +9,16 @@ namespace FormPlug.WindowsForm.Plugs
     public class FilePlug : FilePlugBase<FileDialogButton>
     {
         protected override bool SaveMode { set { Control.SaveMode = value; } }
-        protected override string Filter { set { Control.Filter = value; } }
+        protected override string[] Extensions
+        {
+            set
+            {
+                var filter = new string[value.Length];
+                for (int i = 0; i < value.Length; i++)
+                    filter[i] = string.Format("{1} files (*.{0})|*.{0}", value[i], value[i] != "*" ? value[i].ToUpper() : "All");
+                Control.Filter = string.Join("|", filter);
+            }
+        }
         protected override string InitialDirectory { set { Control.InitialDirectory = value; } }
 
         public override string Value { get { return Control.File; } set { Control.File = value; } }

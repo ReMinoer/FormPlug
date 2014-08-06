@@ -137,7 +137,7 @@ namespace FormPlug.TestHelper
             }
         }
 
-        [FileSocket(Group = "SocketAttribute", Name = "Filename", Filter = "Text files (*.txt)|*.txt")]
+        [FileSocket(Group = "SocketAttribute", Name = "Filename", Extensions = new[]{"txt"})]
         private string File
         {
             [UsedImplicitly]
@@ -265,7 +265,7 @@ namespace FormPlug.TestHelper
                     {
                         Group = "Socket<T>",
                         Name = "Filename",
-                        Filter = "Text files (*.txt)|*.txt"
+                        Extensions = new[]{"txt"}
                     }
             };
 

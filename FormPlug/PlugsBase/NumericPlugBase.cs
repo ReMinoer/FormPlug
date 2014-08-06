@@ -18,20 +18,6 @@ namespace FormPlug.PlugsBase
             set { Output = (TOutput)Convert.ChangeType(value, typeof(TOutput)); }
         }
 
-        protected override NumericSocketAttribute DefaultAttribute
-        {
-            get
-            {
-                return new NumericSocketAttribute
-                {
-                    Minimum = 0,
-                    Maximum = 10,
-                    Increment = 1,
-                    Decimals = typeof(TValue) == typeof(int) ? 0 : 2
-                };
-            }
-        }
-
         protected override bool IsTypeValid(Type type)
         {
             try
