@@ -48,7 +48,10 @@ namespace FormPlug
 
     public class BooleanSocketAttribute : SocketAttribute {}
 
-    public class EnumSocketAttribute : SocketAttribute {}
+    public class EnumSocketAttribute : SocketAttribute
+    {
+        public string[] AlternativeNames { get; set; }
+    }
 
     public class DateTimeSocketAttribute : SocketAttribute {}
 

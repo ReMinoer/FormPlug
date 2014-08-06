@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using FormPlug.PlugsBase;
 
@@ -17,9 +18,12 @@ namespace FormPlug.WindowsForm.Plugs
         protected override void InitializeControl()
         {
             Control.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
 
+        protected override void InitializeNames(IEnumerable<string> names)
+        {
             Control.Items.Clear();
-            foreach (string name in Enum.GetNames(typeof(T)))
+            foreach (string name in names)
                 Control.Items.Add(name);
         }
     }

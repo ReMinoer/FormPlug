@@ -89,7 +89,8 @@ namespace FormPlug.TestHelper
             }
         }
 
-        [EnumSocket(Group = "SocketAttribute", Name = "Enumeration")]
+        [EnumSocket(Group = "SocketAttribute", Name = "Enumeration",
+            AlternativeNames = new[] {"Yes for sure !", "No way !", "Maybe next time..."})]
         private TestEnum Enum
         {
             [UsedImplicitly]
@@ -245,7 +246,13 @@ namespace FormPlug.TestHelper
 
             EnumSocket = new Socket<TestEnum>
             {
-                Attribute = new EnumSocketAttribute {Group = "Socket<T>", Name = "Enumeration"}
+                Attribute =
+                    new EnumSocketAttribute
+                    {
+                        Group = "Socket<T>",
+                        Name = "Enumeration",
+                        AlternativeNames = new[] {"Yes for sure !", "No way !", "Maybe next time..."}
+                    }
             };
 
             ColorSocket = new Socket<Color>

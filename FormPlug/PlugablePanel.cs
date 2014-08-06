@@ -5,7 +5,6 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    // TODO : Find solution for directly add control to group
     public abstract class PlugablePanel<TPanel, TGroup, TLabel, TControl>
     {
         private readonly TPanel _panel;

@@ -62,6 +62,9 @@ namespace FormPlug
             Connect(obj, obj.GetType().GetProperty(propertyName));
         }
 
+        public abstract TValue Value { get; set; }
+        public abstract event EventHandler ValueChanged;
+
         public void Connect(object obj, PropertyInfo property, TAttribute attribute)
         {
             if (!IsTypeValid(property.PropertyType))
@@ -80,9 +83,6 @@ namespace FormPlug
         {
             Connect(obj, obj.GetType().GetProperty(propertyName), attribute);
         }
-
-        public abstract TValue Value { get; set; }
-        public abstract event EventHandler ValueChanged;
 
         protected virtual bool IsTypeValid(Type type)
         {
