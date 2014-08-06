@@ -4,7 +4,6 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    // TODO : Add a connect method for property with no attribute
     public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
         where TAttribute : SocketAttribute, new() where TControl : new()
     {
@@ -50,14 +49,24 @@ namespace FormPlug
 
         public void Connect(object obj, PropertyInfo property)
         {
-            if (!IsTypeValid(property.PropertyType))
-                throw new ArgumentException(string.Format("The type {0} of property {1} is unvalid for {2}",
-                    property.PropertyType.Name, property.Name, GetType().Name));
-
             var attribute = (TAttribute)property.GetCustomAttribute(typeof(TAttribute));
             if (attribute == null)
                 throw new ArgumentException(string.Format("The property {0} doesn't have attribute of type {1}",
                     property.Name, typeof(TAttribute).Name));
+
+            Connect(obj, property, attribute);
+        }
+
+        public void Connect(object obj, string propertyName)
+        {
+            Connect(obj, obj.GetType().GetProperty(propertyName));
+        }
+
+        public void Connect(object obj, PropertyInfo property, TAttribute attribute)
+        {
+            if (!IsTypeValid(property.PropertyType))
+                throw new ArgumentException(string.Format("The type {0} of property {1} is unvalid for {2}",
+                    property.PropertyType.Name, property.Name, GetType().Name));
 
             InitializeControl();
             UseAttribute(attribute);
@@ -67,9 +76,9 @@ namespace FormPlug
             _plugger = new PropertyPlugger<TValue, TControl>(this, obj, property);
         }
 
-        public void Connect(object obj, string propertyName)
+        public void Connect(object obj, string propertyName, TAttribute attribute)
         {
-            Connect(obj, obj.GetType().GetProperty(propertyName));
+            Connect(obj, obj.GetType().GetProperty(propertyName), attribute);
         }
 
         public abstract TValue Value { get; set; }
