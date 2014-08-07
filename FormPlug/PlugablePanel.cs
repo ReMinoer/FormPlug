@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using FormPlug.Annotations;
 
@@ -74,11 +75,42 @@ namespace FormPlug
                         {
                             throw new ArgumentException(
                                 string.Format("Attribute {0} is unvalid for the property {1} of type {2}",
-                                    attribute.GetType().Name, propertyInfo.Name, propertyInfo.PropertyType.Name));
+                                    attribute.GetType().Name, propertyInfo.Name, propertyType.Name));
                         }
 
                         AddEntry(label, control, _panel, socketAttribute.Group);
                     }
+            }
+        }
+
+        public void Connect<T>(SocketAdapter<T> socketAdapter)
+        {
+            _groups = new Dictionary<string, TGroup>();
+            ClearPanel(_panel);
+
+            PropertyInfo[] propertyInfos =
+                typeof(T).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            foreach (var pair in socketAdapter.SocketAttributes)
+            {
+                PropertyInfo propertyInfo = pair.Key;
+                SocketAttribute attribute = pair.Value;
+
+                TLabel label = CreateLabel(attribute.Name ?? propertyInfo.Name);
+
+                TControl control;
+                try
+                {
+                    control = CreatePlugFromSocketAttribute(socketAdapter.Object, propertyInfo, attribute);
+                }
+                catch (ArgumentException)
+                {
+                    throw new ArgumentException(
+                        string.Format("Attribute {0} is unvalid for the property {1} of type {2}",
+                            attribute.GetType().Name, propertyInfo.Name, propertyInfo.PropertyType.Name));
+                }
+
+                AddEntry(label, control, _panel, attribute.Group);
             }
         }
 
