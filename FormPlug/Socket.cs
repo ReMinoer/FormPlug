@@ -3,7 +3,6 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    // TODO : Socket collection
     public class Socket<T> : ISocket<T>
     {
         private T _value;

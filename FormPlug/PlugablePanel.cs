@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using FormPlug.Annotations;
 
@@ -87,9 +86,6 @@ namespace FormPlug
         {
             _groups = new Dictionary<string, TGroup>();
             ClearPanel(_panel);
-
-            PropertyInfo[] propertyInfos =
-                typeof(T).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (var pair in socketAdapter.SocketAttributes)
             {

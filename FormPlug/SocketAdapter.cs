@@ -10,7 +10,7 @@ namespace FormPlug
     {
         public T Object { get; private set; }
 
-        public IReadOnlyDictionary<PropertyInfo, SocketAttribute> SocketAttributes
+        public ReadOnlyDictionary<PropertyInfo, SocketAttribute> SocketAttributes
         {
             get { return new ReadOnlyDictionary<PropertyInfo, SocketAttribute>(_socketAttributes); }
         }
