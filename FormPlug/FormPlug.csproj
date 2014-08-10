@@ -49,7 +49,7 @@
     <Compile Include="Plug.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="IPlug.cs" />
-    <Compile Include="PlugablePanel.cs" />
+    <Compile Include="AutoPlugPanel.cs" />
     <Compile Include="PropertyPlugger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Socket.cs" />

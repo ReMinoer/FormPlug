@@ -16,10 +16,10 @@ namespace FormPlug.WindowsForm.Sample
 
             _test = new TestObject();
 
-            var plugablePanel = new PlugableFlowLayoutPanel();
-            _view.ParentPanel.Controls.Add(plugablePanel);
+            var autoPlugPanel = new AutoPlugFlowLayoutPanel();
+            _view.ParentPanel.Controls.Add(autoPlugPanel);
 
-            plugablePanel.Connect(_test);
+            autoPlugPanel.Connect(_test);
 
             _view.ExternalButton.Click += ExternalButtonOnClick;
             _view.DisplayButton.Click += DisplayButtonOnClick;

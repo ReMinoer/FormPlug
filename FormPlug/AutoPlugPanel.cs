@@ -5,12 +5,12 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    public abstract class PlugablePanel<TPanel, TGroup, TLabel, TControl>
+    public abstract class AutoPlugPanel<TPanel, TGroup, TLabel, TControl>
     {
         private readonly TPanel _panel;
         private Dictionary<string, TGroup> _groups;
 
-        protected PlugablePanel(TPanel panel)
+        protected AutoPlugPanel(TPanel panel)
         {
             _panel = panel;
             _groups = new Dictionary<string, TGroup>();
@@ -34,7 +34,7 @@ namespace FormPlug
 
                     TLabel label = CreateLabel(socket.Attribute.Name ?? propertyInfo.Name);
 
-                    Type type = typeof(PlugablePanel<TPanel, TGroup, TLabel, TControl>);
+                    Type type = typeof(AutoPlugPanel<TPanel, TGroup, TLabel, TControl>);
                     MethodInfo method = type.GetMethod("CreatePlugFromSocket",
                         BindingFlags.NonPublic | BindingFlags.Instance);
                     MethodInfo genericMethod = method.MakeGenericMethod(genericType);
@@ -162,7 +162,7 @@ namespace FormPlug
 
         protected abstract IPlug<TControl> GetAssociatePlug<T>(SocketAttribute attribute);
 
-        static public implicit operator TPanel(PlugablePanel<TPanel, TGroup, TLabel, TControl> value)
+        static public implicit operator TPanel(AutoPlugPanel<TPanel, TGroup, TLabel, TControl> value)
         {
             return value._panel;
         }
@@ -181,10 +181,10 @@ namespace FormPlug
         protected abstract void AddLabelToGroup(TGroup group, TLabel label);
     }
 
-    public abstract class PlugablePanel<TControlBase>
-        : PlugablePanel<TControlBase, TControlBase, TControlBase, TControlBase>
+    public abstract class AutoPlugPanel<TControlBase>
+        : AutoPlugPanel<TControlBase, TControlBase, TControlBase, TControlBase>
     {
-        protected PlugablePanel(TControlBase panel)
+        protected AutoPlugPanel(TControlBase panel)
             : base(panel) {}
 
         protected abstract void AddControlToControl(TControlBase parent, TControlBase control);

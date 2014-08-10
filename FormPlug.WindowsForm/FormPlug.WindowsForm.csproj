@@ -57,7 +57,7 @@
     <Compile Include="Controls\FileDialogButton.Designer.cs">
       <DependentUpon>FileDialogButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlugableFlowLayoutPanel.cs" />
+    <Compile Include="AutoPlugFlowLayoutPanel.cs" />
     <Compile Include="Plugs\ColorPlug.cs" />
     <Compile Include="Plugs\DateTimePlug.cs" />
     <Compile Include="Plugs\BooleanPlug.cs" />

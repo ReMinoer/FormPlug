@@ -4,9 +4,9 @@ using FormPlug.WindowsForm.Plugs;
 
 namespace FormPlug.WindowsForm
 {
-    public class PlugableFlowLayoutPanel : PlugablePanel<Control>
+    public class AutoPlugFlowLayoutPanel : AutoPlugPanel<Control>
     {
-        public PlugableFlowLayoutPanel()
+        public AutoPlugFlowLayoutPanel()
             : base(
                 new FlowLayoutPanel
                 {
