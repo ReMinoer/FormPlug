@@ -3,6 +3,7 @@ using System.Reflection;
 
 namespace FormPlug
 {
+    // TODO : Make internal some interfaces
     public interface IPlug
     {
         event EventHandler ValueChanged;

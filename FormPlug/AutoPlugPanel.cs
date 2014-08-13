@@ -5,6 +5,7 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
+    // TODO : Combine label & plug creation
     public abstract class AutoPlugPanel<TPanel, TGroup, TLabel, TControl>
     {
         private readonly TPanel _panel;

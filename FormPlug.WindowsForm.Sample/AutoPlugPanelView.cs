@@ -5,24 +5,23 @@ using FormPlug.TestHelper;
 
 namespace FormPlug.WindowsForm.Sample
 {
-    public class MainPresenter
+    internal partial class AutoPlugPanelView : Form
     {
         private readonly TestObject _test;
-        private readonly IMainView _view;
 
-        public MainPresenter(IMainView view)
+        public AutoPlugPanelView()
         {
-            _view = view;
+            InitializeComponent();
 
             _test = new TestObject();
 
             var autoPlugPanel = new AutoPlugFlowLayoutPanel();
-            _view.ParentPanel.Controls.Add(autoPlugPanel);
+            parentPanel.Controls.Add(autoPlugPanel);
 
             autoPlugPanel.Connect(_test);
 
-            _view.ExternalButton.Click += ExternalButtonOnClick;
-            _view.DisplayButton.Click += DisplayButtonOnClick;
+            externalButton.Click += ExternalButtonOnClick;
+            displayButton.Click += DisplayButtonOnClick;
         }
 
         [UsedImplicitly]
@@ -37,12 +36,5 @@ namespace FormPlug.WindowsForm.Sample
         {
             MessageBox.Show(_test.ToString(), @"TestObject", MessageBoxButtons.OK);
         }
-    }
-
-    public interface IMainView
-    {
-        FlowLayoutPanel ParentPanel { get; }
-        Button ExternalButton { get; }
-        Button DisplayButton { get; }
     }
 }

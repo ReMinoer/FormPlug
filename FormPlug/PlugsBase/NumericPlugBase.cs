@@ -12,6 +12,15 @@ namespace FormPlug.PlugsBase
 
         protected abstract TOutput Output { get; set; }
 
+        protected NumericPlugBase()
+        {
+        }
+
+        protected NumericPlugBase(TControl control)
+            : base(control)
+        {
+        }
+
         public sealed override TValue Value
         {
             get { return (TValue)Convert.ChangeType(Output, typeof(TValue)); }

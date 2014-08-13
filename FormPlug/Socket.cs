@@ -3,6 +3,7 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
+    // TODO : Create generic method for manage SOcket<T> everywhere or give up
     public class Socket<T> : ISocket<T>
     {
         private T _value;
