@@ -18,6 +18,9 @@ namespace FormPlug.TestHelper
             }
             set
             {
+                if (value == _bool)
+                    return;
+
                 _bool = value;
                 if (BoolValueChanged != null)
                     BoolValueChanged(this, EventArgs.Empty);
@@ -34,6 +37,9 @@ namespace FormPlug.TestHelper
             }
             set
             {
+                if (value == _int)
+                    return;
+
                 _int = value;
                 if (IntValueChanged != null)
                     IntValueChanged(this, EventArgs.Empty);
@@ -51,6 +57,9 @@ namespace FormPlug.TestHelper
             }
             set
             {
+                if (value == _float)
+                    return;
+
                 _float = value;
                 if (FloatValueChanged != null)
                     FloatValueChanged(this, EventArgs.Empty);
@@ -67,6 +76,9 @@ namespace FormPlug.TestHelper
             }
             set
             {
+                if (value == _string)
+                    return;
+
                 _string = value;
                 if (StringValueChanged != null)
                     StringValueChanged(this, EventArgs.Empty);
@@ -83,6 +95,9 @@ namespace FormPlug.TestHelper
             }
             set
             {
+                if (value == _bigString)
+                    return;
+
                 _bigString = value;
                 if (BigStringValueChanged != null)
                     BigStringValueChanged(this, EventArgs.Empty);
@@ -100,6 +115,9 @@ namespace FormPlug.TestHelper
             }
             set
             {
+                if (value == _enum)
+                    return;
+
                 _enum = value;
                 if (EnumValueChanged != null)
                     EnumValueChanged(this, EventArgs.Empty);
@@ -116,6 +134,9 @@ namespace FormPlug.TestHelper
             }
             set
             {
+                if (value == _color)
+                    return;
+
                 _color = value;
                 if (ColorValueChanged != null)
                     ColorValueChanged(this, EventArgs.Empty);
@@ -132,6 +153,9 @@ namespace FormPlug.TestHelper
             }
             set
             {
+                if (value == _dateTime)
+                    return;
+
                 _dateTime = value;
                 if (DateTimeValueChanged != null)
                     DateTimeValueChanged(this, EventArgs.Empty);
@@ -148,6 +172,9 @@ namespace FormPlug.TestHelper
             }
             set
             {
+                if (value == _file)
+                    return;
+
                 _file = value;
                 if (FileValueChanged != null)
                     FileValueChanged(this, EventArgs.Empty);
@@ -164,6 +191,9 @@ namespace FormPlug.TestHelper
             }
             set
             {
+                if (value == _folder)
+                    return;
+
                 _folder = value;
                 if (FolderValueChanged != null)
                     FolderValueChanged(this, EventArgs.Empty);
@@ -181,6 +211,9 @@ namespace FormPlug.TestHelper
             }
             set
             {
+                if (value == _image)
+                    return;
+
                 _image = value;
                 if (ImageValueChanged != null)
                     ImageValueChanged(this, EventArgs.Empty);
