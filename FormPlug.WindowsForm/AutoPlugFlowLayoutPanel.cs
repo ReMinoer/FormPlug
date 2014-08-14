@@ -42,6 +42,9 @@ namespace FormPlug.WindowsForm
             if (attribute is FolderSocketAttribute)
                 return new FolderPlug();
 
+            if (attribute is ImageSocketAttribute)
+                return new ImagePlug();
+
             return null;
         }
 

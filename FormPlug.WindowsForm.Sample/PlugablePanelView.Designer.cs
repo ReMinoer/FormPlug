@@ -38,6 +38,7 @@
             this.folderDialogButton1 = new FormPlug.WindowsForm.Controls.FolderDialogButton();
             this.fileDialogButton1 = new FormPlug.WindowsForm.Controls.FileDialogButton();
             this.colorDialogButton1 = new FormPlug.WindowsForm.Controls.ColorDialogButton();
+            this.imageDialogButton1 = new FormPlug.WindowsForm.Controls.ImageDialogButton();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -125,11 +126,20 @@
             this.colorDialogButton1.Size = new System.Drawing.Size(125, 40);
             this.colorDialogButton1.TabIndex = 6;
             // 
+            // imageDialogButton1
+            // 
+            this.imageDialogButton1.Image = null;
+            this.imageDialogButton1.Location = new System.Drawing.Point(218, 140);
+            this.imageDialogButton1.Name = "imageDialogButton1";
+            this.imageDialogButton1.Size = new System.Drawing.Size(156, 136);
+            this.imageDialogButton1.TabIndex = 10;
+            // 
             // PlugablePanelView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(386, 288);
+            this.Controls.Add(this.imageDialogButton1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.folderDialogButton1);
             this.Controls.Add(this.fileDialogButton1);
@@ -161,5 +171,6 @@
         private Controls.FileDialogButton fileDialogButton1;
         private Controls.FolderDialogButton folderDialogButton1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private Controls.ImageDialogButton imageDialogButton1;
     }
 }

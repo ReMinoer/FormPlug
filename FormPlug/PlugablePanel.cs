@@ -6,7 +6,6 @@ using System.Reflection;
 
 namespace FormPlug
 {
-    // TODO : Implements PlugablePanel
     public abstract class PlugablePanel<TPanel, TObject, TControl>
     {
         public TPanel Panel { get; private set; }

@@ -80,5 +80,27 @@ namespace FormPlug.WindowsForm.Test
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
         }
+
+        [TestMethod]
+        public void ImagePlug()
+        {
+            string tempFile1 = Path.Combine(Environment.CurrentDirectory, "temp1.jpg");
+            string tempFile2 = Path.Combine(Environment.CurrentDirectory, "temp2.jpg");
+
+            Action init = () =>
+            {
+                File.Create(tempFile1).Close();
+                File.Create(tempFile2).Close();
+            };
+
+            Action end = () =>
+            {
+                File.Delete(tempFile1);
+                File.Delete(tempFile2);
+            };
+
+            PlugTestHelper.PlugTest<TestObject, ImagePlug, string, ImageSocketAttribute, ImageDialogButton>(tempFile1,
+                tempFile2, init, end);
+        }
     }
 }

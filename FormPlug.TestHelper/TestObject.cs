@@ -170,6 +170,23 @@ namespace FormPlug.TestHelper
             }
         }
 
+        [ImageSocket(Group = "SocketAttribute", Name = "Picture", Extensions = new[] {"jpg"}, Width = 100, Height = 100)
+        ]
+        private string Image
+        {
+            [UsedImplicitly]
+            get
+            {
+                return _image;
+            }
+            set
+            {
+                _image = value;
+                if (ImageValueChanged != null)
+                    ImageValueChanged(this, EventArgs.Empty);
+            }
+        }
+
         private Socket<bool> BoolSocket { get; set; }
         private Socket<int> IntSocket { get; set; }
         private Socket<float> FloatSocket { get; set; }
@@ -180,6 +197,7 @@ namespace FormPlug.TestHelper
         private Socket<DateTime> DateTimeSocket { get; set; }
         private Socket<string> FileSocket { get; set; }
         private Socket<string> FolderSocket { get; set; }
+        private Socket<string> ImageSocket { get; set; }
 
         private string _bigString;
         private bool _bool;
@@ -189,6 +207,7 @@ namespace FormPlug.TestHelper
         private string _file;
         private float _float;
         private string _folder;
+        private string _image;
         private int _int;
         private string _string;
 
@@ -275,6 +294,19 @@ namespace FormPlug.TestHelper
                 Attribute = new FolderSocketAttribute {Group = "Socket<T>", Name = "Directory"}
             };
 
+            ImageSocket = new Socket<string>
+            {
+                Attribute =
+                    new ImageSocketAttribute
+                    {
+                        Group = "Socket<T>",
+                        Name = "Picture",
+                        Extensions = new[] {"jpg"},
+                        Width = 100,
+                        Height = 100
+                    }
+            };
+
             Reset();
         }
 
@@ -298,6 +330,8 @@ namespace FormPlug.TestHelper
         public event EventHandler FileValueChanged;
         [UsedImplicitly]
         public event EventHandler FolderValueChanged;
+        [UsedImplicitly]
+        public event EventHandler ImageValueChanged;
 
         public void Reset()
         {
@@ -311,6 +345,7 @@ namespace FormPlug.TestHelper
             DateTime = DateTime.Now;
             File = "";
             Folder = "";
+            Image = "";
 
             BoolSocket.Value = false;
             IntSocket.Value = 0;
@@ -322,6 +357,7 @@ namespace FormPlug.TestHelper
             DateTimeSocket.Value = DateTime.Now;
             FileSocket.Value = "";
             FolderSocket.Value = "";
+            ImageSocket.Value = "";
         }
 
         public override string ToString()
@@ -338,6 +374,7 @@ namespace FormPlug.TestHelper
             result.AppendLine(DateTime.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(File);
             result.AppendLine(Folder);
+            result.AppendLine(Image);
 
             result.AppendLine(BoolSocket.Value.ToString());
             result.AppendLine(IntSocket.Value.ToString(CultureInfo.CurrentCulture));
@@ -349,6 +386,7 @@ namespace FormPlug.TestHelper
             result.AppendLine(DateTimeSocket.Value.ToString(CultureInfo.CurrentCulture));
             result.AppendLine(FileSocket.Value);
             result.AppendLine(FolderSocket.Value);
+            result.AppendLine(ImageSocket.Value);
 
             return result.ToString();
         }
