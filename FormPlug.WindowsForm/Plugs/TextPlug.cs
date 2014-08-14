@@ -14,6 +14,11 @@ namespace FormPlug.WindowsForm.Plugs
 
         public override string Value { get { return Control.Text; } set { Control.Text = value; } }
 
+        public TextPlug() {}
+
+        public TextPlug(TextBox control)
+            : base(control) {}
+
         public override event EventHandler ValueChanged
         {
             add { Control.TextChanged += value; }

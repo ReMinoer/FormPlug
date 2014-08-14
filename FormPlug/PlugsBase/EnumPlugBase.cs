@@ -24,6 +24,11 @@ namespace FormPlug.PlugsBase
         }
         private readonly Dictionary<string, string> _altNames = new Dictionary<string, string>();
 
+        protected EnumPlugBase() {}
+
+        protected EnumPlugBase(TControl control)
+            : base(control) {}
+
         protected override bool IsTypeValid(Type type)
         {
             return type.IsEnum;

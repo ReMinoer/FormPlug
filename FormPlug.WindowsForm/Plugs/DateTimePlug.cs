@@ -8,11 +8,17 @@ namespace FormPlug.WindowsForm.Plugs
     {
         public override DateTime Value { get { return Control.Value; } set { Control.Value = value; } }
 
+        public DateTimePlug() {}
+
+        public DateTimePlug(DateTimePicker control)
+            : base(control) {}
+
         public override event EventHandler ValueChanged
         {
             add { Control.ValueChanged += value; }
             remove { Control.ValueChanged -= value; }
         }
+
         protected override void InitializeControl() {}
     }
 }

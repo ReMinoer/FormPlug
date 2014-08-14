@@ -22,6 +22,11 @@ namespace FormPlug.WindowsForm.Plugs
 
         public override string Value { get { return Control.File; } set { Control.File = value; } }
 
+        public FilePlug() {}
+
+        public FilePlug(FileDialogButton control)
+            : base(control) {}
+
         public override event EventHandler ValueChanged
         {
             add { Control.FileChanged += value; }

@@ -8,6 +8,11 @@
         protected abstract int Width { set; }
         protected abstract int Height { set; }
 
+        protected TextPlugBase() {}
+
+        protected TextPlugBase(TControl control)
+            : base(control) {}
+
         protected sealed override void UseAttribute(TextSocketAttribute attribute)
         {
             MaxLenght = attribute.MaxLenght;

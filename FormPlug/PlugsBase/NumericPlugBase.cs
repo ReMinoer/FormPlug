@@ -11,21 +11,16 @@ namespace FormPlug.PlugsBase
         protected abstract int Decimals { set; }
 
         protected abstract TOutput Output { get; set; }
-
-        protected NumericPlugBase()
-        {
-        }
-
-        protected NumericPlugBase(TControl control)
-            : base(control)
-        {
-        }
-
         public sealed override TValue Value
         {
             get { return (TValue)Convert.ChangeType(Output, typeof(TValue)); }
             set { Output = (TOutput)Convert.ChangeType(value, typeof(TOutput)); }
         }
+
+        protected NumericPlugBase() {}
+
+        protected NumericPlugBase(TControl control)
+            : base(control) {}
 
         protected override bool IsTypeValid(Type type)
         {

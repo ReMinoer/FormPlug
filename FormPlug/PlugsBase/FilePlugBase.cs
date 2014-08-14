@@ -7,6 +7,11 @@
         protected abstract string[] Extensions { set; }
         protected abstract string InitialDirectory { set; }
 
+        protected FilePlugBase() {}
+
+        protected FilePlugBase(TControl control)
+            : base(control) {}
+
         protected sealed override void UseAttribute(FileSocketAttribute attribute)
         {
             SaveMode = attribute.SaveMode;

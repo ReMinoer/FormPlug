@@ -8,6 +8,11 @@ namespace FormPlug.WindowsForm.Plugs
     {
         public override string Value { get { return Control.Folder; } set { Control.Folder = value; } }
 
+        public FolderPlug() {}
+
+        public FolderPlug(FolderDialogButton control)
+            : base(control) {}
+
         public override event EventHandler ValueChanged
         {
             add { Control.FolderChanged += value; }

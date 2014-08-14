@@ -9,6 +9,11 @@ namespace FormPlug.WindowsForm.Plugs
     {
         protected override string Output { get { return Control.Text; } set { Control.Text = value; } }
 
+        public EnumPlug() {}
+
+        public EnumPlug(ComboBox control)
+            : base(control) {}
+
         public override event EventHandler ValueChanged
         {
             add { Control.SelectedIndexChanged += value; }

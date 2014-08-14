@@ -9,6 +9,11 @@ namespace FormPlug.WindowsForm.Plugs
     {
         public override Color Value { get { return Control.Color; } set { Control.Color = value; } }
 
+        public ColorPlug() {}
+
+        public ColorPlug(ColorDialogButton control)
+            : base(control) {}
+
         public override event EventHandler ValueChanged
         {
             add { Control.ColorChanged += value; }

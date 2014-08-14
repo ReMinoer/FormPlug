@@ -23,7 +23,7 @@ namespace FormPlug
             Control = control;
         }
 
-        public TControl Control { get; private set; }
+        public TControl Control { get; set; }
 
         public void Connect(Socket<TValue> socket)
         {
@@ -68,21 +68,21 @@ namespace FormPlug
         public abstract TValue Value { get; set; }
         public abstract event EventHandler ValueChanged;
 
-        public void Connect(object obj, PropertyInfo property, TAttribute attribute)
+        public void Connect(object obj, PropertyInfo property, SocketAttribute attribute)
         {
             if (!IsTypeValid(property.PropertyType))
                 throw new ArgumentException(string.Format("The type {0} of property {1} is unvalid for {2}",
                     property.PropertyType.Name, property.Name, GetType().Name));
 
             InitializeControl();
-            UseAttribute(attribute);
+            UseAttribute((TAttribute)attribute);
 
             if (_plugger != null)
                 _plugger.RemoveEvents();
-            _plugger = new PropertyPlugger<TValue, TControl>(this, obj, property);
+            _plugger = new PropertyPlugger<TValue, TControl>(this, obj, property, attribute);
         }
 
-        public void Connect(object obj, string propertyName, TAttribute attribute)
+        public void Connect(object obj, string propertyName, SocketAttribute attribute)
         {
             Connect(obj, obj.GetType().GetProperty(propertyName), attribute);
         }

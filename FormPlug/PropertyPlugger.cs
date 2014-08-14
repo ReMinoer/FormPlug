@@ -6,11 +6,11 @@ namespace FormPlug
 {
     internal class PropertyPlugger<TValue, TControl> : IPlugger
     {
-        private readonly EventInfo _event;
-        private readonly Delegate _handler;
-        private readonly object _obj;
-        private readonly IPlug<TValue, TControl> _plug;
-        private readonly PropertyInfo _property;
+        private EventInfo _event;
+        private Delegate _handler;
+        private object _obj;
+        private IPlug<TValue, TControl> _plug;
+        private PropertyInfo _property;
 
         public PropertyPlugger(IPlug<TValue, TControl> plug, object obj, PropertyInfo property)
         {
@@ -18,6 +18,24 @@ namespace FormPlug
             if (attr == null)
                 throw new ArgumentException(string.Format("{0} doesn't have SocketAttribute !", property.Name));
 
+            CommonConstructor(plug, obj, property, attr);
+        }
+
+        public PropertyPlugger(IPlug<TValue, TControl> plug, object obj, PropertyInfo property, SocketAttribute attr)
+        {
+            CommonConstructor(plug, obj, property, attr);
+        }
+
+        public void RemoveEvents()
+        {
+            _plug.ValueChanged -= OnPlugValueChanged;
+            if (_event != null)
+                _event.RemoveEventHandler(_obj, _handler);
+        }
+
+        private void CommonConstructor(IPlug<TValue, TControl> plug, object obj, PropertyInfo property,
+                                       SocketAttribute attr)
+        {
             string valueChangedEventName = attr.CustomValueChangedEventName
                                            ?? property.Name + SocketAttribute.DefaultValueChangedExtension;
 
@@ -40,13 +58,6 @@ namespace FormPlug
             _plug.ValueChanged += OnPlugValueChanged;
             if (_event != null)
                 _event.AddEventHandler(_obj, _handler);
-        }
-
-        public void RemoveEvents()
-        {
-            _plug.ValueChanged -= OnPlugValueChanged;
-            if (_event != null)
-                _event.RemoveEventHandler(_obj, _handler);
         }
 
         private void OnPlugValueChanged(object sender, EventArgs eventArgs)

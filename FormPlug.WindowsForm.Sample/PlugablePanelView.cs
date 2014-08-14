@@ -1,50 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using FormPlug.TestHelper;
 using FormPlug.WindowsForm.Plugs;
 
 namespace FormPlug.WindowsForm.Sample
 {
     public partial class PlugablePanelView : Form
     {
-        private PlugableViewData _data;
+        private TestObject _data;
 
         public PlugablePanelView()
         {
             InitializeComponent();
 
-            _data = new PlugableViewData();
+            _data = new TestObject();
 
-            var plugableView = new PlugableView(this);
+            var plugableView = new PlugablePanel(this);
             plugableView.Connect(_data);
         }
 
-        private class PlugableView : PlugablePanel<PlugablePanelView, Control, PlugableViewData>
+        private class PlugablePanel : PlugablePanel<PlugablePanelView, TestObject, Control>
         {
-            public PlugableView(PlugablePanelView panel)
+            public PlugablePanel(PlugablePanelView panel)
                 : base(panel) {}
 
-            protected override void CreatePlugs(PlugablePanelView panel, PlugableViewData obj,
-                                                ReadOnlyDictionary<string, PropertyInfo> properties)
+            protected override void CreatePlugs(PlugablePanelView panel)
             {
-                var number = new NumericPlug<int>(panel.numericUpDown1);
-                number.Connect(obj, properties["Number"]);
-                Plugs.Add(number);
+                AddPlug<BooleanPlug>(panel.checkBox1, "Bool");
+                AddPlug<NumericPlug<int>>(panel.numericUpDown1, "Int");
+                AddPlug<NumericPlug<float>>(panel.numericUpDown2, "Float");
+                AddPlug<TextPlug>(panel.textBox1, "String");
+                AddPlug<TextPlug>(panel.textBox2, "BigString");
+                AddPlug<EnumPlug<TestEnum>>(panel.comboBox1, "Enum");
+                AddPlug<ColorPlug>(panel.colorDialogButton1, "Color");
+                AddPlug<DateTimePlug>(panel.dateTimePicker1, "DateTime");
+                AddPlug<FilePlug>(panel.fileDialogButton1, "File");
+                AddPlug<FolderPlug>(panel.folderDialogButton1, "Folder");
             }
-        }
-
-        private class PlugableViewData
-        {
-            [NumericSocket(Minimum = -6, Maximum = 6, Increment = 2)]
-            public int Number { get; set; }
         }
     }
 }

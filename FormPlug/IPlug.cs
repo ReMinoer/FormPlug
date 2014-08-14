@@ -10,6 +10,8 @@ namespace FormPlug
 
         void Connect(object obj, PropertyInfo property);
         void Connect(object obj, string propertyName);
+        void Connect(object obj, PropertyInfo property, SocketAttribute attribute);
+        void Connect(object obj, string propertyName, SocketAttribute attribute);
     }
 
     public interface IPlug<out TControl> : IPlug
@@ -22,12 +24,5 @@ namespace FormPlug
         TValue Value { get; set; }
 
         void Connect(Socket<TValue> socket);
-    }
-
-    public interface IPlug<TValue, out TControl, in TAttribute> : IPlug<TValue, TControl>
-        where TAttribute : SocketAttribute
-    {
-        void Connect(object obj, PropertyInfo property, TAttribute attribute);
-        void Connect(object obj, string propertyName, TAttribute attribute);
     }
 }

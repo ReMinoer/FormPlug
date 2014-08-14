@@ -8,6 +8,11 @@ namespace FormPlug.WindowsForm.Plugs
     {
         public override bool Value { get { return Control.Checked; } set { Control.Checked = value; } }
 
+        public BooleanPlug() {}
+
+        public BooleanPlug(CheckBox control)
+            : base(control) {}
+
         public override event EventHandler ValueChanged
         {
             add { Control.CheckedChanged += value; }
