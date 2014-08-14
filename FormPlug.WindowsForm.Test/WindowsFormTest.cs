@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 using FormPlug.TestHelper;
 using FormPlug.WindowsForm.Controls;
@@ -54,23 +53,7 @@ namespace FormPlug.WindowsForm.Test
         [TestMethod]
         public void FilePlug()
         {
-            string tempFile1 = Path.Combine(Environment.CurrentDirectory, "temp1.txt");
-            string tempFile2 = Path.Combine(Environment.CurrentDirectory, "temp2.txt");
-
-            Action init = () =>
-            {
-                File.Create(tempFile1).Close();
-                File.Create(tempFile2).Close();
-            };
-
-            Action end = () =>
-            {
-                File.Delete(tempFile1);
-                File.Delete(tempFile2);
-            };
-
-            PlugTestHelper.PlugTest<TestObject, FilePlug, string, FileSocketAttribute, FileDialogButton>(tempFile1,
-                tempFile2, init, end);
+            PlugTestHelper.PathPlugTest<TestObject, FilePlug, FileSocketAttribute, FileDialogButton>("txt");
         }
 
         [TestMethod]
@@ -84,23 +67,7 @@ namespace FormPlug.WindowsForm.Test
         [TestMethod]
         public void ImagePlug()
         {
-            string tempFile1 = Path.Combine(Environment.CurrentDirectory, "temp1.jpg");
-            string tempFile2 = Path.Combine(Environment.CurrentDirectory, "temp2.jpg");
-
-            Action init = () =>
-            {
-                File.Create(tempFile1).Close();
-                File.Create(tempFile2).Close();
-            };
-
-            Action end = () =>
-            {
-                File.Delete(tempFile1);
-                File.Delete(tempFile2);
-            };
-
-            PlugTestHelper.PlugTest<TestObject, ImagePlug, string, ImageSocketAttribute, ImageDialogButton>(tempFile1,
-                tempFile2, init, end);
+            PlugTestHelper.PathPlugTest<TestObject, ImagePlug, ImageSocketAttribute, ImageDialogButton>("jpg");
         }
     }
 }

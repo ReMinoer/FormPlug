@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -61,6 +62,28 @@ namespace FormPlug.TestHelper
             if (!ok)
                 Assert.Inconclusive("{0} doesn't contains property with attribute of this type {1}",
                     typeof(TObject).Name, typeof(TAttribute).Name);
+        }
+
+        static public void PathPlugTest<TObject, TPlug, TAttribute, TControl>(string filenameExtension)
+            where TPlug : Plug<string, TControl, TAttribute>, new() where TObject : new()
+            where TAttribute : SocketAttribute, new() where TControl : new()
+        {
+            string tempFile1 = Path.Combine(Environment.CurrentDirectory, "temp1." + filenameExtension);
+            string tempFile2 = Path.Combine(Environment.CurrentDirectory, "temp2." + filenameExtension);
+
+            Action init = () =>
+            {
+                File.Create(tempFile1).Close();
+                File.Create(tempFile2).Close();
+            };
+
+            Action end = () =>
+            {
+                File.Delete(tempFile1);
+                File.Delete(tempFile2);
+            };
+
+            PlugTest<TObject, TPlug, string, TAttribute, TControl>(tempFile1, tempFile2, init, end);
         }
 
         static private void PlugValueChangedWithSocket<TPlug, TValue, TControl>(Socket<TValue> socket, TValue initValue,
