@@ -35,6 +35,7 @@ namespace FormPlug.WindowsForm.Sample
                 AddPlug<DateTimePlug>(panel.dateTimePicker1, "DateTime");
                 AddPlug<FilePlug>(panel.fileDialogButton1, "File");
                 AddPlug<FolderPlug>(panel.folderDialogButton1, "Folder");
+                AddPlug<ImagePlug>(panel.imageDialogButton1, "Image");
             }
         }
     }
