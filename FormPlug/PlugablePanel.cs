@@ -6,6 +6,7 @@ using System.Reflection;
 
 namespace FormPlug
 {
+    // TODO : Choice to connect a PlugablePanel without SocketAttribute
     public abstract class PlugablePanel<TPanel, TObject, TControl>
     {
         public TPanel Panel { get; private set; }

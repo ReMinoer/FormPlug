@@ -4,7 +4,6 @@ using FormPlug.Annotations;
 
 namespace FormPlug
 {
-    // TODO : Implements ImagePlugBase
     // TODO : Implements EventPlugBase
     // TODO : Handle interface for controls to easily connect
     public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
