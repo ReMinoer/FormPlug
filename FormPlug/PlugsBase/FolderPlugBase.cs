@@ -8,6 +8,6 @@
         protected FolderPlugBase(TControl control)
             : base(control) {}
 
-        protected sealed override void UseAttribute(FolderSocketAttribute attribute) {}
+        protected sealed override void UseCustomAttribute(FolderSocketAttribute attribute) {}
     }
 }

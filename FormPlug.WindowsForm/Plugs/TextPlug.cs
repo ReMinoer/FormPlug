@@ -13,6 +13,7 @@ namespace FormPlug.WindowsForm.Plugs
         protected override int Height { set { Control.Size = new Size(Control.Size.Width, value); } }
 
         public override string Value { get { return Control.Text; } set { Control.Text = value; } }
+        protected override bool ReadOnly { set { Control.Enabled = !value; } }
 
         public TextPlug() {}
 

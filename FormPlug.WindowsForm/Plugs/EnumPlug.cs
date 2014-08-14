@@ -8,6 +8,7 @@ namespace FormPlug.WindowsForm.Plugs
     public class EnumPlug<T> : EnumPlugBase<T, ComboBox>
     {
         protected override string Output { get { return Control.Text; } set { Control.Text = value; } }
+        protected override bool ReadOnly { set { Control.Enabled = !value; } }
 
         public EnumPlug() {}
 

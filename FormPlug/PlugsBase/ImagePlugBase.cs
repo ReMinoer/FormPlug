@@ -13,7 +13,7 @@
         protected ImagePlugBase(TControl control)
             : base(control) {}
 
-        protected sealed override void UseAttribute(ImageSocketAttribute attribute)
+        protected sealed override void UseCustomAttribute(ImageSocketAttribute attribute)
         {
             Extensions = attribute.Extensions;
             InitialDirectory = attribute.InitialDirectory;

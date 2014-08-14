@@ -7,6 +7,7 @@ namespace FormPlug.WindowsForm.Plugs
     public class BooleanPlug : BooleanPlugBase<CheckBox>
     {
         public override bool Value { get { return Control.Checked; } set { Control.Checked = value; } }
+        protected override bool ReadOnly { set { Control.Enabled = !value; } }
 
         public BooleanPlug() {}
 

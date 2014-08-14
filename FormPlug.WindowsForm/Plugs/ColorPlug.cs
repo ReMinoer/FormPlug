@@ -8,6 +8,7 @@ namespace FormPlug.WindowsForm.Plugs
     public class ColorPlug : ColorPlugBase<ColorDialogButton>
     {
         public override Color Value { get { return Control.Color; } set { Control.Color = value; } }
+        protected override bool ReadOnly { set { Control.Enabled = !value; } }
 
         public ColorPlug() {}
 

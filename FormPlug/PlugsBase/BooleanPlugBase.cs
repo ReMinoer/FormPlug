@@ -8,6 +8,6 @@
         protected BooleanPlugBase(TControl control)
             : base(control) {}
 
-        protected sealed override void UseAttribute(BooleanSocketAttribute attribute) {}
+        protected sealed override void UseCustomAttribute(BooleanSocketAttribute attribute) {}
     }
 }

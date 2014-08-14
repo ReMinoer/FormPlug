@@ -11,6 +11,7 @@ namespace FormPlug.WindowsForm.Plugs
         protected override double Increment { set { Control.Increment = (decimal)value; } }
         protected override int Decimals { set { Control.DecimalPlaces = value; } }
         protected override decimal Output { get { return Control.Value; } set { Control.Value = value; } }
+        protected override bool ReadOnly { set { Control.Enabled = !value; } }
 
         public NumericPlug() {}
 

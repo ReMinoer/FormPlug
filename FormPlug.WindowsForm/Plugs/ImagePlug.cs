@@ -23,6 +23,7 @@ namespace FormPlug.WindowsForm.Plugs
         protected override int Height { set { Control.Size = new Size(Control.Size.Width, value); } }
 
         public override string Value { get { return Control.Image; } set { Control.Image = value; } }
+        protected override bool ReadOnly { set { Control.Enabled = !value; } }
 
         public ImagePlug() {}
 

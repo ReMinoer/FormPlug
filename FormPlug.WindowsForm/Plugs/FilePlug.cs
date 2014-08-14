@@ -21,6 +21,7 @@ namespace FormPlug.WindowsForm.Plugs
         protected override string InitialDirectory { set { Control.InitialDirectory = value; } }
 
         public override string Value { get { return Control.File; } set { Control.File = value; } }
+        protected override bool ReadOnly { set { Control.Enabled = !value; } }
 
         public FilePlug() {}
 

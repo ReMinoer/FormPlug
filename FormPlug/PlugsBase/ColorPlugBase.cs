@@ -10,6 +10,6 @@ namespace FormPlug.PlugsBase
         protected ColorPlugBase(TControl control)
             : base(control) {}
 
-        protected sealed override void UseAttribute(ColorSocketAttribute attribute) {}
+        protected sealed override void UseCustomAttribute(ColorSocketAttribute attribute) {}
     }
 }

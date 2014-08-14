@@ -13,7 +13,7 @@
         protected TextPlugBase(TControl control)
             : base(control) {}
 
-        protected sealed override void UseAttribute(TextSocketAttribute attribute)
+        protected sealed override void UseCustomAttribute(TextSocketAttribute attribute)
         {
             MaxLenght = attribute.MaxLenght;
             Multiline = attribute.Multiline;

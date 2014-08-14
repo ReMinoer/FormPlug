@@ -7,6 +7,7 @@ namespace FormPlug.WindowsForm.Plugs
     public class DateTimePlug : DateTimePlugBase<DateTimePicker>
     {
         public override DateTime Value { get { return Control.Value; } set { Control.Value = value; } }
+        protected override bool ReadOnly { set { Control.Enabled = !value; } }
 
         public DateTimePlug() {}
 

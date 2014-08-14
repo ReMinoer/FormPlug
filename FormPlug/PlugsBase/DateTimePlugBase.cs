@@ -10,6 +10,6 @@ namespace FormPlug.PlugsBase
         protected DateTimePlugBase(TControl control)
             : base(control) {}
 
-        protected sealed override void UseAttribute(DateTimeSocketAttribute attribute) {}
+        protected sealed override void UseCustomAttribute(DateTimeSocketAttribute attribute) {}
     }
 }

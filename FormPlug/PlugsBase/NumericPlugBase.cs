@@ -37,7 +37,7 @@ namespace FormPlug.PlugsBase
             return true;
         }
 
-        protected sealed override void UseAttribute(NumericSocketAttribute attribute)
+        protected sealed override void UseCustomAttribute(NumericSocketAttribute attribute)
         {
             Minimum = attribute.Minimum;
             Maximum = attribute.Maximum;

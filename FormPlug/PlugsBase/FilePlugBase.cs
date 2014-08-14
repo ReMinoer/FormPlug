@@ -12,7 +12,7 @@
         protected FilePlugBase(TControl control)
             : base(control) {}
 
-        protected sealed override void UseAttribute(FileSocketAttribute attribute)
+        protected sealed override void UseCustomAttribute(FileSocketAttribute attribute)
         {
             SaveMode = attribute.SaveMode;
             Extensions = attribute.Extensions;

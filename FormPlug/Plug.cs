@@ -9,6 +9,7 @@ namespace FormPlug
     public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
         where TAttribute : SocketAttribute, new() where TControl : new()
     {
+        protected abstract bool ReadOnly { set; }
         [UsedImplicitly]
         private IPlugger _plugger;
 
@@ -64,9 +65,6 @@ namespace FormPlug
             Connect(obj, obj.GetType().GetProperty(propertyName));
         }
 
-        public abstract TValue Value { get; set; }
-        public abstract event EventHandler ValueChanged;
-
         public void Connect(object obj, PropertyInfo property, SocketAttribute attribute)
         {
             if (!IsTypeValid(property.PropertyType))
@@ -86,6 +84,15 @@ namespace FormPlug
             Connect(obj, obj.GetType().GetProperty(propertyName), attribute);
         }
 
+        public abstract TValue Value { get; set; }
+        public abstract event EventHandler ValueChanged;
+
+        private void UseAttribute(TAttribute attribute)
+        {
+            ReadOnly = attribute.ReadOnly;
+            UseCustomAttribute(attribute);
+        }
+
         protected virtual bool IsTypeValid(Type type)
         {
             return type == typeof(TValue);
@@ -97,6 +104,6 @@ namespace FormPlug
         }
 
         protected abstract void InitializeControl();
-        protected abstract void UseAttribute(TAttribute attribute);
+        protected abstract void UseCustomAttribute(TAttribute attribute);
     }
 }

@@ -7,6 +7,7 @@ namespace FormPlug.WindowsForm.Plugs
     public class FolderPlug : FolderPlugBase<FolderDialogButton>
     {
         public override string Value { get { return Control.Folder; } set { Control.Folder = value; } }
+        protected override bool ReadOnly { set { Control.Enabled = !value; } }
 
         public FolderPlug() {}
 
