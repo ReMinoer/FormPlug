@@ -4,6 +4,7 @@ namespace FormPlug
 {
     // TODO : Implements ObjectSocketAttribute
     // TODO : Implements CollectionSocketAttribute
+    // TODO : Implements IndexSocketAttribute
     [AttributeUsage(AttributeTargets.Property)]
     public abstract class SocketAttribute : Attribute
     {

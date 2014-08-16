@@ -34,6 +34,11 @@ namespace FormPlug.PlugsBase
             return type.IsEnum;
         }
 
+        protected override void InitializeControl()
+        {
+            InitializeNames(Enum.GetNames(typeof(TValue)));
+        }
+
         protected sealed override void UseCustomAttribute(EnumSocketAttribute attribute)
         {
             _altNames.Clear();

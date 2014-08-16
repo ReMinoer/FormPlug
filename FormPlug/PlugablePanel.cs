@@ -67,8 +67,8 @@ namespace FormPlug
 
             PropertyInfo property = _properties[propertyName];
 
-            if (_isAdapter)
-                plug.Connect(_adapter.Object, property, _adapter.SocketAttributes[property]);
+            if (_isAdapter && _adapter.SocketAttributes.ContainsKey(property))
+                plug.Connect(_obj, property, _adapter.SocketAttributes[property]);
             else
                 plug.Connect(_obj, property);
 

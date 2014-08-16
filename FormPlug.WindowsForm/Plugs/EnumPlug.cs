@@ -24,6 +24,7 @@ namespace FormPlug.WindowsForm.Plugs
         protected override void InitializeControl()
         {
             Control.DropDownStyle = ComboBoxStyle.DropDownList;
+            base.InitializeControl();
         }
 
         protected override void InitializeNames(IEnumerable<string> names)

@@ -60,6 +60,8 @@ namespace FormPlug.WindowsForm.Controls
         public FileDialogButton()
         {
             InitializeComponent();
+
+            _dialog = new OpenFileDialog {Filter = "All files (*.*)|*.*"};
         }
 
         public event EventHandler FileChanged;

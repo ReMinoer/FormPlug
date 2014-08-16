@@ -15,8 +15,8 @@ namespace FormPlug
         public PropertyPlugger(IPlug<TValue, TControl> plug, object obj, PropertyInfo property)
         {
             var attr = property.GetCustomAttribute(typeof(SocketAttribute)) as SocketAttribute;
-            if (attr == null)
-                throw new ArgumentException(string.Format("{0} doesn't have SocketAttribute !", property.Name));
+            //if (attr == null)
+            //    throw new ArgumentException(string.Format("{0} doesn't have SocketAttribute !", property.Name));
 
             CommonConstructor(plug, obj, property, attr);
         }
@@ -36,8 +36,10 @@ namespace FormPlug
         private void CommonConstructor(IPlug<TValue, TControl> plug, object obj, PropertyInfo property,
                                        SocketAttribute attr)
         {
-            string valueChangedEventName = attr.CustomValueChangedEventName
-                                           ?? property.Name + SocketAttribute.DefaultValueChangedExtension;
+            string valueChangedEventName = attr != null
+                                               ? attr.CustomValueChangedEventName
+                                                 ?? property.Name + SocketAttribute.DefaultValueChangedExtension
+                                               : property.Name + SocketAttribute.DefaultValueChangedExtension;
 
             _event = obj.GetType().GetEvent(valueChangedEventName);
             if (_event != null)
@@ -46,7 +48,7 @@ namespace FormPlug
                     GetMethod("OnSocketValueChanged", BindingFlags.NonPublic | BindingFlags.Instance);
                 _handler = Delegate.CreateDelegate(_event.EventHandlerType, this, methodInfo);
             }
-            else if (attr.CustomValueChangedEventName != null)
+            else if (attr != null && attr.CustomValueChangedEventName != null)
                 throw new ArgumentException(valueChangedEventName + " not found !");
 
             _plug = plug;
