@@ -35,6 +35,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPlugablePanel.cs" />
     <Compile Include="PlugablePanel.cs" />
     <Compile Include="PlugsBase\ImagePlugBase.cs" />
     <Compile Include="SocketAdapter.cs" />
