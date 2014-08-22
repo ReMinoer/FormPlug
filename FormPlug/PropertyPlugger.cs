@@ -15,8 +15,6 @@ namespace FormPlug
         public PropertyPlugger(IPlug<TValue, TControl> plug, object obj, PropertyInfo property)
         {
             var attr = property.GetCustomAttribute(typeof(SocketAttribute)) as SocketAttribute;
-            //if (attr == null)
-            //    throw new ArgumentException(string.Format("{0} doesn't have SocketAttribute !", property.Name));
 
             CommonConstructor(plug, obj, property, attr);
         }

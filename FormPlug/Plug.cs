@@ -53,9 +53,6 @@ namespace FormPlug
         public void Connect(object obj, PropertyInfo property)
         {
             var attribute = (TAttribute)property.GetCustomAttribute(typeof(TAttribute));
-            //if (attribute == null)
-            //    throw new ArgumentException(string.Format("The property {0} doesn't have attribute of type {1}",
-            //        property.Name, typeof(TAttribute).Name));
 
             Connect(obj, property, attribute);
         }
