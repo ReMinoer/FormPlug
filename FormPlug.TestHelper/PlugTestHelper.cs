@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if WINDOWS
+using System;
 using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -196,3 +197,4 @@ namespace FormPlug.TestHelper
         }
     }
 }
+#endif
