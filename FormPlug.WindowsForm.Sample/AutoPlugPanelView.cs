@@ -24,9 +24,6 @@ namespace FormPlug.WindowsForm.Sample
             displayButton.Click += DisplayButtonOnClick;
         }
 
-        [UsedImplicitly]
-        public event EventHandler IntegerValueChanged;
-
         private void ExternalButtonOnClick(object sender, EventArgs eventArgs)
         {
             _test.Reset();

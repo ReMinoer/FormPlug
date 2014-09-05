@@ -1,8 +1,7 @@
-﻿#if WINDOWS
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace FormPlug.TestHelper
 {
@@ -197,4 +196,3 @@ namespace FormPlug.TestHelper
         }
     }
 }
-#endif
