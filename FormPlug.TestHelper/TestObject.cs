@@ -57,7 +57,7 @@ namespace FormPlug.TestHelper
             }
             set
             {
-                if (value == _float)
+                if (Math.Abs(value - _float) < float.Epsilon)
                     return;
 
                 _float = value;

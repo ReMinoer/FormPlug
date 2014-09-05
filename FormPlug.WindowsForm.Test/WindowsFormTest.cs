@@ -12,28 +12,9 @@ namespace FormPlug.WindowsForm.Test
     public class WindowsFormPlugTest
     {
         [Test]
-        public void NumericPlug()
-        {
-            PlugTestHelper.PlugTest<TestObject, NumericPlug<int>, int, NumericSocketAttribute, NumericUpDown>(0, 1);
-        }
-
-        [Test]
-        public void TextPlug()
-        {
-            PlugTestHelper.PlugTest<TestObject, TextPlug, string, TextSocketAttribute, TextBox>("", "text");
-        }
-
-        [Test]
         public void BooleanPlug()
         {
             PlugTestHelper.PlugTest<TestObject, BooleanPlug, bool, BooleanSocketAttribute, CheckBox>(false, true);
-        }
-
-        [Test]
-        public void EnumPlug()
-        {
-            PlugTestHelper.PlugTest<TestObject, EnumPlug<TestEnum>, TestEnum, EnumSocketAttribute, ComboBox>(
-                TestEnum.No, TestEnum.Yes);
         }
 
         [Test]
@@ -48,6 +29,13 @@ namespace FormPlug.WindowsForm.Test
         {
             PlugTestHelper.PlugTest<TestObject, DateTimePlug, DateTime, DateTimeSocketAttribute, DateTimePicker>(
                 DateTime.Now, DateTime.Now.AddDays(1));
+        }
+
+        [Test]
+        public void EnumPlug()
+        {
+            PlugTestHelper.PlugTest<TestObject, EnumPlug<TestEnum>, TestEnum, EnumSocketAttribute, ComboBox>(
+                TestEnum.No, TestEnum.Yes);
         }
 
         [Test]
@@ -68,6 +56,18 @@ namespace FormPlug.WindowsForm.Test
         public void ImagePlug()
         {
             PlugTestHelper.PathPlugTest<TestObject, ImagePlug, ImageSocketAttribute, ImageDialogButton>("jpg");
+        }
+
+        [Test]
+        public void NumericPlug()
+        {
+            PlugTestHelper.PlugTest<TestObject, NumericPlug<int>, int, NumericSocketAttribute, NumericUpDown>(0, 1);
+        }
+
+        [Test]
+        public void TextPlug()
+        {
+            PlugTestHelper.PlugTest<TestObject, TextPlug, string, TextSocketAttribute, TextBox>("", "text");
         }
     }
 }

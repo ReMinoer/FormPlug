@@ -8,7 +8,7 @@ namespace FormPlug.WindowsForm.Sample
 {
     public partial class PlugablePanelView : Form
     {
-        private Data _data;
+        private readonly Data _data;
 
         public PlugablePanelView()
         {
