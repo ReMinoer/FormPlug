@@ -4,59 +4,59 @@ using System.Windows.Forms;
 using FormPlug.TestHelper;
 using FormPlug.WindowsForm.Controls;
 using FormPlug.WindowsForm.Plugs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace FormPlug.WindowsForm.Test
 {
-    [TestClass]
+    [TestFixture]
     public class WindowsFormPlugTest
     {
-        [TestMethod]
+        [Test]
         public void NumericPlug()
         {
             PlugTestHelper.PlugTest<TestObject, NumericPlug<int>, int, NumericSocketAttribute, NumericUpDown>(0, 1);
         }
 
-        [TestMethod]
+        [Test]
         public void TextPlug()
         {
             PlugTestHelper.PlugTest<TestObject, TextPlug, string, TextSocketAttribute, TextBox>("", "text");
         }
 
-        [TestMethod]
+        [Test]
         public void BooleanPlug()
         {
             PlugTestHelper.PlugTest<TestObject, BooleanPlug, bool, BooleanSocketAttribute, CheckBox>(false, true);
         }
 
-        [TestMethod]
+        [Test]
         public void EnumPlug()
         {
             PlugTestHelper.PlugTest<TestObject, EnumPlug<TestEnum>, TestEnum, EnumSocketAttribute, ComboBox>(
                 TestEnum.No, TestEnum.Yes);
         }
 
-        [TestMethod]
+        [Test]
         public void ColorPlug()
         {
             PlugTestHelper.PlugTest<TestObject, ColorPlug, Color, ColorSocketAttribute, ColorDialogButton>(Color.White,
                 Color.Black);
         }
 
-        [TestMethod]
+        [Test]
         public void DateTimePlug()
         {
             PlugTestHelper.PlugTest<TestObject, DateTimePlug, DateTime, DateTimeSocketAttribute, DateTimePicker>(
                 DateTime.Now, DateTime.Now.AddDays(1));
         }
 
-        [TestMethod]
+        [Test]
         public void FilePlug()
         {
             PlugTestHelper.PathPlugTest<TestObject, FilePlug, FileSocketAttribute, FileDialogButton>("txt");
         }
 
-        [TestMethod]
+        [Test]
         public void FolderPlug()
         {
             PlugTestHelper.PlugTest<TestObject, FolderPlug, string, FolderSocketAttribute, FolderDialogButton>(
@@ -64,7 +64,7 @@ namespace FormPlug.WindowsForm.Test
                 Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
         }
 
-        [TestMethod]
+        [Test]
         public void ImagePlug()
         {
             PlugTestHelper.PathPlugTest<TestObject, ImagePlug, ImageSocketAttribute, ImageDialogButton>("jpg");

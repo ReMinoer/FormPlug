@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormPlug", "FormPlug\FormPlug.csproj", "{FA85047C-1340-4CB2-B888-CFD45AB9DD85}"
 EndProject
@@ -13,9 +13,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormPlug.WindowsForm", "For
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4E2700BE-36C8-4E0A-89D8-EBFF79623C02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormPlug.WindowsForm.Test", "FormPlug.WindowsForm.Test\FormPlug.WindowsForm.Test.csproj", "{4141AA98-BE31-4E9F-AC6F-4A2DB1317DF2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormPlug.TestHelper", "FormPlug.TestHelper\FormPlug.TestHelper.csproj", "{87B5F89F-C7DE-4F1E-9301-83D144B2B694}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormPlug.WindowsForm.Test", "FormPlug.WindowsForm.Test\FormPlug.WindowsForm.Test.csproj", "{B707BEA0-9DDB-443D-80F7-DAAF9ADDB6E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{22C9383D-752D-410D-8756-F76C706A7806}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,21 +42,21 @@ Global
 		{85B0105B-0CDB-473C-823A-AF976ABBDEC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85B0105B-0CDB-473C-823A-AF976ABBDEC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85B0105B-0CDB-473C-823A-AF976ABBDEC4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4141AA98-BE31-4E9F-AC6F-4A2DB1317DF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4141AA98-BE31-4E9F-AC6F-4A2DB1317DF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4141AA98-BE31-4E9F-AC6F-4A2DB1317DF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4141AA98-BE31-4E9F-AC6F-4A2DB1317DF2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{87B5F89F-C7DE-4F1E-9301-83D144B2B694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{87B5F89F-C7DE-4F1E-9301-83D144B2B694}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87B5F89F-C7DE-4F1E-9301-83D144B2B694}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87B5F89F-C7DE-4F1E-9301-83D144B2B694}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B707BEA0-9DDB-443D-80F7-DAAF9ADDB6E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B707BEA0-9DDB-443D-80F7-DAAF9ADDB6E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B707BEA0-9DDB-443D-80F7-DAAF9ADDB6E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B707BEA0-9DDB-443D-80F7-DAAF9ADDB6E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{817F2A6A-B44F-44E6-954B-5FB91BC9E9C0} = {A8CBDB2A-A736-4E3C-B974-00815C250B58}
-		{4141AA98-BE31-4E9F-AC6F-4A2DB1317DF2} = {4E2700BE-36C8-4E0A-89D8-EBFF79623C02}
 		{87B5F89F-C7DE-4F1E-9301-83D144B2B694} = {4E2700BE-36C8-4E0A-89D8-EBFF79623C02}
+		{B707BEA0-9DDB-443D-80F7-DAAF9ADDB6E6} = {4E2700BE-36C8-4E0A-89D8-EBFF79623C02}
 	EndGlobalSection
 EndGlobal
