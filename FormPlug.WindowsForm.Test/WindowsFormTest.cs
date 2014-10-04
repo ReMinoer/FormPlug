@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using FormPlug.SocketAttributes;
 using FormPlug.TestHelper;
 using FormPlug.WindowsForm.Controls;
 using FormPlug.WindowsForm.Plugs;

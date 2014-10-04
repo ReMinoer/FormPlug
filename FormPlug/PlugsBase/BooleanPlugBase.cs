@@ -1,4 +1,6 @@
-﻿namespace FormPlug.PlugsBase
+﻿using FormPlug.SocketAttributes;
+
+namespace FormPlug.PlugsBase
 {
     public abstract class BooleanPlugBase<TControl> : Plug<bool, TControl, BooleanSocketAttribute>
         where TControl : new()

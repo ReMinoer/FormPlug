@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using FormPlug.Annotations;
+using FormPlug.SocketAttributes;
 
 namespace FormPlug
 {

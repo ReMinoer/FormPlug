@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Reflection;
 using FormPlug.Annotations;
+using FormPlug.SocketAttributes;
 
 namespace FormPlug
 {
     // TODO : Implements EventPlugBase
+    // TODO : Implements MethodPlugBase
     // TODO : Handle interface for controls to easily connect
     public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
         where TAttribute : SocketAttribute, new() where TControl : new()

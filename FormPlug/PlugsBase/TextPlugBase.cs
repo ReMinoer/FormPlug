@@ -1,4 +1,6 @@
-﻿namespace FormPlug.PlugsBase
+﻿using FormPlug.SocketAttributes;
+
+namespace FormPlug.PlugsBase
 {
     public abstract class TextPlugBase<TControl> : Plug<string, TControl, TextSocketAttribute>
         where TControl : new()

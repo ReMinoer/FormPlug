@@ -1,4 +1,6 @@
-﻿namespace FormPlug.PlugsBase
+﻿using FormPlug.SocketAttributes;
+
+namespace FormPlug.PlugsBase
 {
     public abstract class ImagePlugBase<TControl> : Plug<string, TControl, ImageSocketAttribute>
         where TControl : new()

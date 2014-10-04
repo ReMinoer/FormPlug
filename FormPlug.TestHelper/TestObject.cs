@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Text;
 using FormPlug.Annotations;
+using FormPlug.SocketAttributes;
 
 namespace FormPlug.TestHelper
 {

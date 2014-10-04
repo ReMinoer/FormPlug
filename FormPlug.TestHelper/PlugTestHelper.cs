@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using FormPlug.SocketAttributes;
 using NUnit.Framework;
 
 namespace FormPlug.TestHelper

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using FormPlug.SocketAttributes;
 using FormPlug.WindowsForm.Controls;
 using FormPlug.WindowsForm.Plugs;
 

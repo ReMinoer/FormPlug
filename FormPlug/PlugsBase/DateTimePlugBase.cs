@@ -1,4 +1,5 @@
 ﻿using System;
+using FormPlug.SocketAttributes;
 
 namespace FormPlug.PlugsBase
 {

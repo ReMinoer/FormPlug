@@ -35,7 +35,15 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SocketAttributes\BooleanSocketAttribute.cs" />
+    <Compile Include="SocketAttributes\ColorSocketAttribute.cs" />
+    <Compile Include="SocketAttributes\DateTimeSocketAttribute.cs" />
+    <Compile Include="SocketAttributes\EnumSocketAttribute.cs" />
+    <Compile Include="SocketAttributes\FileSocketAttribute.cs" />
+    <Compile Include="SocketAttributes\FolderSocketAttribute.cs" />
+    <Compile Include="SocketAttributes\ImageSocketAttribute.cs" />
     <Compile Include="IPlugablePanel.cs" />
+    <Compile Include="SocketAttributes\NumericSocketAttribute.cs" />
     <Compile Include="PlugablePanel.cs" />
     <Compile Include="PlugsBase\ImagePlugBase.cs" />
     <Compile Include="SocketAdapter.cs" />
@@ -56,8 +64,9 @@
     <Compile Include="PropertyPlugger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Socket.cs" />
-    <Compile Include="SocketAttribute.cs" />
+    <Compile Include="SocketAttributes\SocketAttribute.cs" />
     <Compile Include="SocketPlugger.cs" />
+    <Compile Include="SocketAttributes\TextSocketAttribute.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
