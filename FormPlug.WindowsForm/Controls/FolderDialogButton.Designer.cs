@@ -34,7 +34,8 @@
             // 
             // button
             // 
-            this.button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button.Location = new System.Drawing.Point(158, 0);
             this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(30, 21);
