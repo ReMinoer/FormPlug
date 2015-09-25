@@ -34,11 +34,10 @@
             // 
             // button
             // 
-            this.button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button.Location = new System.Drawing.Point(167, 4);
+            this.button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.button.Location = new System.Drawing.Point(158, 0);
             this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(30, 22);
+            this.button.Size = new System.Drawing.Size(30, 21);
             this.button.TabIndex = 0;
             this.button.Text = "...";
             this.button.UseVisualStyleBackColor = true;
@@ -49,23 +48,23 @@
             this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox.Location = new System.Drawing.Point(4, 6);
+            this.textBox.Location = new System.Drawing.Point(0, 1);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(157, 20);
+            this.textBox.Size = new System.Drawing.Size(152, 20);
             this.textBox.TabIndex = 1;
             this.textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             this.textBox.Validated += new System.EventHandler(this.textBox_Validated);
             // 
-            // FileDialogButton
+            // FolderDialogButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.button);
-            this.MaximumSize = new System.Drawing.Size(400, 30);
-            this.MinimumSize = new System.Drawing.Size(100, 30);
-            this.Name = "FileDialogButton";
-            this.Size = new System.Drawing.Size(200, 30);
+            this.MaximumSize = new System.Drawing.Size(400, 25);
+            this.MinimumSize = new System.Drawing.Size(100, 25);
+            this.Name = "FolderDialogButton";
+            this.Size = new System.Drawing.Size(190, 25);
             this.ResumeLayout(false);
             this.PerformLayout();
 
