@@ -9,6 +9,7 @@ namespace FormPlug.PlugsBase
         protected abstract bool Multiline { set; }
         protected abstract int Width { set; }
         protected abstract int Height { set; }
+        protected abstract bool Password { set; }
 
         protected TextPlugBase() {}
 
@@ -19,6 +20,7 @@ namespace FormPlug.PlugsBase
         {
             MaxLenght = attribute.MaxLenght;
             Multiline = attribute.Multiline;
+            Password = attribute.Password;
 
             if (!attribute.Multiline)
                 return;

@@ -6,6 +6,7 @@ namespace FormPlug.SocketAttributes
         public bool Multiline { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+        public bool Password { get; set; }
 
         public TextSocketAttribute()
         {
@@ -13,6 +14,7 @@ namespace FormPlug.SocketAttributes
             Multiline = false;
             Width = 100;
             Height = 100;
+            Password = false;
         }
     }
 }
