@@ -5,11 +5,17 @@ namespace FormPlug.PlugsBase
     public abstract class BooleanPlugBase<TControl> : Plug<bool, TControl, BooleanSocketAttribute>
         where TControl : new()
     {
-        protected BooleanPlugBase() {}
+        protected BooleanPlugBase()
+        {
+        }
 
         protected BooleanPlugBase(TControl control)
-            : base(control) {}
+            : base(control)
+        {
+        }
 
-        protected sealed override void UseCustomAttribute(BooleanSocketAttribute attribute) {}
+        protected override sealed void UseCustomAttribute(BooleanSocketAttribute attribute)
+        {
+        }
     }
 }

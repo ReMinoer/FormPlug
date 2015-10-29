@@ -18,17 +18,32 @@ namespace FormPlug.WindowsForm.Plugs
                 Control.Filter = string.Join("|", filter);
             }
         }
-        protected override string InitialDirectory { set { Control.InitialDirectory = value; } }
-        protected override int Width { set { Control.Size = new Size(value, Control.Size.Height); } }
-        protected override int Height { set { Control.Size = new Size(Control.Size.Width, value); } }
 
-        public override string Value { get { return Control.Image; } set { Control.Image = value; } }
-        protected override bool ReadOnly { set { Control.Enabled = !value; } }
+        protected override string InitialDirectory
+        {
+            set { Control.InitialDirectory = value; }
+        }
 
-        public ImagePlug() {}
+        protected override int Width
+        {
+            set { Control.Size = new Size(value, Control.Size.Height); }
+        }
 
-        public ImagePlug(ImageDialogButton control)
-            : base(control) {}
+        protected override int Height
+        {
+            set { Control.Size = new Size(Control.Size.Width, value); }
+        }
+
+        public override string Value
+        {
+            get { return Control.Image; }
+            set { Control.Image = value; }
+        }
+
+        protected override bool ReadOnly
+        {
+            set { Control.Enabled = !value; }
+        }
 
         public override event EventHandler ValueChanged
         {
@@ -36,6 +51,17 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.ImageChanged -= value; }
         }
 
-        protected override void InitializeControl() {}
+        public ImagePlug()
+        {
+        }
+
+        public ImagePlug(ImageDialogButton control)
+            : base(control)
+        {
+        }
+
+        protected override void InitializeControl()
+        {
+        }
     }
 }

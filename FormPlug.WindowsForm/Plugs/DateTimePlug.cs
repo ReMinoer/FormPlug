@@ -6,13 +6,16 @@ namespace FormPlug.WindowsForm.Plugs
 {
     public class DateTimePlug : DateTimePlugBase<DateTimePicker>
     {
-        public override DateTime Value { get { return Control.Value; } set { Control.Value = value; } }
-        protected override bool ReadOnly { set { Control.Enabled = !value; } }
+        public override DateTime Value
+        {
+            get { return Control.Value; }
+            set { Control.Value = value; }
+        }
 
-        public DateTimePlug() {}
-
-        public DateTimePlug(DateTimePicker control)
-            : base(control) {}
+        protected override bool ReadOnly
+        {
+            set { Control.Enabled = !value; }
+        }
 
         public override event EventHandler ValueChanged
         {
@@ -20,6 +23,17 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.ValueChanged -= value; }
         }
 
-        protected override void InitializeControl() {}
+        public DateTimePlug()
+        {
+        }
+
+        public DateTimePlug(DateTimePicker control)
+            : base(control)
+        {
+        }
+
+        protected override void InitializeControl()
+        {
+        }
     }
 }

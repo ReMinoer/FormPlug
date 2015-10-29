@@ -8,6 +8,10 @@ namespace FormPlug.WindowsForm.Controls
 {
     public partial class FileDialogButton : UserControl
     {
+        private FileDialog _dialog;
+        private string _file;
+        private bool _saveMode;
+
         public string File
         {
             get { return _file; }
@@ -31,8 +35,16 @@ namespace FormPlug.WindowsForm.Controls
             }
         }
 
-        public string Filter { set { _dialog.Filter = value; } }
-        public string InitialDirectory { set { _dialog.InitialDirectory = value; } }
+        public string Filter
+        {
+            set { _dialog.Filter = value; }
+        }
+
+        public string InitialDirectory
+        {
+            set { _dialog.InitialDirectory = value; }
+        }
+
         public bool SaveMode
         {
             private get { return _saveMode; }
@@ -53,18 +65,17 @@ namespace FormPlug.WindowsForm.Controls
             }
         }
 
-        private FileDialog _dialog;
-        private string _file;
-        private bool _saveMode;
+        public event EventHandler FileChanged;
 
         public FileDialogButton()
         {
             InitializeComponent();
 
-            _dialog = new OpenFileDialog {Filter = "All files (*.*)|*.*"};
+            _dialog = new OpenFileDialog
+            {
+                Filter = "All files (*.*)|*.*"
+            };
         }
-
-        public event EventHandler FileChanged;
 
         private void button_Click(object sender, EventArgs e)
         {
@@ -124,7 +135,7 @@ namespace FormPlug.WindowsForm.Controls
 
             foreach (string e in extensions)
             {
-                if (e != "." && !value.EndsWith(e))
+                if (e != "." && !value.EndsWith(e, StringComparison.Ordinal))
                     continue;
 
                 isValidExtension = true;

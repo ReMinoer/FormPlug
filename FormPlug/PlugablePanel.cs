@@ -9,13 +9,12 @@ namespace FormPlug
 {
     public abstract class PlugablePanel<TPanel, TObject, TControl> : IPlugablePanel<TObject>
     {
-        public TPanel Panel { get; private set; }
-        protected List<IPlug> Plugs { get; private set; }
-
         private SocketAdapter<TObject> _adapter;
         private bool _isAdapter;
         private TObject _obj;
         private ReadOnlyDictionary<string, PropertyInfo> _properties;
+        public TPanel Panel { get; private set; }
+        protected List<IPlug> Plugs { get; private set; }
 
         protected PlugablePanel(TPanel panel)
         {
@@ -56,14 +55,20 @@ namespace FormPlug
         protected void AddPlug<TPlug>(TControl control, string propertyName) where TPlug : IPlug<TControl>, new()
         {
             Type controlType = new TPlug().Control.GetType();
-            ConstructorInfo constructor = typeof(TPlug).GetConstructor(new[] {controlType});
+            ConstructorInfo constructor = typeof(TPlug).GetConstructor(new[]
+            {
+                controlType
+            });
 
             if (constructor == null)
                 throw new InvalidOperationException(
                     string.Format("{0} doesn't implements constructor who takes {1} as parameter", typeof(TPlug).Name,
                         controlType.Name));
 
-            var plug = (TPlug)constructor.Invoke(new object[] {control});
+            var plug = (TPlug)constructor.Invoke(new object[]
+            {
+                control
+            });
 
             PropertyInfo property = _properties[propertyName];
 
@@ -79,14 +84,20 @@ namespace FormPlug
             where TPlug : IPlug<TControl>, new()
         {
             Type controlType = new TPlug().Control.GetType();
-            ConstructorInfo constructor = typeof(TPlug).GetConstructor(new[] {controlType});
+            ConstructorInfo constructor = typeof(TPlug).GetConstructor(new[]
+            {
+                controlType
+            });
 
             if (constructor == null)
                 throw new InvalidOperationException(
                     string.Format("{0} doesn't implements constructor who takes {1} as parameter", typeof(TPlug).Name,
                         controlType.Name));
 
-            var plug = (TPlug)constructor.Invoke(new object[] {control});
+            var plug = (TPlug)constructor.Invoke(new object[]
+            {
+                control
+            });
             plug.Connect(_obj, _properties[propertyName], attribute);
             Plugs.Add(plug);
         }

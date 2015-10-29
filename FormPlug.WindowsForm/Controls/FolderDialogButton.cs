@@ -6,6 +6,9 @@ namespace FormPlug.WindowsForm.Controls
 {
     public partial class FolderDialogButton : UserControl
     {
+        private readonly FolderBrowserDialog _dialog = new FolderBrowserDialog();
+        private string _folder;
+
         public string Folder
         {
             get { return _folder; }
@@ -32,15 +35,13 @@ namespace FormPlug.WindowsForm.Controls
                     FolderChanged(this, EventArgs.Empty);
             }
         }
-        private readonly FolderBrowserDialog _dialog = new FolderBrowserDialog();
-        private string _folder;
+
+        public event EventHandler FolderChanged;
 
         public FolderDialogButton()
         {
             InitializeComponent();
         }
-
-        public event EventHandler FolderChanged;
 
         private void button_Click(object sender, EventArgs e)
         {

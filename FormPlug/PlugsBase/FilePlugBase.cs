@@ -9,12 +9,16 @@ namespace FormPlug.PlugsBase
         protected abstract string[] Extensions { set; }
         protected abstract string InitialDirectory { set; }
 
-        protected FilePlugBase() {}
+        protected FilePlugBase()
+        {
+        }
 
         protected FilePlugBase(TControl control)
-            : base(control) {}
+            : base(control)
+        {
+        }
 
-        protected sealed override void UseCustomAttribute(FileSocketAttribute attribute)
+        protected override sealed void UseCustomAttribute(FileSocketAttribute attribute)
         {
             SaveMode = attribute.SaveMode;
             Extensions = attribute.Extensions;

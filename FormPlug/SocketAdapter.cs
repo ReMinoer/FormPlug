@@ -9,14 +9,13 @@ namespace FormPlug
 {
     public class SocketAdapter<T>
     {
+        private readonly Dictionary<PropertyInfo, SocketAttribute> _socketAttributes;
         public T Object { get; private set; }
 
         public ReadOnlyDictionary<PropertyInfo, SocketAttribute> SocketAttributes
         {
             get { return new ReadOnlyDictionary<PropertyInfo, SocketAttribute>(_socketAttributes); }
         }
-
-        private readonly Dictionary<PropertyInfo, SocketAttribute> _socketAttributes;
 
         public SocketAdapter(T obj)
         {

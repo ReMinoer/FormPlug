@@ -7,18 +7,30 @@ namespace FormPlug.WindowsForm.Plugs
 {
     public class EnumPlug<T> : EnumPlugBase<T, ComboBox>
     {
-        protected override string Output { get { return Control.Text; } set { Control.Text = value; } }
-        protected override bool ReadOnly { set { Control.Enabled = !value; } }
+        protected override string Output
+        {
+            get { return Control.Text; }
+            set { Control.Text = value; }
+        }
 
-        public EnumPlug() {}
-
-        public EnumPlug(ComboBox control)
-            : base(control) {}
+        protected override bool ReadOnly
+        {
+            set { Control.Enabled = !value; }
+        }
 
         public override event EventHandler ValueChanged
         {
             add { Control.SelectedIndexChanged += value; }
             remove { Control.SelectedIndexChanged -= value; }
+        }
+
+        public EnumPlug()
+        {
+        }
+
+        public EnumPlug(ComboBox control)
+            : base(control)
+        {
         }
 
         protected override void InitializeControl()

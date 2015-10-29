@@ -7,13 +7,16 @@ namespace FormPlug.WindowsForm.Plugs
 {
     public class ColorPlug : ColorPlugBase<ColorDialogButton>
     {
-        public override Color Value { get { return Control.Color; } set { Control.Color = value; } }
-        protected override bool ReadOnly { set { Control.Enabled = !value; } }
+        public override Color Value
+        {
+            get { return Control.Color; }
+            set { Control.Color = value; }
+        }
 
-        public ColorPlug() {}
-
-        public ColorPlug(ColorDialogButton control)
-            : base(control) {}
+        protected override bool ReadOnly
+        {
+            set { Control.Enabled = !value; }
+        }
 
         public override event EventHandler ValueChanged
         {
@@ -21,6 +24,17 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.ColorChanged -= value; }
         }
 
-        protected override void InitializeControl() {}
+        public ColorPlug()
+        {
+        }
+
+        public ColorPlug(ColorDialogButton control)
+            : base(control)
+        {
+        }
+
+        protected override void InitializeControl()
+        {
+        }
     }
 }

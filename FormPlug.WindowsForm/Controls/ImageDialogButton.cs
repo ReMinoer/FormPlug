@@ -6,6 +6,9 @@ namespace FormPlug.WindowsForm.Controls
 {
     public partial class ImageDialogButton : UserControl
     {
+        private readonly OpenFileDialog _dialog;
+        private string _image;
+
         public string Image
         {
             get { return _image; }
@@ -27,11 +30,17 @@ namespace FormPlug.WindowsForm.Controls
             }
         }
 
-        public string Filter { set { _dialog.Filter = value; } }
-        public string InitialDirectory { set { _dialog.InitialDirectory = value; } }
+        public string Filter
+        {
+            set { _dialog.Filter = value; }
+        }
 
-        private readonly OpenFileDialog _dialog;
-        private string _image;
+        public string InitialDirectory
+        {
+            set { _dialog.InitialDirectory = value; }
+        }
+
+        public event EventHandler ImageChanged;
 
         public ImageDialogButton()
         {
@@ -39,8 +48,6 @@ namespace FormPlug.WindowsForm.Controls
 
             _dialog = new OpenFileDialog();
         }
-
-        public event EventHandler ImageChanged;
 
         private void pictureBox_Click(object sender, EventArgs e)
         {

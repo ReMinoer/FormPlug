@@ -6,6 +6,9 @@ namespace FormPlug.WindowsForm.Controls
 {
     public partial class ColorDialogButton : UserControl
     {
+        private readonly ColorDialog _dialog = new ColorDialog();
+        private Color _color;
+
         public Color Color
         {
             get { return _color; }
@@ -24,15 +27,13 @@ namespace FormPlug.WindowsForm.Controls
                     ColorChanged(this, EventArgs.Empty);
             }
         }
-        private readonly ColorDialog _dialog = new ColorDialog();
-        private Color _color;
+
+        public event EventHandler ColorChanged;
 
         public ColorDialogButton()
         {
             InitializeComponent();
         }
-
-        public event EventHandler ColorChanged;
 
         private void button_Click(object sender, EventArgs e)
         {

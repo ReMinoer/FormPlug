@@ -6,7 +6,11 @@ namespace FormPlug.WindowsForm.Plugs
 {
     public class FilePlug : FilePlugBase<FileDialogButton>
     {
-        protected override bool SaveMode { set { Control.SaveMode = value; } }
+        protected override bool SaveMode
+        {
+            set { Control.SaveMode = value; }
+        }
+
         protected override string[] Extensions
         {
             set
@@ -18,15 +22,22 @@ namespace FormPlug.WindowsForm.Plugs
                 Control.Filter = string.Join("|", filter);
             }
         }
-        protected override string InitialDirectory { set { Control.InitialDirectory = value; } }
 
-        public override string Value { get { return Control.File; } set { Control.File = value; } }
-        protected override bool ReadOnly { set { Control.Enabled = !value; } }
+        protected override string InitialDirectory
+        {
+            set { Control.InitialDirectory = value; }
+        }
 
-        public FilePlug() {}
+        public override string Value
+        {
+            get { return Control.File; }
+            set { Control.File = value; }
+        }
 
-        public FilePlug(FileDialogButton control)
-            : base(control) {}
+        protected override bool ReadOnly
+        {
+            set { Control.Enabled = !value; }
+        }
 
         public override event EventHandler ValueChanged
         {
@@ -34,6 +45,17 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.FileChanged -= value; }
         }
 
-        protected override void InitializeControl() {}
+        public FilePlug()
+        {
+        }
+
+        public FilePlug(FileDialogButton control)
+            : base(control)
+        {
+        }
+
+        protected override void InitializeControl()
+        {
+        }
     }
 }

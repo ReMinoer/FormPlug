@@ -11,7 +11,10 @@ namespace FormPlug.SocketAttributes
 
         public ImageSocketAttribute()
         {
-            Extensions = new[] {"*"};
+            Extensions = new[]
+            {
+                "*"
+            };
             InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             Width = 100;
             Height = 100;

@@ -58,7 +58,9 @@ namespace FormPlug.WindowsForm.Sample
         private class PlugablePanel : PlugablePanel<PlugablePanelView, Data, Control>
         {
             public PlugablePanel(PlugablePanelView panel)
-                : base(panel) {}
+                : base(panel)
+            {
+            }
 
             protected override void CreatePlugs(PlugablePanelView panel)
             {

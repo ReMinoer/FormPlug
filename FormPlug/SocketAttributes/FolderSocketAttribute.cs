@@ -1,4 +1,6 @@
 namespace FormPlug.SocketAttributes
 {
-    public class FolderSocketAttribute : SocketAttribute {}
+    public class FolderSocketAttribute : SocketAttribute
+    {
+    }
 }

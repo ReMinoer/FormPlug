@@ -1,4 +1,6 @@
 namespace FormPlug.SocketAttributes
 {
-    public class BooleanSocketAttribute : SocketAttribute {}
+    public class BooleanSocketAttribute : SocketAttribute
+    {
+    }
 }

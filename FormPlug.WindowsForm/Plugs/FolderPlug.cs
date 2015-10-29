@@ -6,13 +6,16 @@ namespace FormPlug.WindowsForm.Plugs
 {
     public class FolderPlug : FolderPlugBase<FolderDialogButton>
     {
-        public override string Value { get { return Control.Folder; } set { Control.Folder = value; } }
-        protected override bool ReadOnly { set { Control.Enabled = !value; } }
+        public override string Value
+        {
+            get { return Control.Folder; }
+            set { Control.Folder = value; }
+        }
 
-        public FolderPlug() {}
-
-        public FolderPlug(FolderDialogButton control)
-            : base(control) {}
+        protected override bool ReadOnly
+        {
+            set { Control.Enabled = !value; }
+        }
 
         public override event EventHandler ValueChanged
         {
@@ -20,6 +23,17 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.FolderChanged -= value; }
         }
 
-        protected override void InitializeControl() {}
+        public FolderPlug()
+        {
+        }
+
+        public FolderPlug(FolderDialogButton control)
+            : base(control)
+        {
+        }
+
+        protected override void InitializeControl()
+        {
+        }
     }
 }

@@ -4,14 +4,19 @@ namespace FormPlug.WindowsForm.Controls
 {
     internal class FlowLayoutGroupPanel : GroupBox
     {
+        private readonly FlowLayoutPanel _panel;
+
         public FlowDirection FlowDirection
         {
             get { return _panel.FlowDirection; }
             set { _panel.FlowDirection = value; }
         }
 
-        public bool WrapContents { get { return _panel.WrapContents; } set { _panel.WrapContents = value; } }
-        private readonly FlowLayoutPanel _panel;
+        public bool WrapContents
+        {
+            get { return _panel.WrapContents; }
+            set { _panel.WrapContents = value; }
+        }
 
         public FlowLayoutGroupPanel()
         {

@@ -10,12 +10,16 @@ namespace FormPlug.PlugsBase
         protected abstract int Width { set; }
         protected abstract int Height { set; }
 
-        protected ImagePlugBase() {}
+        protected ImagePlugBase()
+        {
+        }
 
         protected ImagePlugBase(TControl control)
-            : base(control) {}
+            : base(control)
+        {
+        }
 
-        protected sealed override void UseCustomAttribute(ImageSocketAttribute attribute)
+        protected override sealed void UseCustomAttribute(ImageSocketAttribute attribute)
         {
             Extensions = attribute.Extensions;
             InitialDirectory = attribute.InitialDirectory;

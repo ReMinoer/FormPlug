@@ -9,14 +9,34 @@ namespace FormPlug.TestHelper
 {
     public class TestObject
     {
+        private string _bigString;
+        private bool _bool;
+        private Color _color;
+        private DateTime _dateTime;
+        private TestEnum _enum;
+        private string _file;
+        private float _float;
+        private string _folder;
+        private string _image;
+        private int _int;
+        private string _string;
+
+        private Socket<bool> BoolSocket { get; set; }
+        private Socket<int> IntSocket { get; set; }
+        private Socket<float> FloatSocket { get; set; }
+        private Socket<string> StringSocket { get; set; }
+        private Socket<string> BigStringSocket { get; set; }
+        private Socket<TestEnum> EnumSocket { get; set; }
+        private Socket<Color> ColorSocket { get; set; }
+        private Socket<DateTime> DateTimeSocket { get; set; }
+        private Socket<string> FileSocket { get; set; }
+        private Socket<string> FolderSocket { get; set; }
+        private Socket<string> ImageSocket { get; set; }
+
         [BooleanSocket(Group = "SocketAttribute", Name = "Boolean")]
         private bool Bool
         {
-            [UsedImplicitly]
-            get
-            {
-                return _bool;
-            }
+            [UsedImplicitly] get { return _bool; }
             set
             {
                 if (value == _bool)
@@ -31,11 +51,7 @@ namespace FormPlug.TestHelper
         [NumericSocket(Group = "SocketAttribute", Name = "Integer", Minimum = -10, Maximum = 10, Increment = 2)]
         private int Int
         {
-            [UsedImplicitly]
-            get
-            {
-                return _int;
-            }
+            [UsedImplicitly] get { return _int; }
             set
             {
                 if (value == _int)
@@ -51,11 +67,7 @@ namespace FormPlug.TestHelper
             Decimals = 1)]
         private float Float
         {
-            [UsedImplicitly]
-            get
-            {
-                return _float;
-            }
+            [UsedImplicitly] get { return _float; }
             set
             {
                 if (Math.Abs(value - _float) < float.Epsilon)
@@ -70,11 +82,7 @@ namespace FormPlug.TestHelper
         [TextSocket(Group = "SocketAttribute", Name = "Text", MaxLenght = 10)]
         private string String
         {
-            [UsedImplicitly]
-            get
-            {
-                return _string;
-            }
+            [UsedImplicitly] get { return _string; }
             set
             {
                 if (value == _string)
@@ -89,11 +97,7 @@ namespace FormPlug.TestHelper
         [TextSocket(Group = "SocketAttribute", Name = "Long Text", Multiline = true, Width = 170, Height = 80)]
         private string BigString
         {
-            [UsedImplicitly]
-            get
-            {
-                return _bigString;
-            }
+            [UsedImplicitly] get { return _bigString; }
             set
             {
                 if (value == _bigString)
@@ -106,14 +110,15 @@ namespace FormPlug.TestHelper
         }
 
         [EnumSocket(Group = "SocketAttribute", Name = "Enumeration",
-            AlternativeNames = new[] {"Yes for sure !", "No way !", "Maybe next time..."})]
+            AlternativeNames = new[]
+            {
+                "Yes for sure !",
+                "No way !",
+                "Maybe next time..."
+            })]
         private TestEnum Enum
         {
-            [UsedImplicitly]
-            get
-            {
-                return _enum;
-            }
+            [UsedImplicitly] get { return _enum; }
             set
             {
                 if (value == _enum)
@@ -128,11 +133,7 @@ namespace FormPlug.TestHelper
         [ColorSocket(Group = "SocketAttribute", Name = "Color dialog")]
         private Color Color
         {
-            [UsedImplicitly]
-            get
-            {
-                return _color;
-            }
+            [UsedImplicitly] get { return _color; }
             set
             {
                 if (value == _color)
@@ -147,11 +148,7 @@ namespace FormPlug.TestHelper
         [DateTimeSocket(Group = "SocketAttribute", Name = "Date")]
         private DateTime DateTime
         {
-            [UsedImplicitly]
-            get
-            {
-                return _dateTime;
-            }
+            [UsedImplicitly] get { return _dateTime; }
             set
             {
                 if (value == _dateTime)
@@ -163,14 +160,13 @@ namespace FormPlug.TestHelper
             }
         }
 
-        [FileSocket(Group = "SocketAttribute", Name = "Filename", Extensions = new[] {"txt"})]
+        [FileSocket(Group = "SocketAttribute", Name = "Filename", Extensions = new[]
+        {
+            "txt"
+        })]
         private string File
         {
-            [UsedImplicitly]
-            get
-            {
-                return _file;
-            }
+            [UsedImplicitly] get { return _file; }
             set
             {
                 if (value == _file)
@@ -185,11 +181,7 @@ namespace FormPlug.TestHelper
         [FolderSocket(Group = "SocketAttribute", Name = "Directory")]
         private string Folder
         {
-            [UsedImplicitly]
-            get
-            {
-                return _folder;
-            }
+            [UsedImplicitly] get { return _folder; }
             set
             {
                 if (value == _folder)
@@ -201,15 +193,14 @@ namespace FormPlug.TestHelper
             }
         }
 
-        [ImageSocket(Group = "SocketAttribute", Name = "Picture", Extensions = new[] {"jpg"}, Width = 100, Height = 100)
+        [ImageSocket(Group = "SocketAttribute", Name = "Picture", Extensions = new[]
+        {
+            "jpg"
+        }, Width = 100, Height = 100)
         ]
         private string Image
         {
-            [UsedImplicitly]
-            get
-            {
-                return _image;
-            }
+            [UsedImplicitly] get { return _image; }
             set
             {
                 if (value == _image)
@@ -221,35 +212,48 @@ namespace FormPlug.TestHelper
             }
         }
 
-        private Socket<bool> BoolSocket { get; set; }
-        private Socket<int> IntSocket { get; set; }
-        private Socket<float> FloatSocket { get; set; }
-        private Socket<string> StringSocket { get; set; }
-        private Socket<string> BigStringSocket { get; set; }
-        private Socket<TestEnum> EnumSocket { get; set; }
-        private Socket<Color> ColorSocket { get; set; }
-        private Socket<DateTime> DateTimeSocket { get; set; }
-        private Socket<string> FileSocket { get; set; }
-        private Socket<string> FolderSocket { get; set; }
-        private Socket<string> ImageSocket { get; set; }
+        [UsedImplicitly]
+        public event EventHandler BoolValueChanged;
 
-        private string _bigString;
-        private bool _bool;
-        private Color _color;
-        private DateTime _dateTime;
-        private TestEnum _enum;
-        private string _file;
-        private float _float;
-        private string _folder;
-        private string _image;
-        private int _int;
-        private string _string;
+        [UsedImplicitly]
+        public event EventHandler IntValueChanged;
+
+        [UsedImplicitly]
+        public event EventHandler FloatValueChanged;
+
+        [UsedImplicitly]
+        public event EventHandler StringValueChanged;
+
+        [UsedImplicitly]
+        public event EventHandler BigStringValueChanged;
+
+        [UsedImplicitly]
+        public event EventHandler ColorValueChanged;
+
+        [UsedImplicitly]
+        public event EventHandler DateTimeValueChanged;
+
+        [UsedImplicitly]
+        public event EventHandler EnumValueChanged;
+
+        [UsedImplicitly]
+        public event EventHandler FileValueChanged;
+
+        [UsedImplicitly]
+        public event EventHandler FolderValueChanged;
+
+        [UsedImplicitly]
+        public event EventHandler ImageValueChanged;
 
         public TestObject()
         {
             BoolSocket = new Socket<bool>
             {
-                Attribute = new BooleanSocketAttribute {Group = "Socket<T>", Name = "Boolean"}
+                Attribute = new BooleanSocketAttribute
+                {
+                    Group = "Socket<T>",
+                    Name = "Boolean"
+                }
             };
 
             IntSocket = new Socket<int>
@@ -281,7 +285,12 @@ namespace FormPlug.TestHelper
 
             StringSocket = new Socket<string>
             {
-                Attribute = new TextSocketAttribute {Group = "Socket<T>", Name = "Text", MaxLenght = 10}
+                Attribute = new TextSocketAttribute
+                {
+                    Group = "Socket<T>",
+                    Name = "Text",
+                    MaxLenght = 10
+                }
             };
 
             BigStringSocket = new Socket<string>
@@ -304,28 +313,53 @@ namespace FormPlug.TestHelper
                     {
                         Group = "Socket<T>",
                         Name = "Enumeration",
-                        AlternativeNames = new[] {"Yes for sure !", "No way !", "Maybe next time..."}
+                        AlternativeNames = new[]
+                        {
+                            "Yes for sure !",
+                            "No way !",
+                            "Maybe next time..."
+                        }
                     }
             };
 
             ColorSocket = new Socket<Color>
             {
-                Attribute = new ColorSocketAttribute {Group = "Socket<T>", Name = "Color dialog"}
+                Attribute = new ColorSocketAttribute
+                {
+                    Group = "Socket<T>",
+                    Name = "Color dialog"
+                }
             };
 
             DateTimeSocket = new Socket<DateTime>
             {
-                Attribute = new DateTimeSocketAttribute {Group = "Socket<T>", Name = "Date"}
+                Attribute = new DateTimeSocketAttribute
+                {
+                    Group = "Socket<T>",
+                    Name = "Date"
+                }
             };
 
             FileSocket = new Socket<string>
             {
-                Attribute = new FileSocketAttribute {Group = "Socket<T>", Name = "Filename", Extensions = new[] {"txt"}}
+                Attribute = new FileSocketAttribute
+                {
+                    Group = "Socket<T>",
+                    Name = "Filename",
+                    Extensions = new[]
+                    {
+                        "txt"
+                    }
+                }
             };
 
             FolderSocket = new Socket<string>
             {
-                Attribute = new FolderSocketAttribute {Group = "Socket<T>", Name = "Directory"}
+                Attribute = new FolderSocketAttribute
+                {
+                    Group = "Socket<T>",
+                    Name = "Directory"
+                }
             };
 
             ImageSocket = new Socket<string>
@@ -335,7 +369,10 @@ namespace FormPlug.TestHelper
                     {
                         Group = "Socket<T>",
                         Name = "Picture",
-                        Extensions = new[] {"jpg"},
+                        Extensions = new[]
+                        {
+                            "jpg"
+                        },
                         Width = 100,
                         Height = 100
                     }
@@ -343,29 +380,6 @@ namespace FormPlug.TestHelper
 
             Reset();
         }
-
-        [UsedImplicitly]
-        public event EventHandler BoolValueChanged;
-        [UsedImplicitly]
-        public event EventHandler IntValueChanged;
-        [UsedImplicitly]
-        public event EventHandler FloatValueChanged;
-        [UsedImplicitly]
-        public event EventHandler StringValueChanged;
-        [UsedImplicitly]
-        public event EventHandler BigStringValueChanged;
-        [UsedImplicitly]
-        public event EventHandler ColorValueChanged;
-        [UsedImplicitly]
-        public event EventHandler DateTimeValueChanged;
-        [UsedImplicitly]
-        public event EventHandler EnumValueChanged;
-        [UsedImplicitly]
-        public event EventHandler FileValueChanged;
-        [UsedImplicitly]
-        public event EventHandler FolderValueChanged;
-        [UsedImplicitly]
-        public event EventHandler ImageValueChanged;
 
         public void Reset()
         {

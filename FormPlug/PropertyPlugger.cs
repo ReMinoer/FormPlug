@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using FormPlug.Annotations;
 using FormPlug.SocketAttributes;
 
 namespace FormPlug
@@ -33,12 +32,12 @@ namespace FormPlug
         }
 
         private void CommonConstructor(IPlug<TValue, TControl> plug, object obj, PropertyInfo property,
-                                       SocketAttribute attr)
+            SocketAttribute attr)
         {
             string valueChangedEventName = attr != null
-                                               ? attr.CustomValueChangedEventName
-                                                 ?? property.Name + SocketAttribute.DefaultValueChangedExtension
-                                               : property.Name + SocketAttribute.DefaultValueChangedExtension;
+                ? attr.CustomValueChangedEventName
+                  ?? property.Name + SocketAttribute.DefaultValueChangedExtension
+                : property.Name + SocketAttribute.DefaultValueChangedExtension;
 
             _event = obj.GetType().GetEvent(valueChangedEventName);
             if (_event != null)
@@ -66,10 +65,13 @@ namespace FormPlug
             _property.SetValue(_obj, _plug.Value);
         }
 
-        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        // ReSharper disable UnusedParameter.Local
         private void OnSocketValueChanged(object sender, EventArgs eventArgs)
         {
             _plug.Value = (TValue)_property.GetValue(_obj);
         }
+
+        // ReSharper restore UnusedParameter.Local
     }
 }

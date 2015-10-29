@@ -15,7 +15,9 @@ namespace FormPlug.WindowsForm
                     AutoSize = true,
                     AutoSizeMode = AutoSizeMode.GrowAndShrink,
                     Dock = DockStyle.Fill
-                }) {}
+                })
+        {
+        }
 
         protected override IPlug<Control> GetAssociatePlug<T>(SocketAttribute attribute)
         {
@@ -67,7 +69,11 @@ namespace FormPlug.WindowsForm
 
         protected override Control CreateLabel(string text)
         {
-            return new Label {Text = text, Padding = new Padding(0, 4, 0, 0)};
+            return new Label
+            {
+                Text = text,
+                Padding = new Padding(0, 4, 0, 0)
+            };
         }
 
         protected override void AddControlToControl(Control parent, Control control)

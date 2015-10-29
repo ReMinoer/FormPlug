@@ -6,11 +6,17 @@ namespace FormPlug.PlugsBase
     public abstract class DateTimePlugBase<TControl> : Plug<DateTime, TControl, DateTimeSocketAttribute>
         where TControl : new()
     {
-        protected DateTimePlugBase() {}
+        protected DateTimePlugBase()
+        {
+        }
 
         protected DateTimePlugBase(TControl control)
-            : base(control) {}
+            : base(control)
+        {
+        }
 
-        protected sealed override void UseCustomAttribute(DateTimeSocketAttribute attribute) {}
+        protected override sealed void UseCustomAttribute(DateTimeSocketAttribute attribute)
+        {
+        }
     }
 }

@@ -9,8 +9,8 @@ namespace FormPlug.TestHelper
     static public class PlugTestHelper
     {
         static public void PlugTest<TObject, TPlug, TValue, TAttribute, TControl>(TValue initValue, TValue newValue,
-                                                                                  Action initAction = null,
-                                                                                  Action endAction = null)
+            Action initAction = null,
+            Action endAction = null)
             where TPlug : Plug<TValue, TControl, TAttribute>, new() where TObject : new()
             where TAttribute : SocketAttribute, new() where TControl : new()
         {
@@ -88,9 +88,9 @@ namespace FormPlug.TestHelper
         }
 
         static private void PlugValueChangedWithSocket<TPlug, TValue, TControl>(Socket<TValue> socket, TValue initValue,
-                                                                                TValue newValue,
-                                                                                Action initAction = null,
-                                                                                Action endAction = null)
+            TValue newValue,
+            Action initAction = null,
+            Action endAction = null)
             where TPlug : IPlug<TValue, TControl>, new()
         {
             try
@@ -115,9 +115,9 @@ namespace FormPlug.TestHelper
         }
 
         static private void PlugValueChangedWithAttribute<TPlug, TValue, TControl>(object obj, PropertyInfo propertyInfo,
-                                                                                   TValue initValue, TValue newValue,
-                                                                                   Action initAction = null,
-                                                                                   Action endAction = null)
+            TValue initValue, TValue newValue,
+            Action initAction = null,
+            Action endAction = null)
             where TPlug : IPlug<TValue, TControl>, new()
         {
             try
@@ -142,9 +142,9 @@ namespace FormPlug.TestHelper
         }
 
         static private void SocketValueChangedWithSocket<TPlug, TValue, TControl>(Socket<TValue> socket,
-                                                                                  TValue initValue, TValue newValue,
-                                                                                  Action initAction = null,
-                                                                                  Action endAction = null)
+            TValue initValue, TValue newValue,
+            Action initAction = null,
+            Action endAction = null)
             where TPlug : IPlug<TValue, TControl>, new()
         {
             try
@@ -169,10 +169,10 @@ namespace FormPlug.TestHelper
         }
 
         static private void SocketValueChangedWithAttribute<TPlug, TValue, TControl>(object obj,
-                                                                                     PropertyInfo propertyInfo,
-                                                                                     TValue initValue, TValue newValue,
-                                                                                     Action initAction = null,
-                                                                                     Action endAction = null)
+            PropertyInfo propertyInfo,
+            TValue initValue, TValue newValue,
+            Action initAction = null,
+            Action endAction = null)
             where TPlug : IPlug<TValue, TControl>, new()
         {
             try

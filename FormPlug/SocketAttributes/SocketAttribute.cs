@@ -8,11 +8,10 @@ namespace FormPlug.SocketAttributes
     [AttributeUsage(AttributeTargets.Property)]
     public abstract class SocketAttribute : Attribute
     {
+        public const string DefaultValueChangedExtension = "ValueChanged";
         public string Name { get; set; }
         public string Group { get; set; }
         public bool ReadOnly { get; set; }
         public string CustomValueChangedEventName { get; set; }
-
-        public const string DefaultValueChangedExtension = "ValueChanged";
     }
 }

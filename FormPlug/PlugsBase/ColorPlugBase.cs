@@ -6,11 +6,17 @@ namespace FormPlug.PlugsBase
     public abstract class ColorPlugBase<TControl> : Plug<Color, TControl, ColorSocketAttribute>
         where TControl : new()
     {
-        protected ColorPlugBase() {}
+        protected ColorPlugBase()
+        {
+        }
 
         protected ColorPlugBase(TControl control)
-            : base(control) {}
+            : base(control)
+        {
+        }
 
-        protected sealed override void UseCustomAttribute(ColorSocketAttribute attribute) {}
+        protected override sealed void UseCustomAttribute(ColorSocketAttribute attribute)
+        {
+        }
     }
 }

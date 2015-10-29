@@ -9,11 +9,17 @@ namespace FormPlug
     // TODO : Implements MethodPlugBase
     // TODO : Handle interface for controls to easily connect
     public abstract class Plug<TValue, TControl, TAttribute> : IPlug<TValue, TControl>
-        where TAttribute : SocketAttribute, new() where TControl : new()
+        where TAttribute : SocketAttribute, new()
+        where TControl : new()
     {
-        protected abstract bool ReadOnly { set; }
         [UsedImplicitly]
         private IPlugger _plugger;
+
+        public TControl Control { get; set; }
+        protected abstract bool ReadOnly { set; }
+
+        public abstract TValue Value { get; set; }
+        public abstract event EventHandler ValueChanged;
 
         protected Plug()
         {
@@ -24,8 +30,6 @@ namespace FormPlug
         {
             Control = control;
         }
-
-        public TControl Control { get; set; }
 
         public void Connect(Socket<TValue> socket)
         {
@@ -83,8 +87,18 @@ namespace FormPlug
             Connect(obj, obj.GetType().GetProperty(propertyName), attribute);
         }
 
-        public abstract TValue Value { get; set; }
-        public abstract event EventHandler ValueChanged;
+        static public implicit operator TControl(Plug<TValue, TControl, TAttribute> value)
+        {
+            return value.Control;
+        }
+
+        protected virtual bool IsTypeValid(Type type)
+        {
+            return type == typeof(TValue);
+        }
+
+        protected abstract void InitializeControl();
+        protected abstract void UseCustomAttribute(TAttribute attribute);
 
         private void UseAttribute(TAttribute attribute)
         {
@@ -94,18 +108,5 @@ namespace FormPlug
             ReadOnly = attribute.ReadOnly;
             UseCustomAttribute(attribute);
         }
-
-        protected virtual bool IsTypeValid(Type type)
-        {
-            return type == typeof(TValue);
-        }
-
-        static public implicit operator TControl(Plug<TValue, TControl, TAttribute> value)
-        {
-            return value.Control;
-        }
-
-        protected abstract void InitializeControl();
-        protected abstract void UseCustomAttribute(TAttribute attribute);
     }
 }

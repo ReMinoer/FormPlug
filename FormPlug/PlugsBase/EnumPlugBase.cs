@@ -8,9 +8,10 @@ namespace FormPlug.PlugsBase
     public abstract class EnumPlugBase<TValue, TControl> : Plug<TValue, TControl, EnumSocketAttribute>
         where TControl : new()
     {
+        private readonly Dictionary<string, string> _altNames = new Dictionary<string, string>();
         protected abstract string Output { get; set; }
 
-        public sealed override TValue Value
+        public override sealed TValue Value
         {
             get
             {
@@ -23,12 +24,15 @@ namespace FormPlug.PlugsBase
                 Output = name != null && _altNames.ContainsKey(name) ? _altNames[name] : name;
             }
         }
-        private readonly Dictionary<string, string> _altNames = new Dictionary<string, string>();
 
-        protected EnumPlugBase() {}
+        protected EnumPlugBase()
+        {
+        }
 
         protected EnumPlugBase(TControl control)
-            : base(control) {}
+            : base(control)
+        {
+        }
 
         protected override bool IsTypeValid(Type type)
         {
@@ -40,7 +44,7 @@ namespace FormPlug.PlugsBase
             InitializeNames(Enum.GetNames(typeof(TValue)));
         }
 
-        protected sealed override void UseCustomAttribute(EnumSocketAttribute attribute)
+        protected override sealed void UseCustomAttribute(EnumSocketAttribute attribute)
         {
             _altNames.Clear();
 

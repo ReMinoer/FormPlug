@@ -6,13 +6,16 @@ namespace FormPlug.WindowsForm.Plugs
 {
     public class BooleanPlug : BooleanPlugBase<CheckBox>
     {
-        public override bool Value { get { return Control.Checked; } set { Control.Checked = value; } }
-        protected override bool ReadOnly { set { Control.Enabled = !value; } }
+        public override bool Value
+        {
+            get { return Control.Checked; }
+            set { Control.Checked = value; }
+        }
 
-        public BooleanPlug() {}
-
-        public BooleanPlug(CheckBox control)
-            : base(control) {}
+        protected override bool ReadOnly
+        {
+            set { Control.Enabled = !value; }
+        }
 
         public override event EventHandler ValueChanged
         {
@@ -20,6 +23,17 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.CheckedChanged -= value; }
         }
 
-        protected override void InitializeControl() {}
+        public BooleanPlug()
+        {
+        }
+
+        public BooleanPlug(CheckBox control)
+            : base(control)
+        {
+        }
+
+        protected override void InitializeControl()
+        {
+        }
     }
 }

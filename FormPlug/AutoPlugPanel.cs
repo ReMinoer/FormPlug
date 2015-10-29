@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using FormPlug.Annotations;
 using FormPlug.SocketAttributes;
 
 namespace FormPlug
@@ -44,7 +43,10 @@ namespace FormPlug
                     TControl control;
                     try
                     {
-                        control = (TControl)genericMethod.Invoke(this, new object[] {socket});
+                        control = (TControl)genericMethod.Invoke(this, new object[]
+                        {
+                            socket
+                        });
                     }
                     catch (TargetInvocationException e)
                     {
@@ -89,7 +91,7 @@ namespace FormPlug
             _groups = new Dictionary<string, TGroup>();
             ClearPanel(_panel);
 
-            foreach (var pair in socketAdapter.SocketAttributes)
+            foreach (KeyValuePair<PropertyInfo, SocketAttribute> pair in socketAdapter.SocketAttributes)
             {
                 PropertyInfo propertyInfo = pair.Key;
                 SocketAttribute attribute = pair.Value;
@@ -111,6 +113,26 @@ namespace FormPlug
                 AddEntry(label, control, _panel, attribute.Group);
             }
         }
+
+        static public implicit operator TPanel(AutoPlugPanel<TPanel, TGroup, TLabel, TControl> value)
+        {
+            return value._panel;
+        }
+
+        protected abstract IPlug<TControl> GetAssociatePlug<T>(SocketAttribute attribute);
+
+        protected abstract void ClearPanel(TPanel panel);
+
+        protected abstract TGroup CreateGroup(string name);
+        protected abstract TLabel CreateLabel(string text);
+
+        protected abstract void AddGroupToPanel(TPanel panel, TGroup group);
+
+        protected abstract void AddControlToPanel(TPanel panel, TControl control);
+        protected abstract void AddLabelToPanel(TPanel panel, TLabel label);
+
+        protected abstract void AddControlToGroup(TGroup group, TControl control);
+        protected abstract void AddLabelToGroup(TGroup group, TLabel label);
 
         private void AddEntry(TLabel label, TControl control, TPanel panel, string groupName)
         {
@@ -139,7 +161,7 @@ namespace FormPlug
             }
         }
 
-        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
         private TControl CreatePlugFromSocket<T>(ISocket socket)
         {
             var plug = (IPlug<T, TControl>)GetAssociatePlug<T>(socket.Attribute);
@@ -159,35 +181,20 @@ namespace FormPlug
             MethodInfo method = GetType().GetMethod("GetAssociatePlug", BindingFlags.NonPublic | BindingFlags.Instance);
             MethodInfo genericMethod = method.MakeGenericMethod(genericType);
 
-            return (IPlug<TControl>)genericMethod.Invoke(this, new object[] {attribute});
+            return (IPlug<TControl>)genericMethod.Invoke(this, new object[]
+            {
+                attribute
+            });
         }
-
-        protected abstract IPlug<TControl> GetAssociatePlug<T>(SocketAttribute attribute);
-
-        static public implicit operator TPanel(AutoPlugPanel<TPanel, TGroup, TLabel, TControl> value)
-        {
-            return value._panel;
-        }
-
-        protected abstract void ClearPanel(TPanel panel);
-
-        protected abstract TGroup CreateGroup(string name);
-        protected abstract TLabel CreateLabel(string text);
-
-        protected abstract void AddGroupToPanel(TPanel panel, TGroup group);
-
-        protected abstract void AddControlToPanel(TPanel panel, TControl control);
-        protected abstract void AddLabelToPanel(TPanel panel, TLabel label);
-
-        protected abstract void AddControlToGroup(TGroup group, TControl control);
-        protected abstract void AddLabelToGroup(TGroup group, TLabel label);
     }
 
     public abstract class AutoPlugPanel<TControlBase>
         : AutoPlugPanel<TControlBase, TControlBase, TControlBase, TControlBase>
     {
         protected AutoPlugPanel(TControlBase panel)
-            : base(panel) {}
+            : base(panel)
+        {
+        }
 
         protected abstract void AddControlToControl(TControlBase parent, TControlBase control);
 

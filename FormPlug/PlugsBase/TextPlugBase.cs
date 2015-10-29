@@ -11,12 +11,16 @@ namespace FormPlug.PlugsBase
         protected abstract int Height { set; }
         protected abstract bool Password { set; }
 
-        protected TextPlugBase() {}
+        protected TextPlugBase()
+        {
+        }
 
         protected TextPlugBase(TControl control)
-            : base(control) {}
+            : base(control)
+        {
+        }
 
-        protected sealed override void UseCustomAttribute(TextSocketAttribute attribute)
+        protected override sealed void UseCustomAttribute(TextSocketAttribute attribute)
         {
             MaxLenght = attribute.MaxLenght;
             Multiline = attribute.Multiline;

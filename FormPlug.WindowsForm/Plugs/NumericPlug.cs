@@ -6,17 +6,36 @@ namespace FormPlug.WindowsForm.Plugs
 {
     public class NumericPlug<T> : NumericPlugBase<T, NumericUpDown, decimal>
     {
-        protected override double Minimum { set { Control.Minimum = (decimal)value; } }
-        protected override double Maximum { set { Control.Maximum = (decimal)value; } }
-        protected override double Increment { set { Control.Increment = (decimal)value; } }
-        protected override int Decimals { set { Control.DecimalPlaces = value; } }
-        protected override decimal Output { get { return Control.Value; } set { Control.Value = value; } }
-        protected override bool ReadOnly { set { Control.Enabled = !value; } }
+        protected override double Minimum
+        {
+            set { Control.Minimum = (decimal)value; }
+        }
 
-        public NumericPlug() {}
+        protected override double Maximum
+        {
+            set { Control.Maximum = (decimal)value; }
+        }
 
-        public NumericPlug(NumericUpDown control)
-            : base(control) {}
+        protected override double Increment
+        {
+            set { Control.Increment = (decimal)value; }
+        }
+
+        protected override int Decimals
+        {
+            set { Control.DecimalPlaces = value; }
+        }
+
+        protected override decimal Output
+        {
+            get { return Control.Value; }
+            set { Control.Value = value; }
+        }
+
+        protected override bool ReadOnly
+        {
+            set { Control.Enabled = !value; }
+        }
 
         public override event EventHandler ValueChanged
         {
@@ -24,6 +43,17 @@ namespace FormPlug.WindowsForm.Plugs
             remove { Control.ValueChanged -= value; }
         }
 
-        protected override void InitializeControl() {}
+        public NumericPlug()
+        {
+        }
+
+        public NumericPlug(NumericUpDown control)
+            : base(control)
+        {
+        }
+
+        protected override void InitializeControl()
+        {
+        }
     }
 }

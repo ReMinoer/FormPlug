@@ -12,16 +12,21 @@ namespace FormPlug.PlugsBase
         protected abstract int Decimals { set; }
 
         protected abstract TOutput Output { get; set; }
-        public sealed override TValue Value
+
+        public override sealed TValue Value
         {
             get { return (TValue)Convert.ChangeType(Output, typeof(TValue)); }
             set { Output = (TOutput)Convert.ChangeType(value, typeof(TOutput)); }
         }
 
-        protected NumericPlugBase() {}
+        protected NumericPlugBase()
+        {
+        }
 
         protected NumericPlugBase(TControl control)
-            : base(control) {}
+            : base(control)
+        {
+        }
 
         protected override bool IsTypeValid(Type type)
         {
@@ -38,7 +43,7 @@ namespace FormPlug.PlugsBase
             return true;
         }
 
-        protected sealed override void UseCustomAttribute(NumericSocketAttribute attribute)
+        protected override sealed void UseCustomAttribute(NumericSocketAttribute attribute)
         {
             Minimum = attribute.Minimum;
             Maximum = attribute.Maximum;

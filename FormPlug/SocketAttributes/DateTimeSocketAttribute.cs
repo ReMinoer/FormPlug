@@ -1,4 +1,6 @@
 namespace FormPlug.SocketAttributes
 {
-    public class DateTimeSocketAttribute : SocketAttribute {}
+    public class DateTimeSocketAttribute : SocketAttribute
+    {
+    }
 }
